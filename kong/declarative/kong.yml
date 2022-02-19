@@ -7,3 +7,10 @@ services:
       - name: get-ping
         paths:
           - /ping
+
+plugins:
+  - name: rate-limiting
+    service: rest-ping
+    config:
+      minute: 5
+      policy: local
