@@ -30,6 +30,9 @@ services:
   #     - kong-net
   rest:
     image: quarkus/quarkus-kotlin-rest-api-jvm
+    build:
+      context: ./apps/quarkus-kotlin-rest-api
+      dockerfile: ./src/main/docker/Dockerfile.jvm
     networks:
       - "kong-net"
     ports:
