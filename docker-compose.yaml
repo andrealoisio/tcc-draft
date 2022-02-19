@@ -1,0 +1,46 @@
+services:
+  api_gateway:
+    image: kong
+    networks:
+      - "kong-net"
+    volumes:
+      - ./kong/declarative:/kong/declarative
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "8001:8001"
+      - "8444:8444"
+    environment:
+      - "KONG_DECLARATIVE_CONFIG=/kong/declarative/kong.yml"
+      - "KONG_DATABASE=off"
+      - "KONG_PROXY_ACCESS_LOG=/dev/stdout"
+      - "KONG_ADMIN_ACCESS_LOG=/dev/stdout"
+      - "KONG_PROXY_ERROR_LOG=/dev/stderr"
+      - "KONG_ADMIN_ERROR_LOG=/dev/stderr"
+      - "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl"
+  # kong_database:
+  #   image: postgres:9.6
+  #   environment:
+  #     - POSTGRES_USER=kong
+  #     - POSTGRES_DB=kong
+  #     - POSTGRES_PASSWORD=kongpass
+  #   ports:
+  #     - 5432:5432
+  #   networks:
+  #     - kong-net
+  rest:
+    image: quarkus/quarkus-kotlin-rest-api-jvm
+    networks:
+      - "kong-net"
+    ports:
+      - "8080"
+      # - "8080:8080"
+    # environment:
+    #   JAVA_OPTS: "-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
+    #   JAVA_APP_JAR: "/deployments/quarkus-kotlin-rest-api-1.0.0-SNAPSHOT.jar"
+    volumes:
+      - ./apps/quarkus-kotlin-rest-api/target/quarkus-app:/deployments
+
+networks:
+  kong-net:
+    driver: bridge

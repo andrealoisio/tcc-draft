@@ -1,0 +1,9 @@
+_format_version: "2.1"
+
+services:
+  - name: rest-ping
+    url: http://rest:8080/ping
+    routes: 
+      - name: get-ping
+        paths:
+          - /ping
