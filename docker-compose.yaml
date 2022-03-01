@@ -19,6 +19,7 @@ services:
       - ./db:/docker-entrypoint-initdb.d/
     networks:
       - postgres
+      - "kong-net"
     restart: always
 
 
