@@ -1,0 +1,140 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog
+    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+
+    <changeSet id="ddl-1" author="Daniel">
+        <createTable tableName="formacao">
+            <column name="seq_formacao" type="serial"> 
+                <constraints primaryKey="true" primaryKeyName="pk_formacao"/>
+            </column>
+            <column name="nome_curso" type="text"/> 
+            <column name="nivel" type="text" />  
+            <column name="titulo_tese" type="text" />  
+            <column name="instituicao" type="text" />  
+            <column name="area_conhecimento" type="text" />  
+            <column name="data_inicio" type="date" />  
+            <column name="data_termino" type="date" />  
+        </createTable>
+    </changeSet>    
+
+    <changeSet id="ddl-2" author="Daniel">
+        <createTable tableName="associado">
+            <column name="seq_associado" type="serial"/>    
+            <column name="nome" type="text"/>            
+            <column name="cpf" type="text" />  
+            <column name="email" type="text"/>    
+            <column name="data_nascimento" type="date" />  
+            <column name="data_registro" type="date" />  
+            <column name="is_ativo" type="boolean" /> 
+            <column name="plano" type="text" />  
+            <column name="celular" type="text" />  
+            <column name="telefone" type="text" />  
+            <column name="nome_mae" type="text" /> 
+            <column name="nome_endereco" type="text" />  
+            <column name="bairro" type="text" />  
+            <column name="cidade" type="text" />  
+            <column name="uf" type="text" />  
+            <column name="cep" type="text" />  
+            <column name="coordenadas" type="point" />                           
+        </createTable>  
+    </changeSet>
+
+    <changeSet id="ddl-3" author="Daniel">
+        <createTable tableName="conveniado">
+            <column name="seq_conveniado" type="serial"/>
+            <column name="nome" type="text"/>    
+            <column name="nome_fantasaia" type="text"/>    
+            <column name="email" type="text"/>    
+            <column name="cnpj" type="text" />  
+            <column name="atividade" type="text" />              
+            <column name="data_registro" type="date" />  
+            <column name="telefone" type="text" />  
+            <column name="celular" type="text" />  
+            <column name="nome_responsavel" type="text"/>  
+            <column name="nome_endereco" type="text" />  
+            <column name="bairro" type="text" />  
+            <column name="cidade" type="text" />  
+            <column name="uf" type="text" />  
+            <column name="cep" type="text" />  
+            <column name="coordenadas" type="point" />                
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ddl-4" author="Daniel">
+        <createTable tableName="prestador">
+            <column name="seq_prestador" type="serial"/> 
+            <column name="nome" type="text"/>    
+            <column name="email" type="text"/>   
+            <column name="cpf" type="text" />  
+            <column name="cnpj" type="text" />  
+            <column name="especializacao" type="text" />              
+            <column name="data_registro" type="date" />  
+            <column name="telefone" type="text" />  
+            <column name="celular" type="text" />  
+            <column name="seq_formacao" type="int"> 
+                <constraints references="formacao(seq_formacao)" foreignKeyName="fk_formacao"/>
+            </column>    
+            <column name="nome_endereco" type="text" />  
+            <column name="bairro" type="text" />  
+            <column name="cidade" type="text" />  
+            <column name="uf" type="text" />  
+            <column name="cep" type="text" />  
+            <column name="coordenadas" type="point" />              
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="ddl-5" author="Daniel">
+        <createTable tableName="cid">
+            <column name="address" type="int"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="ddl-6" author="Daniel">
+        <createTable tableName="pagamentos">
+            <column name="address" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ddl-7" author="Daniel">
+        <createTable tableName="atendimento">
+            <column name="address" type="int"/>
+        </createTable>  
+    </changeSet>
+
+    <changeSet id="ddl-8" author="Daniel">
+        <createTable tableName="remocao">
+            <column name="address" type="int"/>
+        </createTable>
+    </changeSet>
+   
+    <changeSet id="ddl-9" author="Daniel">
+        <createTable tableName="conta">
+            <column name="address" type="int"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="ddl-10" author="Daniel">
+        <createTable tableName="procedimento">
+            <column name="address" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ddl-11" author="Daniel">
+        <createTable tableName="carteirinha">
+            <column name="address" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ddl-12" author="Daniel">
+        <createTable tableName="autorizacao">
+            <column name="address" type="int"/>
+        </createTable>
+    </changeSet>
+ 
+</databaseChangeLog>
