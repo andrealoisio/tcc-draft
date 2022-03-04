@@ -1,4 +1,44 @@
+version: '3.8'
 services:
+
+  db:
+    container_name: postgres_container
+    image: postgres:14.0
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PW}
+      - DB_NAME=${DB_NAME}
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+    networks:
+      - postgres
+      - "kong-net"
+    restart: always
+
+
+#  pgadmin:
+#    container_name: pgadmin_container
+#    image: dpage/pgadmin4
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+#      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+#      PGADMIN_CONFIG_SERVER_MODE: 'False'
+#    volumes:
+#      - pgadmin:/var/lib/pgadmin
+#
+#    ports:
+#      - "${PGADMIN_PORT:-5050}:80"
+#    networks:
+#      - postgres
+#    restart: unless-stopped
+
   api_gateway:
     image: kong
     networks:
@@ -78,3 +118,8 @@ services:
 networks:
   kong-net:
     driver: bridge
+  postgres:
+    driver: bridge
+volumes:
+  postgres:
+  pgadmin:
