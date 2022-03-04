@@ -33,7 +33,7 @@ docker-compose down
 This Compose file contains the following environment variables:
 
 * `POSTGRES_USER` the default value is **postgres**
-* `POSTGRES_PASSWORD` the default value is **changeme**
+* `POSTGRES_PASSWORD` the default value is **postgres**
 * `PGADMIN_PORT` the default value is **5050**
 * `PGADMIN_DEFAULT_EMAIL` the default value is **pgadmin4@pgadmin.org**
 * `PGADMIN_DEFAULT_PASSWORD` the default value is **admin**
@@ -41,7 +41,7 @@ This Compose file contains the following environment variables:
 ## Access to postgres:
 * `localhost:5432`
 * **Username:** postgres (as a default)
-* **Password:** changeme (as a default)
+* **Password:** postgres (as a default)
 
 ## Access to PgAdmin:
 * **URL:** `http://localhost:5050`
@@ -52,4 +52,14 @@ This Compose file contains the following environment variables:
 * **Host name/address** `postgres`
 * **Port** `5432`
 * **Username** as `POSTGRES_USER`, by default: `postgres`
-* **Password** as `POSTGRES_PASSWORD`, by default `changeme`
+* **Password** as `POSTGRES_PASSWORD`, by default `postgres`
+
+
+## Maven
+* **comando maven /c skip testes** ./mvnw package -Dmaven.test.skip=true**
+## Liquibase
+* **comando maven para gerar changeLog Baseline liquibase** ./mvnw liquibase:generateChangeLog**
+* **comando maven para subir em banco os changeLogs liquibase** ./mvnw liquibase:update**
+* **comando maven para marcar os objetos que já existem no banco liquibase** ./mvnw liquibase:changelogSync**
+
+

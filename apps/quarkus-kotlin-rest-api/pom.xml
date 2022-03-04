@@ -29,6 +29,12 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-maven-plugin</artifactId>
+      <version>3.4.1</version>
+    </dependency>
+
     <!-- Liquibase specific dependencies -->
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -84,6 +90,14 @@
     <sourceDirectory>src/main/kotlin</sourceDirectory>
     <testSourceDirectory>src/test/kotlin</testSourceDirectory>
     <plugins>
+      <plugin>
+          <groupId>org.liquibase</groupId>
+          <artifactId>liquibase-maven-plugin</artifactId>
+          <version>3.4.1</version>
+          <configuration>                  
+              <propertyFile>src/main/resources/liquibase.properties</propertyFile>
+          </configuration>                
+      </plugin>     
       <plugin>
         <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>

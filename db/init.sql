@@ -1,9 +1,10 @@
 CREATE DATABASE gisa;
 GRANT ALL PRIVILEGES ON DATABASE gisa TO postgres;
-\connect gisa postgres
+/*\connect gisa postgres
 BEGIN;
 	CREATE SCHEMA IF NOT EXISTS cadastro;
 	CREATE SCHEMA IF NOT EXISTS servicos;
 	CREATE SCHEMA IF NOT EXISTS gestao;
 	CREATE SCHEMA IF NOT EXISTS ciencia;
+*/	
 commit;
