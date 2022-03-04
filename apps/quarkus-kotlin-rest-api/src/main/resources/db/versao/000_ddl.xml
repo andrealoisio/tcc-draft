@@ -25,7 +25,9 @@
 
     <changeSet id="ddl-2" author="Daniel">
         <createTable tableName="associado">
-            <column name="seq_associado" type="serial"/>    
+            <column name="matricula" type="int">
+                <constraints primaryKey="true" primaryKeyName="pk_matricula"/>
+            </column>         
             <column name="nome" type="text"/>            
             <column name="cpf" type="text" />  
             <column name="email" type="text"/>    
@@ -47,7 +49,7 @@
 
     <changeSet id="ddl-3" author="Daniel">
         <createTable tableName="conveniado">
-            <column name="seq_conveniado" type="serial"/>
+            <column name="seq_conveniado" type="serial"/>   
             <column name="nome" type="text"/>    
             <column name="nome_fantasaia" type="text"/>    
             <column name="email" type="text"/>    
@@ -126,9 +128,16 @@
     </changeSet>
 
     <changeSet id="ddl-11" author="Daniel">
-        <createTable tableName="carteirinha">
-            <column name="address" type="int"/>
-        </createTable>
+        <createTable tableName="carteirinhas_emitidas">
+            <column name="numero" type="int">    
+                <constraints primaryKey="true" primaryKeyName="pk_carteirinhas_emitidas"/>
+            </column>    
+            <column name="data_registro" type="date" />  
+            <column name="data_vencimento" type="date" />  
+            <column name="matricula" type="int"> 
+                <constraints references="associado(matricula)" foreignKeyName="fk_associado"/>
+            </column>               
+         </createTable>
     </changeSet>
 
     <changeSet id="ddl-12" author="Daniel">
