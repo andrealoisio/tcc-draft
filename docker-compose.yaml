@@ -12,9 +12,9 @@ services:
       interval: 10s
       retries: 10
     environment:
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PW}
-      - DB_NAME=${DB_NAME}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - DB_NAME=gisa
     volumes:
       - ./db:/docker-entrypoint-initdb.d/
     networks:
