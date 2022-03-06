@@ -61,5 +61,6 @@ This Compose file contains the following environment variables:
 * **comando maven para gerar changeLog Baseline liquibase** ./mvnw liquibase:generateChangeLog**
 * **comando maven para subir em banco os changeLogs liquibase** ./mvnw liquibase:update**
 * **comando maven para marcar os objetos que já existem no banco liquibase** ./mvnw liquibase:changelogSync**
+* **comando maven para limpar o checksum** ./mvnw liquibase:clearCheckSums**
 
 
