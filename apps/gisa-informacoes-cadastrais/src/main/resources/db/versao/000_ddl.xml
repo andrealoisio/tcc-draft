@@ -160,12 +160,6 @@
             <column name="ind_dificuldade_mobilidade" type="boolean"/>
             <column name="coordenada_origem" type="point"/>
             <column name="coordenada_destino" type="point"/>
-            <column name="localizacao_origem" type="int">
-                 <constraints references="conveniado(seq_conveniado)" foreignKeyName="fk_conveniado_origem"/>
-            </column>              
-            <column name="localizacao_destino" type="int">
-                 <constraints references="conveniado(seq_conveniado)" foreignKeyName="fk_conveniado_destino"/>
-            </column>  
             <column name="nome_endereco_origem" type="text" />  
             <column name="bairro_origem" type="text" />  
             <column name="cidade_origem" type="text" />  
@@ -185,7 +179,14 @@
         <createTable tableName="conta_corrente_associado">
             <column name="codigo" type="int">
                 <constraints primaryKey="true" primaryKeyName="pk_conta_corrente_associado"/>
+            </column>  
+            <column name="matricula_associado" type="int">
+                <constraints references="associado(matricula)" foreignKeyName="fk_associado"/>
             </column>   
+            <column name="saldo_devedor" type="number"/>
+            <column name="situacao" type="text"/>
+            <column name="data_registro" type="date"/>
+            <column name="data_admissao" type="date"/>
         </createTable>
     </changeSet>
     
@@ -198,6 +199,7 @@
             <column name="custo" type="number"/> 
             <column name="ind_somente_particular" type="boolean"/> 
             <column name="ind_cortesia" type="boolean"/> 
+            <column name="data_registro" type="date"/>
             <column name="descricao" type="text"/> 
         </createTable>
     </changeSet>
@@ -217,9 +219,21 @@
 
     <changeSet id="ddl-11" author="Daniel">
         <createTable tableName="autorizacao">
-            <column name="seq_autorizacao" type="serial"> 
+            <column name="codigo" type="int"> 
                 <constraints primaryKey="true" primaryKeyName="pk_autorizacao"/>
             </column>  
+            <column name="data_registro" type="date" />  
+            <column name="data_entrada" type="date" />  
+            <column name="data_aprovacao" type="date" />  
+            <column name="data_vencimento" type="date" />  
+            <column name="data_validade" type="date" />  
+            <column name="tipo_autorizacao" type="date" />  
+            <column name="esta_pago" type="boolean" />  
+            <column name="nome_aprovador" type="text" />  
+            <column name="telefone_aprovador" type="text" />  
+            <column name="codigo_aprovador" type="int" />  
+            <column name="situacao" type="text" />  
+            <column name="observacao" type="text" />      
         </createTable>
     </changeSet>
 
@@ -237,14 +251,14 @@
             <column name="seq_associado" type="int">  
                 <constraints references="associado(matricula)" foreignKeyName="fk_associado"/>
             </column>              
-            <column name="codigo" type="int">  
+            <column name="codigo_prestador" type="int">  
                 <constraints references="prestador(codigo)" foreignKeyName="fk_prestador"/>
             </column>              
             <column name="seq_conveniado" type="int">  
                  <constraints references="conveniado(seq_conveniado)" foreignKeyName="fk_conveniado"/>
             </column>   
-            <column name="seq_autorizacao" type="int">  
-                 <constraints references="autorizacao(seq_autorizacao)" foreignKeyName="fk_autorizacao"/>
+            <column name="codigo_autorizacao" type="int">  
+                 <constraints references="autorizacao(codigo)" foreignKeyName="fk_autorizacao"/>
             </column> 
             <column name="seq_remocao" type="int">  
                  <constraints references="remocao(seq_remocao)" foreignKeyName="fk_remocao"/>
@@ -254,6 +268,22 @@
             </column>                      
              <column name="observacao" type="text"/> 
         </createTable>  
+    </changeSet>
+
+
+    <changeSet id="ddl-13" author="Daniel">
+        <createTable tableName="remocao_conveniado">
+            <column name="seq_remocao_conveniado" type="serial"> 
+                <constraints primaryKey="true" primaryKeyName="pk_remocao_conveniado"/>
+            </column>   
+            <column name="seq_remocao" type="int">
+                 <constraints references="remocao(seq_remocao)" foreignKeyName="fk_seq_remocao"/>
+            </column>                
+            <column name="seq_conveniado" type="int">
+                 <constraints references="conveniado(seq_conveniado)" foreignKeyName="fk_conveniado"/>
+            </column> 
+            <column name="ind_origem_destino" type="text"/>  
+        </createTable>
     </changeSet>
  
 </databaseChangeLog>
