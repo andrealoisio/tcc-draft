@@ -29,6 +29,11 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-maven-plugin</artifactId>
+      <version>3.4.1</version>
+    </dependency>
+    <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-hibernate-orm-rest-data-panache</artifactId>
     </dependency>
@@ -69,6 +74,14 @@
   </dependencies>
   <build>
     <plugins>
+      <plugin>
+          <groupId>org.liquibase</groupId>
+          <artifactId>liquibase-maven-plugin</artifactId>
+          <version>3.4.1</version>
+          <configuration>                  
+              <propertyFile>src/main/resources/liquibase.properties</propertyFile>
+          </configuration>                
+      </plugin>     
       <plugin>
         <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
