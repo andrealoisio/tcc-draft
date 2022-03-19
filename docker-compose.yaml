@@ -1,5 +1,25 @@
 version: '3.8'
 services:
+  react-dev:
+    container_name: ui-desenv
+    build:
+        context: ./apps/react-material-ui
+        dockerfile: Dockerfile.react-dev
+    volumes:
+        - './apps/react-material-ui:/app'
+        - '/app/node_modules'
+    ports:
+        - '3001:3000'
+    environment:
+        - NODE_ENV=development
+
+  react-prod:
+      container_name: ui-prod
+      build:
+        context: ./apps/react-material-ui
+        dockerfile: Dockerfile.react-prod
+      ports:
+        - '8080:80'        
 
   db:
     container_name: postgres_container
