@@ -43,7 +43,7 @@
             <column name="cidade" type="text" />  
             <column name="uf" type="text" />  
             <column name="cep" type="text" />  
-            <column name="coordenadas" type="point" />                           
+            <column name="coordenadas" type="bytea" />
         </createTable>  
     </changeSet>
 
