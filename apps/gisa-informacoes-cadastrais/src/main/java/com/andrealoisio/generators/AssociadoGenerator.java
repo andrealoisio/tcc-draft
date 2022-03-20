@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 @ApplicationScoped
 public class AssociadoGenerator {
 
-    @Scheduled(every="5s")
+    @Scheduled(every = "5s")
     @Transactional
     void insertAssociado() {
         Log.info("Generating associado...");
@@ -34,7 +34,10 @@ public class AssociadoGenerator {
         associado.setCidade(faker.address().cityName());
         associado.setUf(faker.address().stateAbbr());
         associado.setCep(faker.address().zipCode());
-        associado.setCoordenadas(new PGpoint(Double.valueOf(faker.address().latitude().replaceAll(",", ".")), Double.valueOf(faker.address().longitude().replaceAll(",", "."))));
+        associado.setCoordenadas(new PGpoint(
+                Double.valueOf(faker.address().latitude().replaceAll(",", ".")),
+                Double.valueOf(faker.address().longitude().replaceAll(",", "."))
+        ));
         associado.setAtivo(true);
         Log.info("Persisting " + associado.getNome());
         associado.persist();

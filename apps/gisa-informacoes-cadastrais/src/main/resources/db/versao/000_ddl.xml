@@ -75,7 +75,7 @@
 
     <changeSet id="ddl-4" author="Daniel">
         <createTable tableName="prestador">
-            <column name="codigo" type="int">
+            <column name="codigo" type="serial">
                 <constraints primaryKey="true" primaryKeyName="pk_prestador"/>
             </column>              
             <column name="nome" type="text"/>    
@@ -103,7 +103,7 @@
     
     <changeSet id="ddl-5" author="Daniel">
         <createTable tableName="pagamentos_recebidos">
-            <column name="seq_pagamento" type="serial"> 
+            <column name="seq_pagamento" type="serial">
                 <constraints primaryKey="true" primaryKeyName="pk_pagamentos_recebidos"/>
             </column>  
             <column name="matricula_associado" type="int">
@@ -123,7 +123,7 @@
 
     <changeSet id="ddl-6" author="Daniel">
         <createTable tableName="pagamentos_emitidos">
-            <column name="seq_pagamento" type="serial"> 
+            <column name="seq_pagamento" type="serial">
                 <constraints primaryKey="true" primaryKeyName="pk_pagamentos_emitidos"/>
             </column>  
             <column name="matricula_associado" type="int">
@@ -148,7 +148,7 @@
 
     <changeSet id="ddl-7" author="Daniel">
         <createTable tableName="remocao">
-            <column name="seq_remocao" type="serial"> 
+            <column name="seq_remocao" type="serial">
                 <constraints primaryKey="true" primaryKeyName="pk_remocao"/>
             </column>   
             <column name="paciente" type="int">
@@ -177,7 +177,7 @@
    
     <changeSet id="ddl-8" author="Daniel">
         <createTable tableName="conta_corrente_associado">
-            <column name="codigo" type="int">
+            <column name="codigo" type="serial">
                 <constraints primaryKey="true" primaryKeyName="pk_conta_corrente_associado"/>
             </column>  
             <column name="matricula_associado" type="int">
@@ -192,7 +192,7 @@
     
     <changeSet id="ddl-9" author="Daniel">
         <createTable tableName="procedimento">
-            <column name="seq_procedimento" type="serial"> 
+            <column name="seq_procedimento" type="serial">
                 <constraints primaryKey="true" primaryKeyName="pk_procedimento"/>
             </column>  
             <column name="tabela_referencia" type="text"/> 
@@ -206,7 +206,7 @@
 
     <changeSet id="ddl-10" author="Daniel">
         <createTable tableName="carteirinhas_emitidas">
-            <column name="numero" type="int">    
+            <column name="numero" type="serial">
                 <constraints primaryKey="true" primaryKeyName="pk_carteirinhas_emitidas"/>
             </column>    
             <column name="data_registro" type="date" />  
@@ -219,7 +219,7 @@
 
     <changeSet id="ddl-11" author="Daniel">
         <createTable tableName="autorizacao">
-            <column name="codigo" type="int"> 
+            <column name="codigo" type="serial">
                 <constraints primaryKey="true" primaryKeyName="pk_autorizacao"/>
             </column>  
             <column name="data_registro" type="date" />  
