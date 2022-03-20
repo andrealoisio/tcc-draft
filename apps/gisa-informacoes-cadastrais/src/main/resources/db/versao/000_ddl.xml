@@ -25,9 +25,9 @@
 
     <changeSet id="ddl-2" author="Daniel">
         <createTable tableName="associado">
-            <column name="matricula" type="int">
-                <constraints primaryKey="true" primaryKeyName="pk_matricula"/>
-            </column>         
+            <column name="matricula" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_associado"/>
+            </column>
             <column name="nome" type="text"/>            
             <column name="cpf" type="text" />  
             <column name="email" type="text"/>    

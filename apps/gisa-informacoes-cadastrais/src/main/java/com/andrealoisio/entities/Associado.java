@@ -1,15 +1,17 @@
 package com.andrealoisio.entities;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import org.postgresql.geometric.PGpoint;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-public class Associado {
+public class Associado extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "matricula", nullable = false)
+    @Column(name = "matricula")
     private int matricula;
     private String nome;
     private String cpf;
@@ -75,12 +77,20 @@ public class Associado {
         this.dataNascimento = dataNascimento;
     }
 
+    public void setDataNascimento(java.util.Date dataNascimento) {
+        this.dataNascimento = new java.sql.Date(dataNascimento.getTime());
+    }
+
     public Date getDataRegistro() {
         return dataRegistro;
     }
 
     public void setDataRegistro(Date dataRegistro) {
         this.dataRegistro = dataRegistro;
+    }
+
+    public void setDataRegistro(java.util.Date dataRegistro) {
+        this.dataRegistro = new java.sql.Date(dataRegistro.getTime());
     }
 
     public boolean isAtivo() {
