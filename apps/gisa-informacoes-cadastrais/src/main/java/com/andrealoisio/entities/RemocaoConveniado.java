@@ -1,40 +1,49 @@
 package com.andrealoisio.entities;
 
+import javax.persistence.*;
+
+@Entity(name = "remocao_conveniado")
 public class RemocaoConveniado {
-    private int seq_remocao_conveniado;
-    private int seq_remocao;
-    private int seq_conveniado;
-    private String ind_origem_destino;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "seq_remocao_conveniado", nullable = false)
+    private int seqRemocaoConveniado;
+    @Column(name = "seq_remocao")
+    private int seqRemocao;
+    @Column(name = "seq_conveniado")
+    private int seqConveniado;
+    @Column(name = "ind_origem_destino")
+    private String indOrigemDestino;
 
-    public int getSeq_remocao_conveniado() {
-        return seq_remocao_conveniado;
+    public int getSeqRemocaoConveniado() {
+        return seqRemocaoConveniado;
     }
 
-    public void setSeq_remocao_conveniado(int seq_remocao_conveniado) {
-        this.seq_remocao_conveniado = seq_remocao_conveniado;
+    public void setSeqRemocaoConveniado(int seqRemocaoConveniado) {
+        this.seqRemocaoConveniado = seqRemocaoConveniado;
     }
 
-    public int getSeq_remocao() {
-        return seq_remocao;
+    public int getSeqRemocao() {
+        return seqRemocao;
     }
 
-    public void setSeq_remocao(int seq_remocao) {
-        this.seq_remocao = seq_remocao;
+    public void setSeqRemocao(int seqRemocao) {
+        this.seqRemocao = seqRemocao;
     }
 
-    public int getSeq_conveniado() {
-        return seq_conveniado;
+    public int getSeqConveniado() {
+        return seqConveniado;
     }
 
-    public void setSeq_conveniado(int seq_conveniado) {
-        this.seq_conveniado = seq_conveniado;
+    public void setSeqConveniado(int seqConveniado) {
+        this.seqConveniado = seqConveniado;
     }
 
-    public String getInd_origem_destino() {
-        return ind_origem_destino;
+    public String getIndOrigemDestino() {
+        return indOrigemDestino;
     }
 
-    public void setInd_origem_destino(String ind_origem_destino) {
-        this.ind_origem_destino = ind_origem_destino;
+    public void setIndOrigemDestino(String indOrigemDestino) {
+        this.indOrigemDestino = indOrigemDestino;
     }
 }
