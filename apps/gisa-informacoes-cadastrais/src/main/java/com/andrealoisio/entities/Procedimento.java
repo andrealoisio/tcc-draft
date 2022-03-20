@@ -1,31 +1,40 @@
 package com.andrealoisio.entities;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
 
+@Entity
 public class Procedimento {
-    private int seq_procedimento;
-    private String tabela_referencia;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "seq_procedimento", nullable = false)
+    private int seqProcedimento;
+    @Column(name = "tabela_referencia")
+    private String tabelaReferencia;
     private java.math.BigDecimal custo;
-    private boolean ind_somente_particular;
-    private boolean ind_cortesia;
-    private java.sql.Date data_registro;
+    @Column(name = "ind_somente_particular")
+    private boolean indSomenteParticular;
+    @Column(name = "ind_cortesia")
+    private boolean indCortesia;
+    @Column(name = "data_registro")
+    private java.sql.Date dataRegistro;
     private String descricao;
 
-    public int getSeq_procedimento() {
-        return seq_procedimento;
+    public int getSeqProcedimento() {
+        return seqProcedimento;
     }
 
-    public void setSeq_procedimento(int seq_procedimento) {
-        this.seq_procedimento = seq_procedimento;
+    public void setSeqProcedimento(int seqProcedimento) {
+        this.seqProcedimento = seqProcedimento;
     }
 
-    public String getTabela_referencia() {
-        return tabela_referencia;
+    public String getTabelaReferencia() {
+        return tabelaReferencia;
     }
 
-    public void setTabela_referencia(String tabela_referencia) {
-        this.tabela_referencia = tabela_referencia;
+    public void setTabelaReferencia(String tabelaReferencia) {
+        this.tabelaReferencia = tabelaReferencia;
     }
 
     public BigDecimal getCusto() {
@@ -36,28 +45,28 @@ public class Procedimento {
         this.custo = custo;
     }
 
-    public boolean isInd_somente_particular() {
-        return ind_somente_particular;
+    public boolean isIndSomenteParticular() {
+        return indSomenteParticular;
     }
 
-    public void setInd_somente_particular(boolean ind_somente_particular) {
-        this.ind_somente_particular = ind_somente_particular;
+    public void setIndSomenteParticular(boolean indSomenteParticular) {
+        this.indSomenteParticular = indSomenteParticular;
     }
 
-    public boolean isInd_cortesia() {
-        return ind_cortesia;
+    public boolean isIndCortesia() {
+        return indCortesia;
     }
 
-    public void setInd_cortesia(boolean ind_cortesia) {
-        this.ind_cortesia = ind_cortesia;
+    public void setIndCortesia(boolean indCortesia) {
+        this.indCortesia = indCortesia;
     }
 
-    public Date getData_registro() {
-        return data_registro;
+    public Date getDataRegistro() {
+        return dataRegistro;
     }
 
-    public void setData_registro(Date data_registro) {
-        this.data_registro = data_registro;
+    public void setDataRegistro(Date dataRegistro) {
+        this.dataRegistro = dataRegistro;
     }
 
     public String getDescricao() {

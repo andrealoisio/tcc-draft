@@ -53,7 +53,7 @@
                 <constraints primaryKey="true" primaryKeyName="pk_conveniado"/>
             </column>             
             <column name="nome" type="text"/>    
-            <column name="nome_fantasaia" type="text"/>    
+            <column name="nome_fantasia" type="text"/>
             <column name="email" type="text"/>    
             <column name="cnpj" type="text" />  
             <column name="atividade" type="text" />              
@@ -69,7 +69,7 @@
             <column name="banco" type="int"/>
             <column name="agencia" type="int"/>
             <column name="conta" type="int"/>            
-            <column name="coordenadas" type="point" />                
+            <column name="coordenadas" type="bytea" />
         </createTable>
     </changeSet>
 
@@ -97,7 +97,7 @@
             <column name="banco" type="int"/>
             <column name="agencia" type="int"/>
             <column name="conta" type="int"/>            
-            <column name="coordenadas" type="point" />              
+            <column name="coordenadas" type="bytea" />
         </createTable>
     </changeSet>
     
@@ -158,8 +158,8 @@
             <column name="data_remocao" type="date"/>
             <column name="custo" type="number"/>
             <column name="ind_dificuldade_mobilidade" type="boolean"/>
-            <column name="coordenada_origem" type="point"/>
-            <column name="coordenada_destino" type="point"/>
+            <column name="coordenada_origem" type="bytea"/>
+            <column name="coordenada_destino" type="bytea"/>
             <column name="nome_endereco_origem" type="text" />  
             <column name="bairro_origem" type="text" />  
             <column name="cidade_origem" type="text" />  

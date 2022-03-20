@@ -1,11 +1,19 @@
 package com.andrealoisio.entities;
 
+import javax.persistence.*;
 import java.sql.Date;
 
+@Entity(name = "carteirinhas_emitidas")
 public class CarteirinhasEmitidas {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "numero", nullable = false)
     private int numero;
-    private java.sql.Date data_registro;
-    private java.sql.Date data_vencimento;
+    @Column(name = "data_registro")
+    private java.sql.Date dataRegistro;
+    @Column(name = "data_vencimento")
+    private java.sql.Date dataVencimento;
     private int matricula;
 
     public int getNumero() {
@@ -16,20 +24,20 @@ public class CarteirinhasEmitidas {
         this.numero = numero;
     }
 
-    public Date getData_registro() {
-        return data_registro;
+    public Date getDataRegistro() {
+        return dataRegistro;
     }
 
-    public void setData_registro(Date data_registro) {
-        this.data_registro = data_registro;
+    public void setDataRegistro(Date dataRegistro) {
+        this.dataRegistro = dataRegistro;
     }
 
-    public Date getData_vencimento() {
-        return data_vencimento;
+    public Date getDataVencimento() {
+        return dataVencimento;
     }
 
-    public void setData_vencimento(Date data_vencimento) {
-        this.data_vencimento = data_vencimento;
+    public void setDataVencimento(Date dataVencimento) {
+        this.dataVencimento = dataVencimento;
     }
 
     public int getMatricula() {

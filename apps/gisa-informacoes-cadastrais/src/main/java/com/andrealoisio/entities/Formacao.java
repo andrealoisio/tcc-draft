@@ -1,16 +1,26 @@
 package com.andrealoisio.entities;
 
+import javax.persistence.*;
 import java.sql.Date;
 
+@Entity
 public class Formacao {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "seq_formacao", nullable = false)
     private int seqFormacao;
+    @Column(name = "nome_curso")
     private String nomeCurso;
     private String nivel;
+    @Column(name = "titulo_tese")
     private String tituloTese;
     private String instituicao;
-    private String area_conhecimento;
-    private java.sql.Date data_inicio;
-    private java.sql.Date data_termino;
+    @Column(name = "area_conhecimento")
+    private String areaConhecimento;
+    @Column(name = "data_inicio")
+    private java.sql.Date dataInicio;
+    @Column(name = "data_termino")
+    private java.sql.Date dataTermino;
 
     public int getSeqFormacao() {
         return seqFormacao;
@@ -52,27 +62,27 @@ public class Formacao {
         this.instituicao = instituicao;
     }
 
-    public String getArea_conhecimento() {
-        return area_conhecimento;
+    public String getAreaConhecimento() {
+        return areaConhecimento;
     }
 
-    public void setArea_conhecimento(String area_conhecimento) {
-        this.area_conhecimento = area_conhecimento;
+    public void setAreaConhecimento(String areaConhecimento) {
+        this.areaConhecimento = areaConhecimento;
     }
 
-    public Date getData_inicio() {
-        return data_inicio;
+    public Date getDataInicio() {
+        return dataInicio;
     }
 
-    public void setData_inicio(Date data_inicio) {
-        this.data_inicio = data_inicio;
+    public void setDataInicio(Date dataInicio) {
+        this.dataInicio = dataInicio;
     }
 
-    public Date getData_termino() {
-        return data_termino;
+    public Date getDataTermino() {
+        return dataTermino;
     }
 
-    public void setData_termino(Date data_termino) {
-        this.data_termino = data_termino;
+    public void setDataTermino(Date dataTermino) {
+        this.dataTermino = dataTermino;
     }
 }

@@ -1,18 +1,30 @@
 package com.andrealoisio.entities;
 
+import org.postgresql.geometric.PGpoint;
+
+import javax.persistence.*;
 import java.sql.Date;
 
+@Entity
 public class Conveniado {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "seq_conveniado", nullable = false)
     private int seqConveniado;
     private String nome;
-    private String nomeFantasaia;
+    @Column(name = "nome_fantasia")
+    private String nomeFantasia;
     private String email;
     private String cnpj;
     private String atividade;
+    @Column(name = "data_registro")
     private java.sql.Date dataRegistro;
     private String telefone;
     private String celular;
+    @Column(name = "nome_responsavel")
     private String nomeResponsavel;
+    @Column(name = "nome_endereco")
     private String nomeEndereco;
     private String bairro;
     private String cidade;
@@ -22,7 +34,8 @@ public class Conveniado {
     private int agencia;
     private int conta;
     // todo: Verificar formato
-    private String coordenadas;
+    @Column(columnDefinition = "bytea")
+    private PGpoint coordenadas;
 
     public int getSeqConveniado() {
         return seqConveniado;
@@ -40,12 +53,12 @@ public class Conveniado {
         this.nome = nome;
     }
 
-    public String getNomeFantasaia() {
-        return nomeFantasaia;
+    public String getNomeFantasia() {
+        return nomeFantasia;
     }
 
-    public void setNomeFantasaia(String nomeFantasaia) {
-        this.nomeFantasaia = nomeFantasaia;
+    public void setNomeFantasia(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
     }
 
     public String getEmail() {
@@ -168,11 +181,11 @@ public class Conveniado {
         this.conta = conta;
     }
 
-    public String getCoordenadas() {
+    public PGpoint getCoordenadas() {
         return coordenadas;
     }
 
-    public void setCoordenadas(String coordenadas) {
+    public void setCoordenadas(PGpoint coordenadas) {
         this.coordenadas = coordenadas;
     }
 }

@@ -1,35 +1,46 @@
 package com.andrealoisio.entities;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
 
+@Entity(name = "pagamentos_recebidos")
 public class PagamentosRecebidos {
-    private int seq_pagamento;
-    private int matricula_associado;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "seq_pagamento", nullable = false)
+    private int seqPagamento;
+    @Column(name = "matricula_associado")
+    private int matriculaAssociado;
     private int banco;
     private int agencia;
     private int conta;
     private java.math.BigDecimal valor;
-    private java.math.BigDecimal valor_multa;
-    private java.math.BigDecimal valor_juros;
-    private java.sql.Date data_pagamento;
-    private java.sql.Date data_registro;
-    private String cpf_titular;
+    @Column(name = "valor_multa")
+    private java.math.BigDecimal valorMulta;
+    @Column(name = "valor_juros")
+    private java.math.BigDecimal valorJuros;
+    @Column(name = "data_pagamento")
+    private java.sql.Date dataPagamento;
+    @Column(name = "data_registro")
+    private java.sql.Date dataRegistro;
+    @Column(name = "cpf_titular")
+    private String cpfTitular;
 
-    public int getSeq_pagamento() {
-        return seq_pagamento;
+    public int getSeqPagamento() {
+        return seqPagamento;
     }
 
-    public void setSeq_pagamento(int seq_pagamento) {
-        this.seq_pagamento = seq_pagamento;
+    public void setSeqPagamento(int seqPagamento) {
+        this.seqPagamento = seqPagamento;
     }
 
-    public int getMatricula_associado() {
-        return matricula_associado;
+    public int getMatriculaAssociado() {
+        return matriculaAssociado;
     }
 
-    public void setMatricula_associado(int matricula_associado) {
-        this.matricula_associado = matricula_associado;
+    public void setMatriculaAssociado(int matriculaAssociado) {
+        this.matriculaAssociado = matriculaAssociado;
     }
 
     public int getBanco() {
@@ -64,43 +75,43 @@ public class PagamentosRecebidos {
         this.valor = valor;
     }
 
-    public BigDecimal getValor_multa() {
-        return valor_multa;
+    public BigDecimal getValorMulta() {
+        return valorMulta;
     }
 
-    public void setValor_multa(BigDecimal valor_multa) {
-        this.valor_multa = valor_multa;
+    public void setValorMulta(BigDecimal valorMulta) {
+        this.valorMulta = valorMulta;
     }
 
-    public BigDecimal getValor_juros() {
-        return valor_juros;
+    public BigDecimal getValorJuros() {
+        return valorJuros;
     }
 
-    public void setValor_juros(BigDecimal valor_juros) {
-        this.valor_juros = valor_juros;
+    public void setValorJuros(BigDecimal valorJuros) {
+        this.valorJuros = valorJuros;
     }
 
-    public Date getData_pagamento() {
-        return data_pagamento;
+    public Date getDataPagamento() {
+        return dataPagamento;
     }
 
-    public void setData_pagamento(Date data_pagamento) {
-        this.data_pagamento = data_pagamento;
+    public void setDataPagamento(Date dataPagamento) {
+        this.dataPagamento = dataPagamento;
     }
 
-    public Date getData_registro() {
-        return data_registro;
+    public Date getDataRegistro() {
+        return dataRegistro;
     }
 
-    public void setData_registro(Date data_registro) {
-        this.data_registro = data_registro;
+    public void setDataRegistro(Date dataRegistro) {
+        this.dataRegistro = dataRegistro;
     }
 
-    public String getCpf_titular() {
-        return cpf_titular;
+    public String getCpfTitular() {
+        return cpfTitular;
     }
 
-    public void setCpf_titular(String cpf_titular) {
-        this.cpf_titular = cpf_titular;
+    public void setCpfTitular(String cpfTitular) {
+        this.cpfTitular = cpfTitular;
     }
 }

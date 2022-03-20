@@ -1,18 +1,28 @@
 package com.andrealoisio.entities;
 
+import org.postgresql.geometric.PGpoint;
+
+import javax.persistence.*;
 import java.sql.Date;
 
+@Entity
 public class Prestador {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codigo", nullable = false)
     private int codigo;
     private String nome;
     private String email;
     private String cpf;
     private String cnpj;
     private String especializacao;
+    @Column(name = "data_registro")
     private java.sql.Date data_registro;
     private String telefone;
     private String celular;
+    @Column(name = "seq_formacao")
     private int seq_formacao;
+    @Column(name = "nome_endereco")
     private String nome_endereco;
     private String bairro;
     private String cidade;
@@ -22,7 +32,8 @@ public class Prestador {
     private int agencia;
     private int conta;
     // todo: Verificar formato
-    private String coordenadas;
+    @Column(columnDefinition = "bytea")
+    private PGpoint coordenadas;
 
     public int getCodigo() {
         return codigo;
@@ -168,11 +179,11 @@ public class Prestador {
         this.conta = conta;
     }
 
-    public String getCoordenadas() {
+    public PGpoint getCoordenadas() {
         return coordenadas;
     }
 
-    public void setCoordenadas(String coordenadas) {
+    public void setCoordenadas(PGpoint coordenadas) {
         this.coordenadas = coordenadas;
     }
 }

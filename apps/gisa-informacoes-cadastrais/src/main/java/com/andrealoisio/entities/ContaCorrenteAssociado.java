@@ -1,15 +1,25 @@
 package com.andrealoisio.entities;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
 
+@Entity(name = "conta_corrente_associado")
 public class ContaCorrenteAssociado {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codigo", nullable = false)
     private int codigo;
-    private int matricula_associado;
-    private java.math.BigDecimal saldo_devedor;
+    @Column(name = "matricula_associado")
+    private int matriculaAssociado;
+    @Column(name = "saldo_devedor")
+    private java.math.BigDecimal saldoDevedor;
     private String situacao;
-    private java.sql.Date data_registro;
-    private java.sql.Date data_admissao;
+    @Column(name = "data_registro")
+    private java.sql.Date dataRegistro;
+    @Column(name = "data_admissao")
+    private java.sql.Date dataAdmissao;
 
     public int getCodigo() {
         return codigo;
@@ -19,20 +29,20 @@ public class ContaCorrenteAssociado {
         this.codigo = codigo;
     }
 
-    public int getMatricula_associado() {
-        return matricula_associado;
+    public int getMatriculaAssociado() {
+        return matriculaAssociado;
     }
 
-    public void setMatricula_associado(int matricula_associado) {
-        this.matricula_associado = matricula_associado;
+    public void setMatriculaAssociado(int matriculaAssociado) {
+        this.matriculaAssociado = matriculaAssociado;
     }
 
-    public BigDecimal getSaldo_devedor() {
-        return saldo_devedor;
+    public BigDecimal getSaldoDevedor() {
+        return saldoDevedor;
     }
 
-    public void setSaldo_devedor(BigDecimal saldo_devedor) {
-        this.saldo_devedor = saldo_devedor;
+    public void setSaldoDevedor(BigDecimal saldoDevedor) {
+        this.saldoDevedor = saldoDevedor;
     }
 
     public String getSituacao() {
@@ -43,19 +53,19 @@ public class ContaCorrenteAssociado {
         this.situacao = situacao;
     }
 
-    public Date getData_registro() {
-        return data_registro;
+    public Date getDataRegistro() {
+        return dataRegistro;
     }
 
-    public void setData_registro(Date data_registro) {
-        this.data_registro = data_registro;
+    public void setDataRegistro(Date dataRegistro) {
+        this.dataRegistro = dataRegistro;
     }
 
-    public Date getData_admissao() {
-        return data_admissao;
+    public Date getDataAdmissao() {
+        return dataAdmissao;
     }
 
-    public void setData_admissao(Date data_admissao) {
-        this.data_admissao = data_admissao;
+    public void setDataAdmissao(Date dataAdmissao) {
+        this.dataAdmissao = dataAdmissao;
     }
 }
