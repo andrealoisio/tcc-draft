@@ -3,10 +3,10 @@ services:
   react-dev:
     container_name: ui-desenv
     build:
-        context: ./apps/react-material-ui
+        context: ./apps/gisa-ui
         dockerfile: Dockerfile.react-dev
     volumes:
-        - './apps/react-material-ui:/app'
+        - './apps/gisa-ui:/app'
         - '/app/node_modules'
     ports:
         - '3001:3000'
@@ -16,7 +16,7 @@ services:
   react-prod:
       container_name: ui-prod
       build:
-        context: ./apps/react-material-ui
+        context: ./apps/gisa-ui
         dockerfile: Dockerfile.react-prod
       ports:
         - '8080:80'        
