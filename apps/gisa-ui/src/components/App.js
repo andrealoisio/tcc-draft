@@ -42,8 +42,8 @@ const App = () => {
             <article>
               <Paper elevation={3} style={{ padding: '20px'}}>
                 <div>I'm a article</div>
-                <Home />
-                {/* <DataTable /> */}
+                {/* <Home /> */}
+                <DataTable />
                 {/* <MainContent /> */}
               </Paper>
             </article>
