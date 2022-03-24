@@ -3,10 +3,15 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import MainContent from './MainContent';
 import './App.css';
+import IconMenu from './IconMenu';
+import DataTable from './DataTable';
+import Home from './Home';
+// import BoxLayout from './BoxLayout';
 
 const App = () => {
   return (
     <div className="app">
+      {/* <BoxLayout /> */}
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -28,7 +33,7 @@ const App = () => {
           <Grid item xs={12} md={3}>
             <aside>
               <Paper elevation={3} style={{ padding: '20px' }}>
-                I'm a aside
+                <IconMenu />
               </Paper>
             </aside>
           </Grid>
@@ -37,7 +42,9 @@ const App = () => {
             <article>
               <Paper elevation={3} style={{ padding: '20px'}}>
                 <div>I'm a article</div>
-                <MainContent />
+                <Home />
+                {/* <DataTable /> */}
+                {/* <MainContent /> */}
               </Paper>
             </article>
           </Grid>
