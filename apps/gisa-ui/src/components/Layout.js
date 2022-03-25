@@ -6,18 +6,42 @@ import './App.css';
 import IconMenu from './IconMenu';
 import DataTable from './DataTable';
 import Home from './Home';
-// import BoxLayout from './BoxLayout';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Outlet, Link } from "react-router-dom";
+import Header from './Layout/Header';
+import { Routes, Route } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import yellow from "@material-ui/core/colors/yellow";
+import './Layout/w3.css';
 
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      "& > *": {
+        margin: theme.spacing(1),
+        width: theme.spacing(32),
+        height: theme.spacing(16)
+      }
+    },
+    yellowPaper: {
+      backgroundColor: yellow[300]
+    },
+    customBorder: {
+      border: `3px solid ${yellow[200]}`
+    },
+    customBorderRadius: {
+      borderRadius: 25
+    }
+  }));
 export default function Layout() {
+    const classes = useStyles();
+
     return(
         <Container>
         <Grid container spacing={3}>
             <Grid item xs={12}>
             <header>
-                <Paper elevation={3} style={{ padding: '20px' }}>
-                I'm a header
+                <Paper elevation={3} style={{ padding: '20px' }} className={classes.yellowPaper}>
+                    <div style={{ color: 'red' }} className={"w3-black"}> I'm a header</div>
+                    <Header />
                 </Paper>
             </header>
             </Grid>
