@@ -7,58 +7,20 @@ import IconMenu from './IconMenu';
 import DataTable from './DataTable';
 import Home from './Home';
 // import BoxLayout from './BoxLayout';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from './Layout';
+
 
 const App = () => {
   return (
     <div className="app">
+      <Routes>
+          <Route path="/" element={<Layout />} />
+          <Route path="home" element={<Home />} />
+          <Route path="datatable" element={<DataTable />} />
+      </Routes>
       {/* <BoxLayout /> */}
-      <Container>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <header>
-              <Paper elevation={3} style={{ padding: '20px' }}>
-                I'm a header
-              </Paper>
-            </header>
-          </Grid>
-
-          <Grid item xs={12}>
-            <nav>
-              <Paper elevation={3} style={{ padding: '20px' }}>
-                I'm a nav
-              </Paper>
-            </nav>
-          </Grid>
-
-          <Grid item xs={12} md={3}>
-            <aside>
-              <Paper elevation={3} style={{ padding: '20px' }}>
-                <IconMenu />
-              </Paper>
-            </aside>
-          </Grid>
-
-          <Grid item xs={12} md={9}>
-            <article>
-              <Paper elevation={3} style={{ padding: '20px'}}>
-                <div>I'm a article</div>
-                {/* <Home /> */}
-                <DataTable />
-                {/* <MainContent /> */}
-              </Paper>
-            </article>
-          </Grid>
-
-          <Grid item xs={12}>
-            <article>
-              <Paper elevation={3} style={{ padding: '20px' }}>
-                I'm a footer
-              </Paper>
-            </article>
-          </Grid>
-
-        </Grid>
-      </Container>
+      
     </div>
   );
 };

@@ -10,12 +10,14 @@ import ContentCut from '@mui/icons-material/ContentCut';
 import ContentCopy from '@mui/icons-material/ContentCopy';
 import ContentPaste from '@mui/icons-material/ContentPaste';
 import Cloud from '@mui/icons-material/Cloud';
+import { Link } from "react-router-dom";
+
 
 export default function IconMenu() {
   return (
     <Paper sx={{ width: 320, maxWidth: '100%' }}>
       <MenuList>
-        <MenuItem>
+        <MenuItem component={Link} to="/home">
           <ListItemIcon>
             <ContentCut fontSize="small" />
           </ListItemIcon>
@@ -24,7 +26,7 @@ export default function IconMenu() {
             ⌘X
           </Typography>
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to="/datatable">
           <ListItemIcon>
             <ContentCopy fontSize="small" />
           </ListItemIcon>
