@@ -1,16 +1,13 @@
 import * as React from 'react';
-import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import Typography from '@mui/material/Typography';
-import ContentCut from '@mui/icons-material/ContentCut';
-import ContentCopy from '@mui/icons-material/ContentCopy';
-import ContentPaste from '@mui/icons-material/ContentPaste';
-import Cloud from '@mui/icons-material/Cloud';
 import { Link } from "react-router-dom";
+import ApiIcon from '@mui/icons-material/Api';
+import HomeIcon from '@mui/icons-material/Home';
+import GridOnIcon from '@mui/icons-material/GridOn';
 
 
 export default function IconMenu() {
@@ -19,37 +16,21 @@ export default function IconMenu() {
       <MenuList>
         <MenuItem component={Link} to="/home">
           <ListItemIcon>
-            <ContentCut fontSize="small" />
+            <ApiIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Cut</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘X
-          </Typography>
+          <ListItemText>RecuperaAPI</ListItemText>
         </MenuItem>
         <MenuItem component={Link} to="/datatable">
           <ListItemIcon>
-            <ContentCopy fontSize="small" />
+            <GridOnIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Copy</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘C
-          </Typography>
+          <ListItemText>API com DataTable</ListItemText>
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to="/">
           <ListItemIcon>
-            <ContentPaste fontSize="small" />
+            <HomeIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Paste</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘V
-          </Typography>
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <Cloud fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Web Clipboard</ListItemText>
+          <ListItemText>Pagina Inicial</ListItemText>
         </MenuItem>
       </MenuList>
     </Paper>

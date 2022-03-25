@@ -7,11 +7,11 @@ import Button from "@material-ui/core/Button";
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'userName', headerName: 'User Name', width: 130 },
+  { field: 'username', headerName: 'User Name', width: 130 },
   { field: 'name', headerName: 'Name', width: 130 },
   { field: 'email', headerName: 'e-Mail', width: 130 },
   { field: 'phone', headerName: 'Phone', width: 130 },
-  { field: 'webLink', headerName: 'Web Link', width: 130 },
+  { field: 'website', headerName: 'WebSite', width: 130 },
 
 
   // { field: 'firstName', headerName: 'First name', width: 130 },

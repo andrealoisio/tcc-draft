@@ -42,9 +42,11 @@ export default function Layout() {
             <article>
                 <Paper elevation={3} style={{ padding: '20px'}}>
                 <div>I'm a article</div>
-                {/* <Home /> */}
-                <DataTable />
-                {/* <MainContent /> */}
+                    <Routes>
+                        <Route path="/" element={<MainContent />} />
+                        <Route path="home" element={<Home />} />
+                        <Route path="datatable" element={<DataTable />} />
+                    </Routes>
                 </Paper>
             </article>
             </Grid>
