@@ -1,10 +1,12 @@
-import './w3.css';
+import './header.css'
 import React from 'react'; 
+import { Box } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
     return(
-        <div class="w3-bar w3-black w3-large">
-            <span class="w3-bar-item w3-right">Logo</span>
-        </div>
+        // <Link
+        // <Box
+        <a href="/"><img src="gisa.png" alt="GisaLogo" className="logo"/></a>
     )
 }

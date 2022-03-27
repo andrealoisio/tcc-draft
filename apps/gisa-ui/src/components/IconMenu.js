@@ -9,7 +9,6 @@ import ApiIcon from '@mui/icons-material/Api';
 import HomeIcon from '@mui/icons-material/Home';
 import GridOnIcon from '@mui/icons-material/GridOn';
 
-
 export default function IconMenu() {
   return (
     <Paper sx={{ width: 320, maxWidth: '100%' }}>
