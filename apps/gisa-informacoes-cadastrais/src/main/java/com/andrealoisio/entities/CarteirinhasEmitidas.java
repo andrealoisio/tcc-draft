@@ -1,10 +1,13 @@
 package com.andrealoisio.entities;
 
+import io.quarkus.hibernate.orm.panache.Panache;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity(name = "carteirinhas_emitidas")
-public class CarteirinhasEmitidas {
+public class CarteirinhasEmitidas extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +41,10 @@ public class CarteirinhasEmitidas {
 
     public void setDataVencimento(Date dataVencimento) {
         this.dataVencimento = dataVencimento;
+    }
+
+    public void setDataVencimento(java.util.Date dataVencimento) {
+        this.dataVencimento = new java.sql.Date(dataVencimento.getTime());
     }
 
     public int getMatricula() {

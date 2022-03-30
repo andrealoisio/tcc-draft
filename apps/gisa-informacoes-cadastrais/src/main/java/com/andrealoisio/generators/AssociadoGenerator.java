@@ -39,7 +39,7 @@ public class AssociadoGenerator {
                 Double.valueOf(faker.address().longitude().replaceAll(",", "."))
         ));
         associado.setAtivo(true);
-        Log.info("Persisting " + associado.getNome());
+        Log.info("Persisting associado " + associado.getNome());
         associado.persist();
     }
 }
