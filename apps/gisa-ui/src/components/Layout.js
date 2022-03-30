@@ -9,7 +9,7 @@ import Home from './Home';
 import Header from './Layout/Header';
 import { Routes, Route } from "react-router-dom";
 import Footer from './Layout/Footer';
-import ConveniadoForm from './ConveniadoForm';
+import ConveniadoForm from './Conveniados/ConveniadoForm';
 
 export default function Layout() {
     return(

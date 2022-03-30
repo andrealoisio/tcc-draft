@@ -1,4 +1,3 @@
-import './footer.css'
 import React from 'react'; 
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import MediaQuery from 'react-responsive'

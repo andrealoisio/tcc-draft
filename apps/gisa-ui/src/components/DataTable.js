@@ -1,6 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid';
 import React, { useState, useEffect } from 'react';
-import ConveniadoCard from './ConveniadoCard';
+import ConveniadoCard from './Conveniados/ConveniadoCard';
 import { makeStyles } from "@material-ui/core/styles";
 
 const columns = [
