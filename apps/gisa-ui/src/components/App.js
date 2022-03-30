@@ -1,12 +1,12 @@
 
 import './App.css';
-import Layout from './Layout';
+import Main from './Main';
 
 
 const App = () => {
   return (
     <div className="app">
-      <Layout />
+      <Main />
     </div>
   );
 };
