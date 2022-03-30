@@ -9,7 +9,7 @@ import Home from './Home';
 import Header from './Layout/Header';
 import { Routes, Route } from "react-router-dom";
 import Footer from './Layout/Footer';
-import AssociadoForm from './AssociadoForm';
+import ConveniadoForm from './ConveniadoForm';
 
 export default function Layout() {
     return(
@@ -38,7 +38,7 @@ export default function Layout() {
                         <Route path="/" element={<MainContent />} />
                         <Route path="home" element={<Home />} />
                         <Route path="datatable" element={<DataTable />} />
-                        <Route path="form" element={<AssociadoForm />} />
+                        <Route path="form" element={<ConveniadoForm />} />
                     </Routes>
                 </Paper>
             </article>

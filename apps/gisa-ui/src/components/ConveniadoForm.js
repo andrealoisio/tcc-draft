@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import AssociadoCard from './AssociadoCard';
+import ConveniadoCard from './ConveniadoCard';
 
 const styles = theme => ({
   card: {
@@ -73,9 +73,9 @@ class FilledTextFields extends React.Component {
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <div className={classes.card}>
-          <AssociadoCard />
-          <AssociadoCard />
-          <AssociadoCard />
+          <ConveniadoCard />
+          <ConveniadoCard />
+          <ConveniadoCard />
         </div>
         <TextField
           id="filled-name"
