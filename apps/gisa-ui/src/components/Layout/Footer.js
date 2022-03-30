@@ -5,7 +5,7 @@ import CopyrightIcon from '@mui/icons-material/Copyright';
 export default function Header() {
     return(
         <div>
-            <h3><CopyrightIcon /> Desenvolvido por Daniel Castilho e André Mendes </h3>
+            <h2><CopyrightIcon /> Desenvolvido por Daniel Castilho e André Mendes </h2>
         </div>
     )
 }
