@@ -10,6 +10,8 @@ import Header from './Layout/Header';
 import { Routes, Route } from "react-router-dom";
 import Footer from './Layout/Footer';
 import ConveniadoForm from './Conveniados/ConveniadoForm';
+import DetalheConveniados from './Conveniados/DetalheConveniados';
+
 
 export default function Main() {
     return(
@@ -39,6 +41,8 @@ export default function Main() {
                         <Route path="home" element={<Home />} />
                         <Route path="datatable" element={<DataTable />} />
                         <Route path="form" element={<ConveniadoForm />} />
+                        <Route path="detalheConveniados/:id" element={<DetalheConveniados />} />
+
                     </Routes>
                 </Paper>
             </article>
