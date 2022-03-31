@@ -1,6 +1,6 @@
 
 import './App.css';
-import Main from './Main';
+import Main from './Layout/Main';
 
 
 const App = () => {

@@ -1,17 +1,10 @@
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import MainContent from './MainContent';
-import './App.css';
 import IconMenu from './IconMenu';
-import DataTable from './DataTable';
-import Home from './Home';
-import Header from './Layout/Header';
-import { Routes, Route } from "react-router-dom";
-import Footer from './Layout/Footer';
-import ConveniadoForm from './Conveniados/ConveniadoForm';
-import DetalheConveniados from './Conveniados/DetalheConveniados';
-
+import Header from './Header';
+import Footer from './Footer';
+import Rotas from '../Rotas';
 
 export default function Main() {
     return(
@@ -36,14 +29,7 @@ export default function Main() {
             <Grid item xs={12} md={9}>
             <article>
                 <Paper elevation={3} style={{ padding: '20px'}}>
-                    <Routes>
-                        <Route path="/" element={<MainContent />} />
-                        <Route path="home" element={<Home />} />
-                        <Route path="datatable" element={<DataTable />} />
-                        <Route path="form" element={<ConveniadoForm />} />
-                        <Route path="detalheConveniados/:id" element={<DetalheConveniados />} />
-
-                    </Routes>
+                    <Rotas />
                 </Paper>
             </article>
             </Grid>
