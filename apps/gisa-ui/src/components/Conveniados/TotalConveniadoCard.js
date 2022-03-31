@@ -6,14 +6,14 @@ import GroupsIcon from '@mui/icons-material/Groups';
 
 export default function BasicCard() {
   return (
-    <Card sx={{ minWidth: 275,margin: 1, height: 150 }}>
+    <Card sx={{ minWidth: 275,margin: 1, height: 150, maxWidth: 275 }}>
       <CardContent>
         <GroupsIcon  fontSize="large" /> 
         <Typography sx={{ mb: 1.5, float: "right", fontSize: 30}} color="green">
           2459996
         </Typography>
-        <Typography variant="h6" component="div" color="green">
-          Conveniados
+        <Typography sx={{ mb: 1.5, fontSize: 18}} color="green">
+          Total de Conveniados
         </Typography>
       </CardContent>
     </Card>

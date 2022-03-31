@@ -6,14 +6,14 @@ import FactCheckIcon from '@mui/icons-material/FactCheck';
 
 export default function BasicCard() {
   return (
-    <Card sx={{ minWidth: 275,margin: 1, height: 150 }}>
+    <Card sx={{ minWidth: 275,margin: 1, height: 150, maxWidth: 275 }}>
       <CardContent>
         <FactCheckIcon  fontSize="large" /> 
         <Typography sx={{ mb: 1.5, float: "right", fontSize: 30}} color="green">
           52
         </Typography>
-        <Typography variant="h6" component="div" color="green">
-          Atendimentos
+        <Typography sx={{ mb: 1.5, fontSize: 18}} color="green">
+          Atendimentos de Conveniados
         </Typography>
       </CardContent>
     </Card>

@@ -6,14 +6,14 @@ import MoveDownIcon from '@mui/icons-material/MoveDown';
 
 export default function BasicCard() {
   return (
-    <Card sx={{ minWidth: 275,margin: 1, height: 150 }}>
+    <Card sx={{ minWidth: 275,margin: 1, height: 150, maxWidth: 275 }}>
       <CardContent>
         <MoveDownIcon  fontSize="large" /> 
         <Typography sx={{ mb: 1.5, float: "right", fontSize: 30}} color="green">
           100
         </Typography>
-        <Typography variant="h6" component="div" color="green">
-          Remoções
+        <Typography sx={{ mb: 1.5, fontSize: 18}} color="green">
+          Total de Remoções 
         </Typography>
       </CardContent>
     </Card>
