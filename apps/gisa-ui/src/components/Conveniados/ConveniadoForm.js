@@ -78,12 +78,13 @@ export default function ConveniadoForm() {
   //       setRows(resp)
   //     })
   // }, [])
+
   return (
     <div className="App">
       <div className={classes.card}>
-          <AtendimentosCard />
-          <RemocaoCards />
-          <TotalConveniadoCard />
+          <AtendimentosCard totalAtendimentos={'5565'}/>
+          <RemocaoCards totalRemocao={'6040'}/>
+          <TotalConveniadoCard totalConveniado={'38949'}/>
       </div>
       <div>     
         <Typography variant="h6">
