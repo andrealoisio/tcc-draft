@@ -48,7 +48,6 @@ const rows = [
   { id: 8, nome: 'Clinica dos Olhos Bh', cnpj: '19.106.757/0001-92', atividade: 'Clínica', data_registro: '10/10/2010' },
   { id: 9, nome: 'Hospital Geral', cnpj: '19.106.757/0001-92', atividade: 'Hospital', data_registro: '10/10/2010' },
   { id: 10, nome: 'Nutrição de Minas', cnpj: '19.106.757/0001-92', atividade: 'Clínica', data_registro: '10/10/2010' },
-
 ];
 
 // const columns = [
