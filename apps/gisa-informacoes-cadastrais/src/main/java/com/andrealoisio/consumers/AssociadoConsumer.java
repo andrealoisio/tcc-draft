@@ -16,12 +16,11 @@ public class AssociadoConsumer {
     @Incoming("associados")
     @Transactional
     public void process(String payload) throws InterruptedException, JsonProcessingException {
-        Log.info("Something get here");
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonNode = mapper.readTree(payload);
         Associado associado = mapper.treeToValue(jsonNode.get("after"), Associado.class);
         associado.persist();
-
+        Log.info("Persisting associado: " + associado.getNome());
         Log.info(payload);
         Thread.sleep(2000);
     }
