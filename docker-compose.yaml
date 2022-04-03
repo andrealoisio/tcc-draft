@@ -90,6 +90,8 @@ services:
   #     - kong-net
   rest:
     image: quarkus/gisa-informacoes-cadastrais-jvm
+    depends_on:
+      - db
     build:
       context: ./apps/gisa-informacoes-cadastrais
       dockerfile: ./src/main/docker/Dockerfile.jvm
@@ -105,6 +107,8 @@ services:
       - ./apps/gisa-informacoes-cadastrais/target/quarkus-app:/deployments
   gerador_dados_legados:
     image: quarkus/gerador-dados-legado-jvm
+    depends_on:
+      - legacy_db
     build:
       context: ./apps/gerador-dados-legado
       dockerfile: ./src/main/docker/Dockerfile.jvm
