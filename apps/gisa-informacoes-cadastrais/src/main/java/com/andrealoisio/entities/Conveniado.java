@@ -1,30 +1,37 @@
 package com.andrealoisio.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import org.postgresql.geometric.PGpoint;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-public class Conveniado {
+public class Conveniado extends PanacheEntityBase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_conveniado", nullable = false)
+    @JsonProperty("seq_conveniado")
     private int seqConveniado;
     private String nome;
     @Column(name = "nome_fantasia")
+    @JsonProperty("nome_fantasia")
     private String nomeFantasia;
     private String email;
     private String cnpj;
     private String atividade;
     @Column(name = "data_registro")
+    @JsonProperty("data_registro")
     private java.sql.Date dataRegistro;
     private String telefone;
     private String celular;
     @Column(name = "nome_responsavel")
+    @JsonProperty("nome_responsavel")
     private String nomeResponsavel;
     @Column(name = "nome_endereco")
+    @JsonProperty("nome_endereco")
     private String nomeEndereco;
     private String bairro;
     private String cidade;

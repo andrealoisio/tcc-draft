@@ -1,5 +1,5 @@
 build:
-	./compile-jar.sh
+	./compile-apps.sh
 run:
 	docker-compose up -d
 run-dev:

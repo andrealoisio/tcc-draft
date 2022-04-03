@@ -20,10 +20,8 @@ public class Remocao {
     private java.math.BigDecimal custo;
     @Column(name = "ind_dificuldade_mobilidade")
     private boolean ind_dificuldade_mobilidade;
-    // todo: verificar formato
     @Column(name = "coordenada_origem")
     private PGpoint coordenada_origem;
-    // todo: verificar formato
     @Column(name = "coordenada_destino")
     private PGpoint coordenada_destino;
     @Column(name = "nome_endereco_origem")

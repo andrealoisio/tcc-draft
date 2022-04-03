@@ -60,6 +60,7 @@ services:
 #    restart: unless-stopped
 
   api_gateway:
+    container_name: api_gateway
     image: kong
     networks:
       - "kong-net"
@@ -89,6 +90,7 @@ services:
   #   networks:
   #     - kong-net
   rest:
+    container_name: rest
     image: quarkus/gisa-informacoes-cadastrais-jvm
     depends_on:
       - db
@@ -106,6 +108,7 @@ services:
     volumes:
       - ./apps/gisa-informacoes-cadastrais/target/quarkus-app:/deployments
   gerador_dados_legados:
+    container_name: gerador_dados_legados
     image: quarkus/gerador-dados-legado-jvm
     depends_on:
       - legacy_db
@@ -117,6 +120,7 @@ services:
     volumes:
       - ./apps/gerador-dados-legado/target/quarkus-app:/deployments
   legacy_db:
+    container_name: legacy_db
     image: debezium/postgres:14
     environment:
       - POSTGRES_USER=postgres
