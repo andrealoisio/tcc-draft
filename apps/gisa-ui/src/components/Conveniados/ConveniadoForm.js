@@ -1,7 +1,5 @@
 import React from 'react';
-import AtendimentosCard from './AtendimentosCard';
-import RemocaoCards from './RemocaoCards';
-import TotalConveniadoCard from './TotalConveniadoCard';
+import ConveniadoCard from './ConveniadoCard';
 import { DataGrid } from '@mui/x-data-grid';
 // import { useState, useEffect } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,6 +9,11 @@ import { Link } from 'react-router-dom';
 import LoupeIcon from '@mui/icons-material/Loupe';
 import Button from "@material-ui/core/Button";
 
+const value = [{
+  totalAtendimentos: '124155',
+  totalConveniado: '224543',
+  totalRemocao: '4453252',
+}];
 const columns = [
   { field: 'id', headerName: 'Id', width: 100, hide: true, disableColumnMenu: true },
    { field: 'nome', headerName: 'Nome', width: 250  },
@@ -82,9 +85,9 @@ export default function ConveniadoForm() {
   return (
     <div className="App">
       <div className={classes.card}>
-          <AtendimentosCard totalAtendimentos={'5565'}/>
-          <RemocaoCards totalRemocao={'6040'}/>
-          <TotalConveniadoCard totalConveniado={'38949'}/>
+        {value.map((values) => (
+            <ConveniadoCard valores={values}/>
+          ))}; 
       </div>
       <div>     
         <Typography variant="h6">

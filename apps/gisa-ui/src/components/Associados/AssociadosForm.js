@@ -1,8 +1,5 @@
 import React from 'react';
-import CarteirinhasCard from './CarteirinhasCard';
-import AtendimentosCard from './AtendimentosCard';
-import AssociadosAtivosCard from './AssociadosAtivosCard';
-import TotalDeAssociadosCard from './TotalDeAssociadosCard';
+import AssociadoCard from './AssociadoCard';
 import { DataGrid } from '@mui/x-data-grid';
 // import { useState, useEffect } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,6 +8,13 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import { Link } from 'react-router-dom';
 import LoupeIcon from '@mui/icons-material/Loupe';
 import Button from "@material-ui/core/Button";
+
+const value = [{
+  totalAtendimentos: '124155',
+  totalCarteirinhas: '224543',
+  totalAssociados: '4453252',
+  totalAssociadosAtivos: '35553',
+}];
 
 const columns = [
   { field: 'matricula', headerName: 'Matrícula', width: 100 },
@@ -77,10 +81,9 @@ export default function AssociadoForm() {
   return (
     <div className="App">
       <div className={classes.card}>
-          <CarteirinhasCard totalCarteirinhas={'10002'}/>
-          <AtendimentosCard totalAtendimentos={'254990'}/>
-          <AssociadosAtivosCard totalAssociadosAtivos={'8000'}/>
-          <TotalDeAssociadosCard totalAssociados={'10038'}/>
+        {value.map((values) => (
+          <AssociadoCard valores={values}/>
+        ))};  
       </div>
       <div>     
         <Typography variant="h6">
