@@ -34,9 +34,9 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - DB_NAME=gisa
-    volumes:
-      - ./db:/docker-entrypoint-initdb.d/
+      - POSTGRES_DB=gisa
+    # volumes:
+    #   - ./db:/docker-entrypoint-initdb.d/
     networks:
       - postgres
       - "kong-net"
@@ -106,19 +106,22 @@ services:
   legacy_db:
     image: debezium/postgres:14
     environment:
-      - POSTGRES_USER=legacy_user
-      - POSTGRES_DB=legacy_db
-      - POSTGRES_PASSWORD=abc123!@#
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=gisa
     ports:
       - 5433:5432
     healthcheck:
-      test: "pg_isready -U legacy_user -d legacy_db"
+      test: "pg_isready -U postgres -d gisa"
       interval: 2s
       timeout: 20s
       retries: 10
     volumes:
-      - ./scripts/legacy_db:/docker-entrypoint-initdb.d/
+      # - ./scripts/legacy_db:/docker-entrypoint-initdb.d/
+      # - ./db:/docker-entrypoint-initdb.d/
       - "legacy_db:/var/lib/postgresql/data"
+    networks:
+      - "kong-net"
   zookeeper:
     container_name: "zookeeper"
     image: debezium/zookeeper:1.8
@@ -128,6 +131,8 @@ services:
       - "2181:2181"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - "kong-net"
   kafka:
     container_name: "kafka"
     depends_on:
@@ -141,6 +146,8 @@ services:
       - ZOOKEEPER_CONNECT=zookeeper:2181
       # - ADVERTISED_HOST_NAME=172.29.0.1
       - ALLOW_PLAINTEXT_LISTENER=yes
+    networks:
+      - "kong-net"
   debezium_connect:
     container_name: "connect"
     image: debezium/connect:1.8
@@ -154,6 +161,8 @@ services:
       - STATUS_STORAGE_TOPIC=my_connect_statuses
       - CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE=false
       - CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE=false
+    networks:
+      - "kong-net"
 
 networks:
   kong-net:

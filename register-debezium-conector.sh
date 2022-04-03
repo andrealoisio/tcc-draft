@@ -6,11 +6,14 @@ curl -H 'Content-Type: application/json' localhost:8083/connectors --data '
     "connector.class": "io.debezium.connector.postgresql.PostgresConnector", 
     "database.hostname": "legacy_db", 
     "database.port": "5432", 
-    "database.user": "legacy_user", 
-    "database.password": "abc123!@#", 
-    "database.dbname" : "legacy_db", 
+    "database.user": "postgres", 
+    "database.password": "postgres", 
+    "database.dbname" : "gisa", 
     "database.server.name": "legacy",
     "key.converter.schemas.enable": false,
-    "value.converter.schemas.enable": false
+    "value.converter.schemas.enable": false,
+    "table.exclude.list": "databasechangelog, databasechangeloglock"
   }
 }'
+# localhost:8083/connectors
+# http://localhost:8083/connectors/legacy-connector
