@@ -1,12 +1,13 @@
 package com.andrealoisio.entities;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import org.postgresql.geometric.PGpoint;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-public class Conveniado {
+public class Conveniado extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -91,6 +92,10 @@ public class Conveniado {
 
     public void setDataRegistro(Date dataRegistro) {
         this.dataRegistro = dataRegistro;
+    }
+
+    public void setDataRegistro(java.util.Date dataRegistro) {
+        this.dataRegistro = new java.sql.Date(dataRegistro.getTime());
     }
 
     public String getTelefone() {
