@@ -103,6 +103,15 @@ services:
     #   JAVA_APP_JAR: "/deployments/gisa-informacoes-cadastrais-1.0.0-SNAPSHOT.jar"
     volumes:
       - ./apps/gisa-informacoes-cadastrais/target/quarkus-app:/deployments
+  gerador_dados_legados:
+    image: quarkus/gerador-dados-legado-jvm
+    build:
+      context: ./apps/gerador-dados-legado
+      dockerfile: ./src/main/docker/Dockerfile.jvm
+    networks:
+      - "kong-net"
+    volumes:
+      - ./apps/gerador-dados-legado/target/quarkus-app:/deployments
   legacy_db:
     image: debezium/postgres:14
     environment:
