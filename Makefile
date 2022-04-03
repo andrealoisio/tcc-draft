@@ -3,4 +3,4 @@ build:
 run:
 	docker-compose up -d
 clean:
-	docker-compose rm -vf
+	docker-compose down --volumes
