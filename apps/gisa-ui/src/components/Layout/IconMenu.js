@@ -20,7 +20,7 @@ export default function IconMenu() {
           </RemoveRedEyeIcon>
           <ListItemText>Atendimentos</ListItemText>
         </MenuItem>
-        <MenuItem component={Link} to="/home">
+        <MenuItem component={Link} to="/associados">
           <AccountCircleIcon  sx={{minWidth: (theme) => theme.spacing(4)}}>
             <GridOnIcon fontSize="small" />
           </AccountCircleIcon>
@@ -32,7 +32,7 @@ export default function IconMenu() {
           </HandshakeIcon>
           <ListItemText>Prestadores</ListItemText>
         </MenuItem>
-        <MenuItem component={Link} to="/form">
+        <MenuItem component={Link} to="/conveniados">
           <LocalHospitalIcon sx={{minWidth: (theme) => theme.spacing(4)}}>
             <GridOnIcon fontSize="small" />
           </LocalHospitalIcon>
