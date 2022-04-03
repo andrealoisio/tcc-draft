@@ -1,45 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from '@mui/material/Typography';
 import ListAltIcon from '@mui/icons-material/ListAlt';
+import MediaQuery from 'react-responsive'
+import { useParams } from "react-router-dom";
 
-// export default function DetalheConveniados() {
-//   const { id } = useParams();
-//   return (
-//           <>
-//             <h1>Code Placeholder</h1>
-//             <h1>{id}</h1>
-//           </>
-//         );
-//       }
-
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textFieldTamanhoNome: {
-    width: '280px !important',
-  },
-  textFieldTamanhoEndereco: {
-    width: '400px !important',
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+const useStyles = makeStyles((theme) => ({
+  disabled: {
     "& input.Mui-disabled": {
-      color: "black"
-    },
-    "& label.Mui-disabled": {
-      color: "green"
+      color: 'black !important'
     },
   },
-});
-class FilledTextFields extends React.Component {
-
-  state = {
+}));
+export default function DetalheConveniados() {
+  const { id } = useParams();
+  const classes = useStyles();
+  const value = [{
     nome: 'Hospital Santa Cruz',
     nomeFantasia: 'Hospital Santa Cruz LTDA',
     email: 'hospital.santa.cruz@gmail.com',
@@ -58,201 +36,265 @@ class FilledTextFields extends React.Component {
     agencia: '0001',
     conta: '01001',
     cooredanadas: '40.7600000,-73.9840000',
-  };
-
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <>
-        <Typography variant="h6">
-          <ListAltIcon /> Detalhe de Conveniado
-        </Typography>
-        {/* <Typography variant="h6">{this.props.id}</Typography> */}
-        <form className={classes.container} noValidate autoComplete="off">
-            <TextField
-              id="filled-name"
-              label="Nome"
-              className={classes.textField}
-              value={this.state.nome}
-              margin="normal"
-              variant="filled"
-              disabled={true}
-              InputProps={{
-                classes: {
-                  input: classes.textFieldTamanhoNome,
-                },
-              }} />
-            <TextField
-              id="filled-name"
-              label="Nome Fantasia"
-              className={classes.textField}
-              value={this.state.nomeFantasia}
-              margin="normal"
-              variant="filled"
-              disabled={true}
-              InputProps={{
-                classes: {
-                  input: classes.textFieldTamanhoNome,
-                },
-              }} />
-            <TextField
-              id="filled-name"
-              label="e-Mail"
-              className={classes.textField}
-              value={this.state.email}
-              margin="normal"
-              variant="filled"
-              disabled={true}
-              InputProps={{
-                classes: {
-                  input: classes.textFieldTamanhoNome,
-                },
-              }} />
-            <TextField
-              id="filled-name"
-              label="CNPJ"
-              className={classes.textField}
-              value={this.state.cnpj}
-              margin="normal"
-              variant="filled"
-              disabled={true} />
-            <TextField
-              id="filled-name"
-              label="Atividade"
-              className={classes.textField}
-              value={this.state.atividade}
-              margin="normal"
-              variant="filled"
-              disabled={true} />
-            <TextField
-              id="filled-name"
-              label="Data de Entrada no Sistema"
-              className={classes.textField}
-              value={this.state.dataRegistro}
-              margin="normal"
-              variant="filled"
-              disabled={true} />
-            <TextField
-              id="filled-name"
-              label="Telefone"
-              className={classes.textField}
-              value={this.state.telefone}
-              margin="normal"
-              variant="filled"
-              disabled={true} />
-            <TextField
-              id="filled-name"
-              label="Celular"
-              className={classes.textField}
-              value={this.state.celular}
-              margin="normal"
-              variant="filled"
-              disabled={true} />
-            <TextField
-              id="filled-name"
-              label="Nome do Responsável"
-              className={classes.textField}
-              value={this.state.nomeResponsavel}
-              margin="normal"
-              variant="filled"
-              disabled={true}
-              InputProps={{
-                classes: {
-                  input: classes.textFieldTamanhoNome,
-                },
-              }} />
-            <TextField
-              id="filled-name"
-              label="Endereço"
-              className={classes.textField}
-              value={this.state.endereco}
-              margin="normal"
-              variant="filled"
-              disabled={true}
-              InputProps={{
-                classes: {
-                  input: classes.textFieldTamanhoEndereco,
-                },
-              }} />
-            <TextField
-              id="filled-name"
-              label="Bairro"
-              className={classes.textField}
-              value={this.state.bairro}
-              margin="normal"
-              variant="filled"
-              disabled={true} />
-            <TextField
-              id="filled-name"
-              label="Cidade"
-              className={classes.textField}
-              value={this.state.cidade}
-              margin="normal"
-              variant="filled"
-              disabled={true} />
-            <TextField
-              id="filled-name"
-              label="UF"
-              className={classes.textField}
-              value={this.state.uf}
-              margin="normal"
-              variant="filled"
-              disabled={true} />
-            <TextField
-              id="filled-name"
-              label="CEP"
-              className={classes.textField}
-              value={this.state.cep}
-              margin="normal"
-              variant="filled"
-              disabled={true} />
-            <TextField
-              id="filled-name"
-              label="Banco"
-              className={classes.textField}
-              value={this.state.banco}
-              margin="normal"
-              variant="filled"
-              disabled={true} />
-            <TextField
-              id="filled-name"
-              label="Agência"
-              className={classes.textField}
-              value={this.state.agencia}
-              margin="normal"
-              variant="filled"
-              disabled={true} />
-            <TextField
-              id="filled-name"
-              label="Conta"
-              className={classes.textField}
-              value={this.state.conta}
-              margin="normal"
-              variant="filled"
-              disabled={true} />
-            <TextField
-              id="filled-name"
-              label="Coordenadas"
-              className={classes.textField}
-              value={this.state.cooredanadas}
-              margin="normal"
-              variant="filled"
-              disabled={true} />
-          </form>
-        </>
-    );
-  }
+  }];
+  return (
+    <>
+      <Typography variant="h6">
+        <ListAltIcon /> Detalhe de Conveniado
+      </Typography>
+      <Box
+        component="form"
+        sx={{
+          '& .MuiTextField-root': { m: 1, width: '25ch' },
+          overflow: 'hidden',
+          display: 'flex',
+          flexWrap: 'wrap',
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <Typography variant="h6">{id}</Typography>
+        <div>
+          {value.map((values) => (
+            <>
+              <MediaQuery minWidth="500px">
+                {(matches) =>
+                  matches
+                    ?
+                    <><TextField
+                      multiline
+                      label="Nome"
+                      className={classes.textField}
+                      InputProps={{
+                        classes: {
+                          disabled: classes.disabled
+                        },
+                      }}
+                      value={values.nome}
+                      sx={{ width: '280px !important', }} /><TextField
+                        multiline
+                        label="Nome Fantasia"
+                        className={classes.textField}
+                        InputProps={{
+                          classes: {
+                            disabled: classes.disabled
+                          },
+                        }}
+                        value={values.nomeFantasia}
+                        sx={{ width: '280px !important', }} /><TextField
+                        multiline
+                        label="e-mail"
+                        className={classes.textField}
+                        InputProps={{
+                          classes: {
+                            disabled: classes.disabled
+                          },
+                        }}
+                        value={values.email}
+                        sx={{ width: '280px !important', }} /></>
+                    : <><TextField
+                      multiline
+                      label="Nome"
+                      className={classes.textField}
+                      InputProps={{
+                        classes: {
+                          disabled: classes.disabled
+                        },
+                      }}
+                      value={values.nome}
+                      sx={{ width: '80% !important', }} /><TextField
+                        multiline
+                        label="Nome Fantasia"
+                        className={classes.textField}
+                        InputProps={{
+                          classes: {
+                            disabled: classes.disabled
+                          },
+                        }}
+                        value={values.nomeFantasia}
+                        sx={{ width: '80% !important', }} /><TextField
+                        multiline
+                        label="e-mail"
+                        className={classes.textField}
+                        InputProps={{
+                          classes: {
+                            disabled: classes.disabled
+                          },
+                        }}
+                        value={values.email}
+                        sx={{ width: '80% !important', }} /></>
+                }
+              </MediaQuery>
+              <TextField
+                label="CNPJ"
+                className={classes.textField}
+                InputProps={{
+                  classes: {
+                    disabled: classes.disabled
+                  },
+                }}
+                value={values.cnpj} />
+              <TextField
+                label="Atividade"
+                className={classes.textField}
+                InputProps={{
+                  classes: {
+                    disabled: classes.disabled
+                  },
+                }}
+                value={values.atividade} />
+              <TextField
+                label="Data de registro"
+                className={classes.textField}
+                InputProps={{
+                  classes: {
+                    disabled: classes.disabled
+                  },
+                }}
+                value={values.dataRegistro} />
+              <TextField
+                label="Telefone"
+                className={classes.textField}
+                InputProps={{
+                  classes: {
+                    disabled: classes.disabled
+                  },
+                }}
+                value={values.telefone} />
+              <TextField
+                label="Celular"
+                className={classes.textField}
+                InputProps={{
+                  classes: {
+                    disabled: classes.disabled
+                  },
+                }}
+                value={values.celular} />
+              <MediaQuery minWidth="500px">
+                {(matches) =>
+                  matches
+                    ?
+                    <><TextField
+                      multiline
+                      label="Nome do Responsável"
+                      className={classes.textField}
+                      InputProps={{
+                        classes: {
+                          disabled: classes.disabled
+                        },
+                      }}
+                      value={values.nomeResponsavel}
+                      sx={{ width: '280px !important', }} /><TextField
+                        multiline
+                        label="Endereço"
+                        className={classes.textField}
+                        InputProps={{
+                          classes: {
+                            disabled: classes.disabled
+                          },
+                        }}
+                        value={values.endereco}
+                        sx={{ width: '400px !important', }} /></>
+                    :
+                    <><TextField
+                      multiline
+                      label="Nome do Responsável"
+                      className={classes.textField}
+                      InputProps={{
+                        classes: {
+                          disabled: classes.disabled
+                        },
+                      }}
+                      value={values.nomeResponsavel}
+                      sx={{ width: '80% !important', }} /><TextField
+                        multiline
+                        label="Endereço"
+                        className={classes.textField}
+                        InputProps={{
+                          classes: {
+                            disabled: classes.disabled
+                          },
+                        }}
+                        value={values.endereco}
+                        sx={{ width: '80% !important', }} /></>
+                }
+              </MediaQuery>
+              <TextField
+                label="Bairro"
+                className={classes.textField}
+                InputProps={{
+                  classes: {
+                    disabled: classes.disabled
+                  },
+                }}
+                value={values.bairro} />
+              <TextField
+                label="Cidade"
+                className={classes.textField}
+                InputProps={{
+                  classes: {
+                    disabled: classes.disabled
+                  },
+                }}
+                value={values.cidade} />
+              <TextField
+                label="UF"
+                className={classes.textField}
+                InputProps={{
+                  classes: {
+                    disabled: classes.disabled
+                  },
+                }}
+                value={values.uf} />
+              <TextField
+                label="CEP"
+                className={classes.textField}
+                InputProps={{
+                  classes: {
+                    disabled: classes.disabled
+                  },
+                }}
+                value={values.cep} />
+              <TextField
+                label="Banco"
+                className={classes.textField}
+                InputProps={{
+                  classes: {
+                    disabled: classes.disabled
+                  },
+                }}
+                value={values.banco} />
+              <TextField
+                label="Agência"
+                className={classes.textField}
+                InputProps={{
+                  classes: {
+                    disabled: classes.disabled
+                  },
+                }}
+                value={values.agencia} />
+              <TextField
+                label="Conta Corrente"
+                className={classes.textField}
+                InputProps={{
+                  classes: {
+                    disabled: classes.disabled
+                  },
+                }}
+                value={values.conta} />
+              <TextField
+                label="Coordenadas"
+                className={classes.textField}
+                InputProps={{
+                  classes: {
+                    disabled: classes.disabled
+                  },
+                }}
+                value={values.conta} />
+            </>
+          ))}
+        </div>
+      </Box>
+    </>
+  );
 }
-
-FilledTextFields.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(FilledTextFields);
