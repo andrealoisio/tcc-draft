@@ -2,10 +2,13 @@
 
 ## How to run
 ```
-cd apps/quarkus-kotlin-rest-api
-./mvnw package
-cd ../..
-docker-compose up
+make build
+make run
+```
+
+## How to clean the environment
+```
+make clean
 ```
 
 Go to your browser and check http://localhost:8000/ping
