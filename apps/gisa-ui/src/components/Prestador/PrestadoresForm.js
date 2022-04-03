@@ -1,5 +1,5 @@
 import React from 'react';
-import AssociadoCard from './AssociadoCard';
+import PrestadorCard from './PrestadorCard';
 import { DataGrid } from '@mui/x-data-grid';
 // import { useState, useEffect } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
@@ -17,11 +17,10 @@ const value = [{
 }];
 
 const columns = [
-  { field: 'matricula', headerName: 'Matrícula', width: 100 },
+  { field: 'codigo', headerName: 'Código Funcional', width: 100 },
   { field: 'nome', headerName: 'Nome', width: 250  },
-  { field: 'cpf', headerName: 'CPF', width: 150, align: "center" },
   { field: 'email', headerName: 'e-mail', width: 250, align: "center" },
-  { field: 'plano', headerName: 'Plano Contratado', width: 150, align: "center" },
+  { field: 'especializacao', headerName: 'Especialidade', width: 150, align: "center" },
   {
     field: 'detalhe',
     headerName: 'Detalhes',
@@ -32,7 +31,7 @@ const columns = [
     align: "center",
     renderCell: (params) => {
       return (
-        <Link to={"/detalheAssociados/" + params.row.matricula}>
+        <Link to={"/detalhePrestadores/" + params.row.codigo}>
           <Button variant="contained" color="primary"><LoupeIcon /></Button>
         </Link>        
       );
@@ -40,13 +39,14 @@ const columns = [
   },
 ];
 const rows = [
-  { matricula: 101049, nome: 'Cléber Santos da Cruz', cpf: '093.812.400-51', email: 'cleber.s.cruz@yahoo.com.br', plano: 'VIP' },
-  { matricula: 102000, nome: 'Maria dos Milagres Silva', cpf: '093.812.400-51', email: 'maria.milagres@yahoo.com.br', plano: 'Apartamento' },
-  { matricula: 143563, nome: 'Julio Souza Empaminhondas', cpf: '093.812.400-51', email: 'j.s.empaminhondas@yahoo.com.br', plano: 'VIP' },
-  { matricula: 135672, nome: 'Mônica Ferreira', cpf: '093.812.400-51', email: 'monica.ferreira@yahoo.com.br', plano: 'Básico' },
-  { matricula: 135456, nome: 'Alberto Ferraz de Vasconcellos', cpf: '093.812.400-51', email: 'alberto.ferraz.v@yahoo.com.br', plano: 'VIP' },
-  { matricula: 135278, nome: 'Bruno Pereira de Lima e Silva ', cpf: '093.812.400-51', email: 'bruno.p.limaa@yahoo.com.br', plano: 'VIP' },
-  { matricula: 139876, nome: 'Carlos Alberto de Nobrega', cpf: '093.812.400-51', email: 'cazabe@yahoo.com.br', plano: 'VIP' },
+  { codigo: 323523, nome: 'Ângelo Marcondes', email: 'angelo.marcondes@yahoo.com.br', especializacao: 'Clínica Médica' },
+  { codigo: 323524, nome: 'Dolores Almeida', email: 'dolores.almeida@yahoo.com.br', especializacao: 'Enfermagem' },
+  { codigo: 323525, nome: 'Bruce dos Santes', email: 'bruce.santos@yahoo.com.br', especializacao: 'Fisioterpia' },
+  { codigo: 323526, nome: 'Olga Martins', email: 'olga_martins@yahoo.com.br', especializacao: 'Técnico Radiologia' },
+  { codigo: 323527, nome: 'Livia Andrade', email: 'l_andrade@yahoo.com.br', especializacao: 'Radiologia' },
+  { codigo: 323528, nome: 'Lucelia Santos', email: 'lu_santos@yahoo.com.br', especializacao: 'Enfermagem' },
+  { codigo: 323529, nome: 'Marcos Dantas Silva', email: 'm_dantas_silva@yahoo.com.br', especializacao: 'Cardiologia' },
+  { codigo: 323520, nome: 'Maristela Ferreira', email: 'm.ferreira@yahoo.com.br', especializacao: 'Saúde da Mulher' },
 ];
 
 // const columns = [
@@ -82,17 +82,17 @@ export default function AssociadoForm() {
     <div className="App">
       <div className={classes.card}>
         {value.map((values) => (
-          <AssociadoCard valores={values}/>
+          <PrestadorCard valores={values}/>
         ))};  
       </div>
       <div>     
         <Typography variant="h6">
-          <ListAltIcon /> Associados
+          <ListAltIcon /> Prestadores
         </Typography>
       </div>
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid 
-          getRowId={row => row.matricula}
+          getRowId={row => row.codigo}
           rowOptions={{ selectable: true }} 
           rows={rows}
           columns={columns}

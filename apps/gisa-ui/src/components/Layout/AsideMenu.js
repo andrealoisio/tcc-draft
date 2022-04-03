@@ -10,7 +10,7 @@ import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
-export default function Aside() {
+export default function AsideMenu() {
   return (
     <Paper sx={{ width: 320, maxWidth: '100%' }}>
       <MenuList>
@@ -26,7 +26,7 @@ export default function Aside() {
           </AccountCircleIcon>
           <ListItemText>Associados</ListItemText>
         </MenuItem>
-        <MenuItem component={Link} to="/">
+        <MenuItem component={Link} to="/prestadores">
           <HandshakeIcon sx={{minWidth: (theme) => theme.spacing(4)}}>
             <GridOnIcon fontSize="small" />
           </HandshakeIcon>

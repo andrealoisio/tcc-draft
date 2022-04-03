@@ -16,7 +16,7 @@ export default function BasicCard(props) {
             {props.valores.totalAtendimentos}
           </Typography>
           <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
-            Atendimentos de Conveniados
+            Atendimentos em Conveniados
           </Typography>
         </CardContent>
       </Card>

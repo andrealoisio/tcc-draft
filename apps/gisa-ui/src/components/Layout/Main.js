@@ -1,7 +1,7 @@
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Aside from './Aside';
+import AsideMenu from './AsideMenu';
 import Header from './Header';
 import Footer from './Footer';
 import Rotas from '../Rotas';
@@ -21,7 +21,7 @@ export default function Main() {
             <Grid item xs={12} md={3}>
             <aside>
                 <Paper elevation={3} style={{ padding: '20px' }}>
-                    <Aside />
+                    <AsideMenu />
                 </Paper>
             </aside>
             </Grid>

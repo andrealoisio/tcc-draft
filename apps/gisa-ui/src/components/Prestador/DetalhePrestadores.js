@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function DetalheConveniados() {
-  const { matricula } = useParams();
+  const { codigo } = useParams();
   const classes = useStyles();
   const value = [{
     nome: 'Hospital Santa Cruz',
@@ -40,7 +40,7 @@ export default function DetalheConveniados() {
   return (
     <>
       <Typography variant="h6">
-        <ListAltIcon /> Detalhe de Associado
+        <ListAltIcon /> Detalhe de Prestador
       </Typography>
       <Box
         component="form"
@@ -53,7 +53,7 @@ export default function DetalheConveniados() {
         noValidate
         autoComplete="off"
       >
-        <Typography variant="h6">{matricula}</Typography>
+        <Typography variant="h6">{codigo}</Typography>
         <div>
           {value.map((values) => (
             <>
