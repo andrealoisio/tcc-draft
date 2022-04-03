@@ -180,6 +180,19 @@ services:
       - CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE=false
     networks:
       - "kong-net"
+  kafka_connect_configurator:
+    container_name: "kafka_connect_configurator"
+    image: curlimages/curl
+    depends_on:
+      - debezium_connect
+    networks:
+      - "kong-net"
+    volumes:
+      - "./scripts/debezium-conect/legacy.json:/legacy.json"
+    command: >
+      sh -c "until $$(curl --output /dev/null --silent --head --fail http://debezium_connect:8083); do sleep 1; done;
+      cat /postgres.json;
+      curl -X POST -H 'Content-Type: application/json' http://debezium_connect:8083/connectors -d @/legacy.json"
 
 networks:
   kong-net:
