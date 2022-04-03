@@ -12,7 +12,7 @@ curl -H 'Content-Type: application/json' localhost:8083/connectors --data '
     "database.server.name": "legacy",
     "key.converter.schemas.enable": false,
     "value.converter.schemas.enable": false,
-    "table.exclude.list": "databasechangelog, databasechangeloglock"
+    "table.exclude.list": "legacy.public.databasechangelog, legacy.public.databasechangeloglock"
   }
 }'
 # localhost:8083/connectors

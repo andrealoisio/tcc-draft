@@ -1,5 +1,7 @@
 package com.andrealoisio.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import org.postgresql.geometric.PGpoint;
@@ -8,34 +10,40 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Associado extends PanacheEntityBase {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "matricula")
     private int matricula;
     private String nome;
     private String cpf;
     private String email;
     @Column(name = "data_nascimento")
+    @JsonProperty("data_nascimento")
     private java.sql.Date dataNascimento;
+    @JsonProperty("data_registro")
     @Column(name = "data_registro")
     private java.sql.Date dataRegistro;
     @Column(name = "is_ativo")
+    @JsonProperty("is_ativo")
     private boolean isAtivo;
     private String plano;
     private String celular;
     private String telefone;
     @Column(name = "nome_mae")
+    @JsonProperty("nome_mae")
     private String nomeMae;
     @Column(name = "nome_endereco")
+    @JsonProperty("nome_endereco")
     private String nomeEndereco;
     private String bairro;
     private String cidade;
     private String uf;
     private String cep;
     // todo: verificar formato
-    @Column(columnDefinition = "bytea")
-    private PGpoint coordenadas;
+//    @Column(columnDefinition = "bytea")
+//    private PGpoint coordenadas;
 
     public int getMatricula() {
         return matricula;
@@ -77,9 +85,9 @@ public class Associado extends PanacheEntityBase {
         this.dataNascimento = dataNascimento;
     }
 
-    public void setDataNascimento(java.util.Date dataNascimento) {
-        this.dataNascimento = new java.sql.Date(dataNascimento.getTime());
-    }
+//    public void setDataNascimento(java.util.Date dataNascimento) {
+//        this.dataNascimento = new java.sql.Date(dataNascimento.getTime());
+//    }
 
     public Date getDataRegistro() {
         return dataRegistro;
@@ -89,9 +97,9 @@ public class Associado extends PanacheEntityBase {
         this.dataRegistro = dataRegistro;
     }
 
-    public void setDataRegistro(java.util.Date dataRegistro) {
-        this.dataRegistro = new java.sql.Date(dataRegistro.getTime());
-    }
+//    public void setDataRegistro(java.util.Date dataRegistro) {
+//        this.dataRegistro = new java.sql.Date(dataRegistro.getTime());
+//    }
 
     public boolean isAtivo() {
         return isAtivo;
@@ -173,11 +181,11 @@ public class Associado extends PanacheEntityBase {
         this.cep = cep;
     }
 
-    public PGpoint getCoordenadas() {
-        return coordenadas;
-    }
-
-    public void setCoordenadas(PGpoint coordenadas) {
-        this.coordenadas = coordenadas;
-    }
+//    public PGpoint getCoordenadas() {
+//        return coordenadas;
+//    }
+//
+//    public void setCoordenadas(PGpoint coordenadas) {
+//        this.coordenadas = coordenadas;
+//    }
 }
