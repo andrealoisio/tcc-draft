@@ -1,0 +1,289 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog
+    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+
+    <changeSet id="ddl-1" author="Daniel">
+        <createTable tableName="formacao">
+            <column name="seq_formacao" type="serial"> 
+                <constraints primaryKey="true" primaryKeyName="pk_formacao"/>
+            </column>
+            <column name="nome_curso" type="text"/> 
+            <column name="nivel" type="text" />  
+            <column name="titulo_tese" type="text" />  
+            <column name="instituicao" type="text" />  
+            <column name="area_conhecimento" type="text" />  
+            <column name="data_inicio" type="date" />  
+            <column name="data_termino" type="date" />  
+        </createTable>
+    </changeSet>    
+
+    <changeSet id="ddl-2" author="Daniel">
+        <createTable tableName="associado">
+            <column name="matricula" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_associado"/>
+            </column>
+            <column name="nome" type="text"/>            
+            <column name="cpf" type="text" />  
+            <column name="email" type="text"/>    
+            <column name="data_nascimento" type="date" />  
+            <column name="data_registro" type="date" />  
+            <column name="is_ativo" type="boolean" /> 
+            <column name="plano" type="text" />  
+            <column name="celular" type="text" />  
+            <column name="telefone" type="text" />  
+            <column name="nome_mae" type="text" /> 
+            <column name="nome_endereco" type="text" />  
+            <column name="bairro" type="text" />  
+            <column name="cidade" type="text" />  
+            <column name="uf" type="text" />  
+            <column name="cep" type="text" />  
+            <column name="coordenadas" type="bytea" />
+        </createTable>  
+    </changeSet>
+
+    <changeSet id="ddl-3" author="Daniel">
+        <createTable tableName="conveniado">
+            <column name="seq_conveniado" type="serial">   
+                <constraints primaryKey="true" primaryKeyName="pk_conveniado"/>
+            </column>             
+            <column name="nome" type="text"/>    
+            <column name="nome_fantasia" type="text"/>
+            <column name="email" type="text"/>    
+            <column name="cnpj" type="text" />  
+            <column name="atividade" type="text" />              
+            <column name="data_registro" type="date" />  
+            <column name="telefone" type="text" />  
+            <column name="celular" type="text" />  
+            <column name="nome_responsavel" type="text"/>  
+            <column name="nome_endereco" type="text" />  
+            <column name="bairro" type="text" />  
+            <column name="cidade" type="text" />  
+            <column name="uf" type="text" />  
+            <column name="cep" type="text" />  
+            <column name="banco" type="int"/>
+            <column name="agencia" type="int"/>
+            <column name="conta" type="int"/>            
+            <column name="coordenadas" type="bytea" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ddl-4" author="Daniel">
+        <createTable tableName="prestador">
+            <column name="codigo" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_prestador"/>
+            </column>              
+            <column name="nome" type="text"/>    
+            <column name="email" type="text"/>   
+            <column name="cpf" type="text" />  
+            <column name="cnpj" type="text" />  
+            <column name="especializacao" type="text" />              
+            <column name="data_registro" type="date" />  
+            <column name="telefone" type="text" />  
+            <column name="celular" type="text" />  
+            <column name="seq_formacao" type="int"> 
+                <constraints references="formacao(seq_formacao)" foreignKeyName="fk_formacao"/>
+            </column>    
+            <column name="nome_endereco" type="text" />  
+            <column name="bairro" type="text" />  
+            <column name="cidade" type="text" />  
+            <column name="uf" type="text" />  
+            <column name="cep" type="text" />  
+            <column name="banco" type="int"/>
+            <column name="agencia" type="int"/>
+            <column name="conta" type="int"/>            
+            <column name="coordenadas" type="bytea" />
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="ddl-5" author="Daniel">
+        <createTable tableName="pagamentos_recebidos">
+            <column name="seq_pagamento" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_pagamentos_recebidos"/>
+            </column>  
+            <column name="matricula_associado" type="int">
+                <constraints references="associado(matricula)" foreignKeyName="fk_associado"/>
+            </column>             
+            <column name="banco" type="int"/>
+            <column name="agencia" type="int"/>
+            <column name="conta" type="int"/>
+            <column name="valor" type="number"/>
+            <column name="valor_multa" type="number"/>
+            <column name="valor_juros" type="number"/>
+            <column name="data_pagamento" type="date"/>
+            <column name="data_registro" type="date"/>
+            <column name="cpf_titular" type="text"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ddl-6" author="Daniel">
+        <createTable tableName="pagamentos_emitidos">
+            <column name="seq_pagamento" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_pagamentos_emitidos"/>
+            </column>  
+            <column name="matricula_associado" type="int">
+                <constraints references="associado(matricula)" foreignKeyName="fk_associado"/>
+            </column> 
+            <column name="seq_conveniado" type="int">
+                 <constraints references="conveniado(seq_conveniado)" foreignKeyName="fk_conveniado"/>
+            </column>   
+            <column name="codigo" type="int">  
+                <constraints references="prestador(codigo)" foreignKeyName="fk_prestador"/>
+            </column>                                     
+            <column name="banco" type="int"/>
+            <column name="agencia" type="int"/>
+            <column name="conta" type="int"/>
+            <column name="valor" type="number"/>
+            <column name="valor_multa" type="number"/>
+            <column name="valor_juros" type="number"/>
+            <column name="data_pagamento" type="date"/>
+            <column name="data_registro" type="date"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ddl-7" author="Daniel">
+        <createTable tableName="remocao">
+            <column name="seq_remocao" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_remocao"/>
+            </column>   
+            <column name="paciente" type="int">
+                <constraints references="associado(matricula)" foreignKeyName="fk_associado"/>
+            </column>                   
+            <column name="data_registro" type="date"/>
+            <column name="data_remocao" type="date"/>
+            <column name="custo" type="number"/>
+            <column name="ind_dificuldade_mobilidade" type="boolean"/>
+            <column name="coordenada_origem" type="bytea"/>
+            <column name="coordenada_destino" type="bytea"/>
+            <column name="nome_endereco_origem" type="text" />  
+            <column name="bairro_origem" type="text" />  
+            <column name="cidade_origem" type="text" />  
+            <column name="uf_origem" type="text" />  
+            <column name="cep_origem" type="text" />  
+            <column name="nome_endereco_destino" type="text" />  
+            <column name="bairro_destino" type="text" />  
+            <column name="cidade_destino" type="text" />  
+            <column name="uf_destino" type="text" />  
+            <column name="cep_destino" type="text" />                          
+            <column name="observacao_destino" type="text"/>
+            <column name="responsavel_destino" type="text"/>
+        </createTable>
+    </changeSet>
+   
+    <changeSet id="ddl-8" author="Daniel">
+        <createTable tableName="conta_corrente_associado">
+            <column name="codigo" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_conta_corrente_associado"/>
+            </column>  
+            <column name="matricula_associado" type="int">
+                <constraints references="associado(matricula)" foreignKeyName="fk_associado"/>
+            </column>   
+            <column name="saldo_devedor" type="number"/>
+            <column name="situacao" type="text"/>
+            <column name="data_registro" type="date"/>
+            <column name="data_admissao" type="date"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="ddl-9" author="Daniel">
+        <createTable tableName="procedimento">
+            <column name="seq_procedimento" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_procedimento"/>
+            </column>  
+            <column name="tabela_referencia" type="text"/> 
+            <column name="custo" type="number"/> 
+            <column name="ind_somente_particular" type="boolean"/> 
+            <column name="ind_cortesia" type="boolean"/> 
+            <column name="data_registro" type="date"/>
+            <column name="descricao" type="text"/> 
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ddl-10" author="Daniel">
+        <createTable tableName="carteirinhas_emitidas">
+            <column name="numero" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_carteirinhas_emitidas"/>
+            </column>    
+            <column name="data_registro" type="date" />  
+            <column name="data_vencimento" type="date" />  
+            <column name="matricula" type="int"> 
+                <constraints references="associado(matricula)" foreignKeyName="fk_associado"/>
+            </column>               
+         </createTable>
+    </changeSet>
+
+    <changeSet id="ddl-11" author="Daniel">
+        <createTable tableName="autorizacao">
+            <column name="codigo" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_autorizacao"/>
+            </column>  
+            <column name="data_registro" type="date" />  
+            <column name="data_entrada" type="date" />  
+            <column name="data_aprovacao" type="date" />  
+            <column name="data_vencimento" type="date" />  
+            <column name="data_validade" type="date" />  
+            <column name="tipo_autorizacao" type="date" />  
+            <column name="esta_pago" type="boolean" />  
+            <column name="nome_aprovador" type="text" />  
+            <column name="telefone_aprovador" type="text" />  
+            <column name="codigo_aprovador" type="int" />  
+            <column name="situacao" type="text" />  
+            <column name="observacao" type="text" />      
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ddl-12" author="Daniel">
+        <createTable tableName="atendimento">
+            <column name="seq_atendimento" type="serial"> 
+                <constraints primaryKey="true" primaryKeyName="pk_atendimento"/>
+            </column>  
+            <column name="data_atendimento" type="date"/>
+            <column name="data_registro" type="date"/>  
+            <column name="situacao" type="text"/> 
+            <column name="tipo" type="text"/>  
+            <column name="custo" type="number"/> 
+            <column name="cid" type="text"/> 
+            <column name="seq_associado" type="int">  
+                <constraints references="associado(matricula)" foreignKeyName="fk_associado"/>
+            </column>              
+            <column name="codigo_prestador" type="int">  
+                <constraints references="prestador(codigo)" foreignKeyName="fk_prestador"/>
+            </column>              
+            <column name="seq_conveniado" type="int">  
+                 <constraints references="conveniado(seq_conveniado)" foreignKeyName="fk_conveniado"/>
+            </column>   
+            <column name="codigo_autorizacao" type="int">  
+                 <constraints references="autorizacao(codigo)" foreignKeyName="fk_autorizacao"/>
+            </column> 
+            <column name="seq_remocao" type="int">  
+                 <constraints references="remocao(seq_remocao)" foreignKeyName="fk_remocao"/>
+            </column>     
+            <column name="seq_procedimento" type="int">  
+                 <constraints references="procedimento(seq_procedimento)" foreignKeyName="fk_procedimento"/>
+            </column>                      
+             <column name="observacao" type="text"/> 
+        </createTable>  
+    </changeSet>
+
+
+    <changeSet id="ddl-13" author="Daniel">
+        <createTable tableName="remocao_conveniado">
+            <column name="seq_remocao_conveniado" type="serial"> 
+                <constraints primaryKey="true" primaryKeyName="pk_remocao_conveniado"/>
+            </column>   
+            <column name="seq_remocao" type="int">
+                 <constraints references="remocao(seq_remocao)" foreignKeyName="fk_seq_remocao"/>
+            </column>                
+            <column name="seq_conveniado" type="int">
+                 <constraints references="conveniado(seq_conveniado)" foreignKeyName="fk_conveniado"/>
+            </column> 
+            <column name="ind_origem_destino" type="text"/>  
+        </createTable>
+    </changeSet>
+ 
+</databaseChangeLog>
