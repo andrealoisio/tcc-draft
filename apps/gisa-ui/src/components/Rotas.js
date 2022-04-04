@@ -1,24 +1,26 @@
 import { Routes, Route } from "react-router-dom";
-import DataTable from './DataTable';
-import ConveniadoForm from './Conveniados/ConveniadoForm';
-import AssociadosForm from './Associados/AssociadosForm';
-import PrestadoresForm from './Prestador/PrestadoresForm';
-import DetalheConveniados from './Conveniados/DetalheConveniados';
-import DetalheAssociados from './Associados/DetalheAssociados';
-import DetalhePrestadores from './Prestador/DetalhePrestadores';
-import MainContent from './MainContent';
+import ConveniadoForm from './pages/Conveniados/ConveniadoForm';
+import AssociadosForm from './pages/Associados/AssociadosForm';
+import PrestadoresForm from './pages/Prestadores/PrestadoresForm';
+import AtendimentosForm from './pages/Atendimentos/AtendimentosForm';
+import DetalheConveniados from './pages/Conveniados/DetalheConveniados';
+import DetalheAssociados from './pages/Associados/DetalheAssociados';
+import DetalhePrestadores from './pages/Prestadores/DetalhePrestadores';
+import DetalheAtendimento from './pages/Atendimentos/DetalheAtendimento';
+import Splash from './Splash';
 
 const Rotas = () => {
   return (
     <Routes>
-        <Route path="/" element={<MainContent />} />
+        <Route path="/" element={<Splash />} />
         <Route path="associados" element={<AssociadosForm />} />
         <Route path="conveniados" element={<ConveniadoForm />} />
         <Route path="prestadores" element={<PrestadoresForm />} />
-        <Route path="datatable" element={<DataTable />} />
+        <Route path="atendimentos" element={<AtendimentosForm />} />
         <Route path="detalheConveniados/:id" element={<DetalheConveniados />} />
         <Route path="detalheAssociados/:matricula" element={<DetalheAssociados />} />
         <Route path="detalhePrestadores/:codigo" element={<DetalhePrestadores />} />
+        <Route path="detalheAtendimentos/:seq_atendimento" element={<DetalheAtendimento />} />
     </Routes>
   );
 };

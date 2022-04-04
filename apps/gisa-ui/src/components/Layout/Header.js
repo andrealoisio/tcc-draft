@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from 'react';
 import { Box } from '@material-ui/core';
 import { Tooltip } from '@material-ui/core';
 import { Link } from 'react-router-dom';
@@ -8,31 +8,21 @@ import MediaQuery from 'react-responsive'
 
 
 export default function Header() {
-    return(
+    return (
         <>
-            <div style={{float: "right"}} >
+            <div style={{ float: "right" }} >
                 <MediaQuery minWidth="800px">
                     {(matches) =>
                         matches
-                        ?                
-                        <Typography variant="h5">
-                            <DashboardIcon /> My Dashboard
-                        </Typography>
-                        :                        
-                        <Typography variant="h7">
-                            <DashboardIcon fontSize="xs"/> My Dashboard
-                        </Typography>
+                            ? <Typography variant="h5"> <DashboardIcon /> My Dashboard </Typography>
+                            : <Typography variant="h7"> <DashboardIcon fontSize="xs" /> My Dashboard </Typography>
                     }
                 </MediaQuery>
-
             </div>
             <Link to={"/"}>
-            <Tooltip title="Home">
-                <Box
-                    component="img"
-                    alt="Home"
-                    src="gisa.png" />
-            </Tooltip>
+                <Tooltip title="Home">
+                    <Box component="img" alt="Home" src="gisa.png" />
+                </Tooltip>
             </Link>
         </>
     )

@@ -91,7 +91,7 @@ export default function ConveniadoForm() {
       </div>
       <div>     
         <Typography variant="h6">
-          <ListAltIcon /> Conveniados
+          <ListAltIcon /> Visão Geral de Conveniados
         </Typography>
       </div>
       <div style={{ height: 400, width: '100%' }}>

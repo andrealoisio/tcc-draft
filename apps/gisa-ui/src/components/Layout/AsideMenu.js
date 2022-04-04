@@ -14,7 +14,7 @@ export default function AsideMenu() {
   return (
     <Paper sx={{ width: 320, maxWidth: '100%' }}>
       <MenuList>
-        <MenuItem component={Link} to="/datatable">
+        <MenuItem component={Link} to="/atendimentos">
           <RemoveRedEyeIcon sx={{minWidth: (theme) => theme.spacing(4)}}>
             <GridOnIcon fontSize="small" />
           </RemoveRedEyeIcon>
