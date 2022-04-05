@@ -13,13 +13,23 @@ services:
   #   environment:
   #       - NODE_ENV=development
 
+  # react-prod:
+  #     container_name: ui-prod
+  #     build:
+  #       context: ./apps/gisa-ui
+  #       dockerfile: Dockerfile.react-prod
+  #     ports:
+  #       - '8080:80'
+
   react-prod:
       container_name: ui-prod
-      build:
-        context: ./apps/gisa-ui
-        dockerfile: Dockerfile.react-prod
+      image: nginx:1.16.0-alpine
+      volumes:
+        - ./apps/gisa-ui/build:/usr/share/nginx/html
       ports:
-        - '8080:80'        
+        - '8080:80'
+      command: >
+        nginx -g "daemon off;"
 
   db:
     container_name: postgres_container
