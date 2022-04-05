@@ -100,7 +100,7 @@ services:
     networks:
       - "kong-net"
     ports:
-      - "8080:8080"
+      - "80:8080"
     # environment:
     #   JAVA_OPTS: "-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
     #   JAVA_APP_JAR: "/deployments/gisa-informacoes-cadastrais-1.0.0-SNAPSHOT.jar"

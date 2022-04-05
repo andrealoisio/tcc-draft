@@ -8,6 +8,7 @@ docker run -it --rm -v "$HOME/.m2":/root/.m2 -v "$(pwd)":/usr/src/myapp -w /usr/
 cd ..
 cd ..
 cd apps/gisa-ui
+npm install
 npm run build
 cd ..
 cd ..
