@@ -2,6 +2,7 @@ import React from 'react';
 import ConveniadoCard from './ConveniadoCard';
 import { DataGrid } from '@mui/x-data-grid';
 // import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from '@mui/material/Typography';
 import ListAltIcon from '@mui/icons-material/ListAlt';
@@ -81,6 +82,16 @@ export default function ConveniadoForm() {
   //       setRows(resp)
   //     })
   // }, [])
+
+  useEffect(() => {
+    fetch("http://localhost/conveniados")
+      .then(resp => resp.json())
+      .then(resp => {
+        console.log(resp);
+      })
+  })
+
+  console.log('aqui');
 
   return (
     <div className="App">
