@@ -282,7 +282,25 @@
             <column name="seq_conveniado" type="int">
                  <constraints references="conveniado(seq_conveniado)" foreignKeyName="fk_conveniado"/>
             </column> 
+            <column name="seq_atendimento" type="int">
+                 <constraints references="atendimento(seq_atendimento)" foreignKeyName="fk_atendimento"/>
+            </column>             
             <column name="ind_origem_destino" type="text"/>  
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="ddl-14" author="Daniel">
+        <createTable tableName="autorizacao_atendimento">
+            <column name="seq_autorizacao_atendimento" type="serial"> 
+                <constraints primaryKey="true" primaryKeyName="pk_autorizacao_atendimento"/>
+            </column>   
+             <column name="seq_atendimento" type="int">
+                 <constraints references="atendimento(seq_atendimento)" foreignKeyName="fk_atendimento"/>
+            </column>      
+             <column name="codigo_autorizacao" type="int">
+                 <constraints references="autorizacao(codigo)" foreignKeyName="fk_autorizacao"/>
+            </column>                       
         </createTable>
     </changeSet>
  

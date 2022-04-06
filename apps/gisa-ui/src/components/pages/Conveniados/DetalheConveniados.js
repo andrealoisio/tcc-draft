@@ -6,6 +6,8 @@ import Typography from '@mui/material/Typography';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import MediaQuery from 'react-responsive'
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from 'react';
+
 
 const useStyles = makeStyles((theme) => ({
   disabled: {
@@ -17,26 +19,36 @@ const useStyles = makeStyles((theme) => ({
 export default function DetalheConveniados() {
   const { seq_conveniado } = useParams();
   const classes = useStyles();
-  const value = [{
-    nome: 'Hospital Santa Cruz',
-    nomeFantasia: 'Hospital Santa Cruz LTDA',
-    email: 'hospital.santa.cruz@gmail.com',
-    cnpj: '19.106.757/0001-92',
-    atividade: 'Hospital',
-    dataRegistro: '10/10/2010',
-    telefone: '(31) 2607-8090',
-    celular: '(11) 94770-8090',
-    nomeResponsavel: 'Roberval dos Santos Neto',
-    endereco: 'Av Humberto de Alencar Castelo Branco, 889',
-    bairro: 'Vila das Flores',
-    cidade: 'Belo Horizonte',
-    uf: 'MG',
-    cep: '07890020',
-    banco: '001',
-    agencia: '0001',
-    conta: '01001',
-    cooredanadas: '40.7600000,-73.9840000',
-  }];
+  // const value = [{
+  //   nome: 'Hospital Santa Cruz',
+  //   nomeFantasia: 'Hospital Santa Cruz LTDA',
+  //   email: 'hospital.santa.cruz@gmail.com',
+  //   cnpj: '19.106.757/0001-92',
+  //   atividade: 'Hospital',
+  //   dataRegistro: '10/10/2010',
+  //   telefone: '(31) 2607-8090',
+  //   celular: '(11) 94770-8090',
+  //   nomeResponsavel: 'Roberval dos Santos Neto',
+  //   endereco: 'Av Humberto de Alencar Castelo Branco, 889',
+  //   bairro: 'Vila das Flores',
+  //   cidade: 'Belo Horizonte',
+  //   uf: 'MG',
+  //   cep: '07890020',
+  //   banco: '001',
+  //   agencia: '0001',
+  //   conta: '01001',
+  //   cooredanadas: '40.7600000,-73.9840000',
+  // }];
+  const [value, setValues] = useState([])
+  useEffect(() => {
+    fetch(`http://localhost/conveniados/?seq-conveniado=${seq_conveniado}`)
+      .then(resp => resp.json())
+      .then(resp => {
+        setValues(resp)
+      })
+      .catch(err => {console.log(err)})
+  }, [])
+
   return (
     <>
       <Typography variant="h6">
@@ -92,6 +104,9 @@ export default function DetalheConveniados() {
               <TextField label="Coordenadas" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.conta} />
             </>
           ))}
+          {value.length ? null :
+<Typography variant="h6">Conveniado id:{seq_conveniado} não encontrado.</Typography> 
+        }
         </div>
       </Box>
     </>
