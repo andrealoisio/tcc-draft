@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function DetalheConveniados() {
-  const { id } = useParams();
+  const { seq_conveniado } = useParams();
   const classes = useStyles();
   const value = [{
     nome: 'Hospital Santa Cruz',
@@ -53,7 +53,7 @@ export default function DetalheConveniados() {
         noValidate
         autoComplete="off"
       >
-        <Typography variant="h6">{id}</Typography>
+        <Typography variant="h6">{seq_conveniado}</Typography>
         <div>
           {value.map((values) => (
             <>
