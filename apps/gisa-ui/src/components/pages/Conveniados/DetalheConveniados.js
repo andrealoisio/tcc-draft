@@ -39,15 +39,34 @@ export default function DetalheConveniados() {
   //   conta: '01001',
   //   cooredanadas: '40.7600000,-73.9840000',
   // }];
-  const [value, setValues] = useState([])
+  const [value, setValues] = useState({
+    nome: '',
+    nome_fantasia: '',
+    email: '',
+    cnpj: '',
+    atividade: '',
+    data_registro: '',
+    telefone: '',
+    celular: '',
+    nome_responsavel:'',
+    nome_endereco: '',
+    bairro: '', 
+    cidade: '' ,
+    uf: '',
+    cep: '',
+    banco: '',
+    agencia: '',
+    conta: '',
+    coordenadas:'',
+  })
   useEffect(() => {
-    fetch(`http://localhost/conveniados/?seq-conveniado=${seq_conveniado}`)
+    fetch(`http://localhost/conveniados/${seq_conveniado}`)
       .then(resp => resp.json())
       .then(resp => {
-        setValues(resp)
+        setValues(resp)       
       })
       .catch(err => {console.log(err)})
-  }, [])
+  }, [seq_conveniado])
 
   return (
     <>
@@ -67,46 +86,44 @@ export default function DetalheConveniados() {
       >
         <Typography variant="h6">{seq_conveniado}</Typography>
         <div>
-          {value.map((values) => (
             <>
               <MediaQuery minWidth="500px">
                 {(matches) =>
                   matches
-                    ? <><TextField multiline label="Nome" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.nome} sx={{ width: '280px !important', }} />
-                      <TextField multiline label="Nome Fantasia" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.nomeFantasia} sx={{ width: '280px !important', }} />
-                      <TextField multiline label="e-mail" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.email} sx={{ width: '280px !important', }} /></>
-                    : <><TextField multiline label="Nome" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.nome} sx={{ width: '80% !important', }} />
-                      <TextField multiline label="Nome Fantasia" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.nomeFantasia} sx={{ width: '80% !important', }} />
-                      <TextField multiline label="e-mail" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.email} sx={{ width: '80% !important', }} /></>
+                    ? <><TextField multiline label="Nome" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.nome} sx={{ width: '280px !important', }} />
+                      <TextField multiline label="Nome Fantasia" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.nome_fantasia} sx={{ width: '280px !important', }} />
+                      <TextField multiline label="e-mail" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.email} sx={{ width: '280px !important', }} /></>
+                    : <><TextField multiline label="Nome" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.nome} sx={{ width: '80% !important', }} />
+                      <TextField multiline label="Nome Fantasia" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.nome_fantasia} sx={{ width: '80% !important', }} />
+                      <TextField multiline label="e-mail" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.email} sx={{ width: '80% !important', }} /></>
                 }
               </MediaQuery>
-              <TextField label="CNPJ" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.cnpj} />
-              <TextField label="Atividade" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.atividade} />
-              <TextField label="Data de registro" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.dataRegistro} />
-              <TextField label="Telefone" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.telefone} />
-              <TextField label="Celular" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.celular} />
+              <TextField label="CNPJ" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.cnpj} />
+              <TextField label="Atividade" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.atividade} />
+              <TextField label="Data de registro" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.data_registro} />
+              <TextField label="Telefone" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.telefone} />
+              <TextField label="Celular" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.celular} />
               <MediaQuery minWidth="500px">
                 {(matches) =>
                   matches
-                    ? <><TextField multiline label="Nome do Responsável" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.nomeResponsavel} sx={{ width: '280px !important', }} />
-                      <TextField multiline label="Endereço" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.endereco} sx={{ width: '400px !important', }} /></>
-                    : <><TextField multiline label="Nome do Responsável" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.nomeResponsavel} sx={{ width: '80% !important', }} />
-                      <TextField multiline label="Endereço" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.endereco} sx={{ width: '80% !important', }} /></>
+                    ? <><TextField multiline label="Nome do Responsável" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.nome_responsavel} sx={{ width: '280px !important', }} />
+                      <TextField multiline label="Endereço" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.nome_endereco} sx={{ width: '400px !important', }} /></>
+                    : <><TextField multiline label="Nome do Responsável" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.nome_responsavel} sx={{ width: '80% !important', }} />
+                      <TextField multiline label="Endereço" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.nome_endereco} sx={{ width: '80% !important', }} /></>
                 }
               </MediaQuery>
-              <TextField label="Bairro" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.bairro} />
-              <TextField label="Cidade" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.cidade} />
-              <TextField label="UF" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.uf} />
-              <TextField label="CEP" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.cep} />
-              <TextField label="Banco" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.banco} />
-              <TextField label="Agência" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.agencia} />
-              <TextField label="Conta Corrente" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.conta} />
-              <TextField label="Coordenadas" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={values.conta} />
+              <TextField label="Bairro" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.bairro} />
+              <TextField label="Cidade" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.cidade} />
+              <TextField label="UF" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.uf} />
+              <TextField label="CEP" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.cep} />
+              <TextField label="Banco" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.banco} />
+              <TextField label="Agência" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.agencia} />
+              <TextField label="Conta Corrente" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.conta} />
+              <TextField label="Coordenadas" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.coordenadas} />
             </>
-          ))}
-          {value.length ? null :
-<Typography variant="h6">Conveniado id:{seq_conveniado} não encontrado.</Typography> 
-        }
+          {value ? null :
+            <Typography variant="h6">Conveniado id:{seq_conveniado} não encontrado.</Typography> 
+          }
         </div>
       </Box>
     </>
