@@ -19,41 +19,34 @@ const useStyles = makeStyles((theme) => ({
 export default function DetalheConveniados() {
   const { seq_conveniado } = useParams();
   const classes = useStyles();
-  // const value = [{
-  //   nome: 'Hospital Santa Cruz',
-  //   nomeFantasia: 'Hospital Santa Cruz LTDA',
-  //   email: 'hospital.santa.cruz@gmail.com',
-  //   cnpj: '19.106.757/0001-92',
-  //   atividade: 'Hospital',
-  //   dataRegistro: '10/10/2010',
-  //   telefone: '(31) 2607-8090',
-  //   celular: '(11) 94770-8090',
-  //   nomeResponsavel: 'Roberval dos Santos Neto',
-  //   endereco: 'Av Humberto de Alencar Castelo Branco, 889',
-  //   bairro: 'Vila das Flores',
-  //   cidade: 'Belo Horizonte',
-  //   uf: 'MG',
-  //   cep: '07890020',
-  //   banco: '001',
-  //   agencia: '0001',
-  //   conta: '01001',
-  //   cooredanadas: '40.7600000,-73.9840000',
-  // }];
-  const [value, setValues] = useState({nome: null})
+  const [value, setValues] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  console.log(value)
   useEffect(() => {
+    setValues(null)
     fetch(`http://localhost/conveniados/${seq_conveniado}`)
-      .then(resp => resp.json())
       .then(resp => {
-        setValues(resp)       
+        if (resp.ok) {
+          return resp.json()
+        } else if(resp.status === 404) {
+          return Promise.reject('error 404')
+        } else {
+          return Promise.reject('some other error: ' + resp.status)
+        }      
       })
-      .catch(err => {console.log(err)})
+      .then(resp => {
+        setValues(resp) 
+        setLoading(false)      
+      })
+      .catch(err => {
+        setError(true)
+        console.log(err)})
   }, [seq_conveniado])
 
   return (
     <>
-      <Typography variant="h6">
-        <ListAltIcon /> Detalhe de Conveniado
-      </Typography>
+      <Typography variant="h6"><ListAltIcon /> Detalhe de Conveniado</Typography>
       <Box
         component="form"
         sx={{
@@ -65,9 +58,8 @@ export default function DetalheConveniados() {
         noValidate
         autoComplete="off"
       >
-        <Typography variant="h6">{seq_conveniado}</Typography>
         <div>
-        {value ? 
+          {value &&
             <>
               <MediaQuery minWidth="500px">
                 {(matches) =>
@@ -103,9 +95,13 @@ export default function DetalheConveniados() {
               <TextField label="Conta Corrente" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.conta|| ''} />
               <TextField label="Coordenadas" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.coordenadas|| ''} />
             </>
-          :
-            <Typography variant="h6">Conveniado id:{seq_conveniado} não encontrado.</Typography> 
           }
+          {loading && 
+              <Typography variant="h6">Carregando...</Typography> 
+          }
+          {error && 
+              <Typography variant="h6">Conveniado id:{seq_conveniado} não encontrado.</Typography> 
+          }          
         </div>
       </Box>
     </>
