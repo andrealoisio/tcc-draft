@@ -1,10 +1,12 @@
 package com.andrealoisio.entities;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-public class Formacao {
+public class Formacao extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_formacao", nullable = false)
@@ -78,11 +80,19 @@ public class Formacao {
         this.dataInicio = dataInicio;
     }
 
+    public void setDataInicio(java.util.Date dataInicio) {
+        this.dataInicio = new java.sql.Date(dataInicio.getTime());
+    }
+
     public Date getDataTermino() {
         return dataTermino;
     }
 
     public void setDataTermino(Date dataTermino) {
         this.dataTermino = dataTermino;
+    }
+
+    public void setDataTermino(java.util.Date dataTermino) {
+        this.dataTermino = new java.sql.Date(dataTermino.getTime());
     }
 }
