@@ -1,11 +1,13 @@
 package com.andrealoisio.entities;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
 
 @Entity
-public class Atendimento {
+public class Atendimento extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_atendimento", nullable = false)
@@ -44,17 +46,19 @@ public class Atendimento {
         return dataAtendimento;
     }
 
-    public void setDataAtendimento(Date dataAtendimento) {
-        this.dataAtendimento = dataAtendimento;
+    public void setDataAtendimento(java.util.Date dataAtendimento) {
+        this.dataAtendimento = new java.sql.Date(dataAtendimento.getTime());
     }
+    public void setDataAtendimento(Date dataAtendimento) { this.dataAtendimento = dataAtendimento; }
 
     public Date getDataRegistro() {
         return dataRegistro;
     }
 
-    public void setDataRegistro(Date dataRegistro) {
-        this.dataRegistro = dataRegistro;
+    public void setDataRegistro(java.util.Date dataRegistro) {
+        this.dataRegistro = new java.sql.Date(dataRegistro.getTime());
     }
+    public void setDataRegistro(Date dataRegistro) { this.dataRegistro = dataRegistro; }
 
     public String getSituacao() {
         return situacao;
