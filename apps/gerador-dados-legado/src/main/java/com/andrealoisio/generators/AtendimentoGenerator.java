@@ -43,7 +43,7 @@ public class AtendimentoGenerator {
             atendimento.setObservacao(faker.gameOfThrones().quote());
             atendimento.setTipo(GeradorTexto.retornaTextoAleatorio(LiteraisAleatorias.TIPO_ATENDIMENTO.getRetornoStrings()));
             Log.info("Persisting atendimento ");
-            //atendimento.persist();
+            atendimento.persist();
             Log.info("Persisted atendimento " + atendimento.getSeqAtendimento());
         }
     }
