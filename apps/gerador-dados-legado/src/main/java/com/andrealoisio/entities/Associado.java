@@ -12,7 +12,7 @@ public class Associado extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "matricula")
-    private int matricula;
+    private Integer matricula;
     private String nome;
     private String cpf;
     private String email;
@@ -37,11 +37,11 @@ public class Associado extends PanacheEntityBase {
     @Column(columnDefinition = "bytea")
     private PGpoint coordenadas;
 
-    public int getMatricula() {
+    public Integer getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(Integer matricula) {
         this.matricula = matricula;
     }
 

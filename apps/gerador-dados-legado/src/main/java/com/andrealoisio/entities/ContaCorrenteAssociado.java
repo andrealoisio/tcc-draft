@@ -10,9 +10,9 @@ public class ContaCorrenteAssociado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo", nullable = false)
-    private int codigo;
+    private Integer codigo;
     @Column(name = "matricula_associado")
-    private int matriculaAssociado;
+    private Integer matriculaAssociado;
     @Column(name = "saldo_devedor")
     private java.math.BigDecimal saldoDevedor;
     private String situacao;
@@ -21,19 +21,19 @@ public class ContaCorrenteAssociado {
     @Column(name = "data_admissao")
     private java.sql.Date dataAdmissao;
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 
-    public int getMatriculaAssociado() {
+    public Integer getMatriculaAssociado() {
         return matriculaAssociado;
     }
 
-    public void setMatriculaAssociado(int matriculaAssociado) {
+    public void setMatriculaAssociado(Integer matriculaAssociado) {
         this.matriculaAssociado = matriculaAssociado;
     }
 

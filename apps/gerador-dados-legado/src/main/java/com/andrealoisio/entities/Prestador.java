@@ -10,7 +10,7 @@ public class Prestador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo", nullable = false)
-    private int codigo;
+    private Integer codigo;
     private String nome;
     private String email;
     private String cpf;
@@ -21,25 +21,25 @@ public class Prestador {
     private String telefone;
     private String celular;
     @Column(name = "seq_formacao")
-    private int seq_formacao;
+    private Integer seq_formacao;
     @Column(name = "nome_endereco")
     private String nome_endereco;
     private String bairro;
     private String cidade;
     private String uf;
     private String cep;
-    private int banco;
-    private int agencia;
-    private int conta;
+    private Integer banco;
+    private Integer agencia;
+    private Integer conta;
     // todo: Verificar formato
     @Column(columnDefinition = "bytea")
     private PGpoint coordenadas;
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 
@@ -107,11 +107,11 @@ public class Prestador {
         this.celular = celular;
     }
 
-    public int getSeq_formacao() {
+    public Integer getSeq_formacao() {
         return seq_formacao;
     }
 
-    public void setSeq_formacao(int seq_formacao) {
+    public void setSeq_formacao(Integer seq_formacao) {
         this.seq_formacao = seq_formacao;
     }
 
@@ -155,27 +155,27 @@ public class Prestador {
         this.cep = cep;
     }
 
-    public int getBanco() {
+    public Integer getBanco() {
         return banco;
     }
 
-    public void setBanco(int banco) {
+    public void setBanco(Integer banco) {
         this.banco = banco;
     }
 
-    public int getAgencia() {
+    public Integer getAgencia() {
         return agencia;
     }
 
-    public void setAgencia(int agencia) {
+    public void setAgencia(Integer agencia) {
         this.agencia = agencia;
     }
 
-    public int getConta() {
+    public Integer getConta() {
         return conta;
     }
 
-    public void setConta(int conta) {
+    public void setConta(Integer conta) {
         this.conta = conta;
     }
 

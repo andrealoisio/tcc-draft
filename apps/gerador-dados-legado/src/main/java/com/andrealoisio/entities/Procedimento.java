@@ -9,7 +9,7 @@ public class Procedimento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_procedimento", nullable = false)
-    private int seqProcedimento;
+    private Integer seqProcedimento;
     @Column(name = "tabela_referencia")
     private String tabelaReferencia;
     private java.math.BigDecimal custo;
@@ -21,11 +21,11 @@ public class Procedimento {
     private java.sql.Date dataRegistro;
     private String descricao;
 
-    public int getSeqProcedimento() {
+    public Integer getSeqProcedimento() {
         return seqProcedimento;
     }
 
-    public void setSeqProcedimento(int seqProcedimento) {
+    public void setSeqProcedimento(Integer seqProcedimento) {
         this.seqProcedimento = seqProcedimento;
     }
 

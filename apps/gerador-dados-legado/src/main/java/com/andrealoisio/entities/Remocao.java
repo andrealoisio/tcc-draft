@@ -11,8 +11,8 @@ public class Remocao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_remocao", nullable = false)
-    private int seq_remocao;
-    private int paciente;
+    private Integer seq_remocao;
+    private Integer paciente;
     @Column(name = "data_registro")
     private java.sql.Date data_registro;
     @Column(name = "data_remocao")
@@ -49,19 +49,19 @@ public class Remocao {
     @Column(name = "responsavel_destino")
     private String responsavel_destino;
 
-    public int getSeq_remocao() {
+    public Integer getSeq_remocao() {
         return seq_remocao;
     }
 
-    public void setSeq_remocao(int seq_remocao) {
+    public void setSeq_remocao(Integer seq_remocao) {
         this.seq_remocao = seq_remocao;
     }
 
-    public int getPaciente() {
+    public Integer getPaciente() {
         return paciente;
     }
 
-    public void setPaciente(int paciente) {
+    public void setPaciente(Integer paciente) {
         this.paciente = paciente;
     }
 
