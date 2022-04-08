@@ -7,35 +7,35 @@ public class RemocaoConveniado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_remocao_conveniado", nullable = false)
-    private int seqRemocaoConveniado;
+    private Integer seqRemocaoConveniado;
     @Column(name = "seq_remocao")
-    private int seqRemocao;
+    private Integer seqRemocao;
     @Column(name = "seq_conveniado")
-    private int seqConveniado;
+    private Integer seqConveniado;
     @Column(name = "ind_origem_destino")
     private String indOrigemDestino;
 
-    public int getSeqRemocaoConveniado() {
+    public Integer getSeqRemocaoConveniado() {
         return seqRemocaoConveniado;
     }
 
-    public void setSeqRemocaoConveniado(int seqRemocaoConveniado) {
+    public void setSeqRemocaoConveniado(Integer seqRemocaoConveniado) {
         this.seqRemocaoConveniado = seqRemocaoConveniado;
     }
 
-    public int getSeqRemocao() {
+    public Integer getSeqRemocao() {
         return seqRemocao;
     }
 
-    public void setSeqRemocao(int seqRemocao) {
+    public void setSeqRemocao(Integer seqRemocao) {
         this.seqRemocao = seqRemocao;
     }
 
-    public int getSeqConveniado() {
+    public Integer getSeqConveniado() {
         return seqConveniado;
     }
 
-    public void setSeqConveniado(int seqConveniado) {
+    public void setSeqConveniado(Integer seqConveniado) {
         this.seqConveniado = seqConveniado;
     }
 

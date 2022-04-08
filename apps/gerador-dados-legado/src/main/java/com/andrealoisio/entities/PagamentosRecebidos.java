@@ -9,12 +9,12 @@ public class PagamentosRecebidos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_pagamento", nullable = false)
-    private int seqPagamento;
+    private Integer seqPagamento;
     @Column(name = "matricula_associado")
-    private int matriculaAssociado;
-    private int banco;
-    private int agencia;
-    private int conta;
+    private Integer matriculaAssociado;
+    private Integer banco;
+    private Integer agencia;
+    private Integer conta;
     private java.math.BigDecimal valor;
     @Column(name = "valor_multa")
     private java.math.BigDecimal valorMulta;
@@ -27,43 +27,43 @@ public class PagamentosRecebidos {
     @Column(name = "cpf_titular")
     private String cpfTitular;
 
-    public int getSeqPagamento() {
+    public Integer getSeqPagamento() {
         return seqPagamento;
     }
 
-    public void setSeqPagamento(int seqPagamento) {
+    public void setSeqPagamento(Integer seqPagamento) {
         this.seqPagamento = seqPagamento;
     }
 
-    public int getMatriculaAssociado() {
+    public Integer getMatriculaAssociado() {
         return matriculaAssociado;
     }
 
-    public void setMatriculaAssociado(int matriculaAssociado) {
+    public void setMatriculaAssociado(Integer matriculaAssociado) {
         this.matriculaAssociado = matriculaAssociado;
     }
 
-    public int getBanco() {
+    public Integer getBanco() {
         return banco;
     }
 
-    public void setBanco(int banco) {
+    public void setBanco(Integer banco) {
         this.banco = banco;
     }
 
-    public int getAgencia() {
+    public Integer getAgencia() {
         return agencia;
     }
 
-    public void setAgencia(int agencia) {
+    public void setAgencia(Integer agencia) {
         this.agencia = agencia;
     }
 
-    public int getConta() {
+    public Integer getConta() {
         return conta;
     }
 
-    public void setConta(int conta) {
+    public void setConta(Integer conta) {
         this.conta = conta;
     }
 

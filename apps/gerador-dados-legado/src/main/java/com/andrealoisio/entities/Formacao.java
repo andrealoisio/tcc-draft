@@ -8,7 +8,7 @@ public class Formacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_formacao", nullable = false)
-    private int seqFormacao;
+    private Integer seqFormacao;
     @Column(name = "nome_curso")
     private String nomeCurso;
     private String nivel;
@@ -22,11 +22,11 @@ public class Formacao {
     @Column(name = "data_termino")
     private java.sql.Date dataTermino;
 
-    public int getSeqFormacao() {
+    public Integer getSeqFormacao() {
         return seqFormacao;
     }
 
-    public void setSeqFormacao(int seqFormacao) {
+    public void setSeqFormacao(Integer seqFormacao) {
         this.seqFormacao = seqFormacao;
     }
 

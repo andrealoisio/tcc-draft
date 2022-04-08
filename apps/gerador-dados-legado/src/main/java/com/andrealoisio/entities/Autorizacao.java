@@ -9,7 +9,7 @@ public class Autorizacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo", nullable = false)
-    private int codigo;
+    private Integer codigo;
 
     @Column(name = "data_registro")
     private java.sql.Date dataRegistro;
@@ -30,15 +30,15 @@ public class Autorizacao {
     @Column(name = "telefone_aprovador")
     private String telefoneAprovador;
     @Column(name = "codigo_aprovador")
-    private int codigoAprovador;
+    private Integer codigoAprovador;
     private String situacao;
     private String observacao;
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 
@@ -114,11 +114,11 @@ public class Autorizacao {
         this.telefoneAprovador = telefoneAprovador;
     }
 
-    public int getCodigoAprovador() {
+    public Integer getCodigoAprovador() {
         return codigoAprovador;
     }
 
-    public void setCodigoAprovador(int codigoAprovador) {
+    public void setCodigoAprovador(Integer codigoAprovador) {
         this.codigoAprovador = codigoAprovador;
     }
 

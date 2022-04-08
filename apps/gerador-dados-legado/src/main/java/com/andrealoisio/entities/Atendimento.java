@@ -11,7 +11,7 @@ public class Atendimento extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_atendimento", nullable = false)
-    private int seqAtendimento;
+    private Integer seqAtendimento;
     @Column(name = "data_atendimento")
     private java.sql.Date dataAtendimento;
     @Column(name = "data_registro")
@@ -21,24 +21,24 @@ public class Atendimento extends PanacheEntityBase {
     private java.math.BigDecimal custo;
     private String cid;
     @Column(name = "seq_associado")
-    private int seqAssociado;
+    private Integer seqAssociado;
     @Column(name = "codigo_prestador")
-    private int codigoPrestador;
+    private Integer codigoPrestador;
     @Column(name = "seq_conveniado")
-    private int seqConveniado;
+    private Integer seqConveniado;
     @Column(name = "codigo_autorizacao")
-    private int codigoAutorizacao;
+    private Integer codigoAutorizacao;
     @Column(name = "seq_remocao")
-    private int seqRemocao;
+    private Integer seqRemocao;
     @Column(name = "seq_procedimento")
-    private int seqProcedimento;
+    private Integer seqProcedimento;
     private String observacao;
 
-    public int getSeqAtendimento() {
+    public Integer getSeqAtendimento() {
         return seqAtendimento;
     }
 
-    public void setSeqAtendimento(int seqAtendimento) {
+    public void setSeqAtendimento(Integer seqAtendimento) {
         this.seqAtendimento = seqAtendimento;
     }
 
@@ -92,51 +92,51 @@ public class Atendimento extends PanacheEntityBase {
         this.cid = cid;
     }
 
-    public int getSeqAssociado() {
+    public Integer getSeqAssociado() {
         return seqAssociado;
     }
 
-    public void setSeqAssociado(int seqAssociado) {
+    public void setSeqAssociado(Integer seqAssociado) {
         this.seqAssociado = seqAssociado;
     }
 
-    public int getCodigoPrestador() {
+    public Integer getCodigoPrestador() {
         return codigoPrestador;
     }
 
-    public void setCodigoPrestador(int codigoPrestador) {
+    public void setCodigoPrestador(Integer codigoPrestador) {
         this.codigoPrestador = codigoPrestador;
     }
 
-    public int getSeqConveniado() {
+    public Integer getSeqConveniado() {
         return seqConveniado;
     }
 
-    public void setSeqConveniado(int seqConveniado) {
+    public void setSeqConveniado(Integer seqConveniado) {
         this.seqConveniado = seqConveniado;
     }
 
-    public int getCodigoAutorizacao() {
+    public Integer getCodigoAutorizacao() {
         return codigoAutorizacao;
     }
 
-    public void setCodigoAutorizacao(int codigoAutorizacao) {
+    public void setCodigoAutorizacao(Integer codigoAutorizacao) {
         this.codigoAutorizacao = codigoAutorizacao;
     }
 
-    public int getSeqRemocao() {
+    public Integer getSeqRemocao() {
         return seqRemocao;
     }
 
-    public void setSeqRemocao(int seqRemocao) {
+    public void setSeqRemocao(Integer seqRemocao) {
         this.seqRemocao = seqRemocao;
     }
 
-    public int getSeqProcedimento() {
+    public Integer getSeqProcedimento() {
         return seqProcedimento;
     }
 
-    public void setSeqProcedimento(int seqProcedimento) {
+    public void setSeqProcedimento(Integer seqProcedimento) {
         this.seqProcedimento = seqProcedimento;
     }
 
