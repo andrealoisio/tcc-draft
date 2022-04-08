@@ -42,6 +42,12 @@ public class AtendimentoGenerator {
             atendimento.setCusto(BigDecimal.valueOf(faker.random().nextDouble()));
             atendimento.setObservacao(faker.gameOfThrones().quote());
             atendimento.setTipo(GeradorTexto.retornaTextoAleatorio(LiteraisAleatorias.TIPO_ATENDIMENTO.getRetornoStrings()));
+            atendimento.setCodigoAutorizacao(null);
+            atendimento.setCodigoPrestador(null);
+            atendimento.setSeqConveniado(null);
+            atendimento.setSeqProcedimento(null);
+            atendimento.setSeqRemocao(null);
+
             Log.info("Persisting atendimento ");
             atendimento.persist();
             Log.info("Persisted atendimento " + atendimento.getSeqAtendimento());
