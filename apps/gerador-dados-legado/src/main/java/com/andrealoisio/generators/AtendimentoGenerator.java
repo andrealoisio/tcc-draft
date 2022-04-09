@@ -29,8 +29,10 @@ public class AtendimentoGenerator {
     void insertAtendimento() {
         Log.info("Generating atendimento...");
 
-        PanacheQuery<Autorizacao> autorizacoes = Autorizacao.findAll();
-        var autorizacao = autorizacoes.list().stream().findAny();
+        PanacheQuery<Autorizacao> ultimaAutorizacao = Autorizacao.findAll();
+        ultimaAutorizacao.range(0,1);
+        var autorizacao = ultimaAutorizacao.list().stream().findFirst();
+
         PanacheQuery<Associado> ultimosAssociados = Associado.findAll(Sort.descending("matricula"));
         ultimosAssociados.range(0,1);
         var associado = ultimosAssociados.list().stream().findFirst();

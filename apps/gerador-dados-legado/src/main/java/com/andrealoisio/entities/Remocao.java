@@ -1,5 +1,6 @@
 package com.andrealoisio.entities;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import org.postgresql.geometric.PGpoint;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 
 @Entity
-public class Remocao {
+public class Remocao extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_remocao", nullable = false)
@@ -72,6 +73,9 @@ public class Remocao {
     public void setData_registro(Date data_registro) {
         this.data_registro = data_registro;
     }
+    public void setData_registro(java.util.Date data_registro) {
+        this.data_registro = new java.sql.Date(data_registro.getTime());
+    }
 
     public Date getData_remocao() {
         return data_remocao;
@@ -80,7 +84,9 @@ public class Remocao {
     public void setData_remocao(Date data_remocao) {
         this.data_remocao = data_remocao;
     }
-
+    public void setData_remocao(java.util.Date data_remocao) {
+        this.data_remocao = new java.sql.Date(data_remocao.getTime());
+    }
     public BigDecimal getCusto() {
         return custo;
     }

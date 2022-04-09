@@ -1,5 +1,6 @@
 package com.andrealoisio.generators;
 
+import com.andrealoisio.entities.Autorizacao;
 import com.andrealoisio.entities.Formacao;
 import com.andrealoisio.entities.Prestador;
 import com.github.javafaker.Faker;
@@ -18,8 +19,9 @@ public class PrestadorGenerator {
     @Scheduled(every = "8s")
     @Transactional
     void inserirPrestador() {
-        PanacheQuery<Formacao> formacoes = Formacao.findAll();
-        var formacao = formacoes.list().stream().findAny();
+        PanacheQuery<Formacao> ultimaFormacao = Formacao.findAll();
+        ultimaFormacao.range(0,1);
+        var formacao = ultimaFormacao.list().stream().findFirst();
         Log.info("Genarating prestador...");
         Faker faker = new Faker(new Locale("pt-BR"));
         var prestador = new Prestador();
