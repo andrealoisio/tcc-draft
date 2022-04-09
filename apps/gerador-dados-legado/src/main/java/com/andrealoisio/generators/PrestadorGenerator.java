@@ -19,7 +19,7 @@ public class PrestadorGenerator {
     @Transactional
     void inserirPrestador() {
         PanacheQuery<Formacao> formacoes = Formacao.findAll();
-        var formacao = formacoes.list().stream().findFirst();
+        var formacao = formacoes.list().stream().findAny();
         Log.info("Genarating prestador...");
         Faker faker = new Faker(new Locale("pt-BR"));
         var prestador = new Prestador();

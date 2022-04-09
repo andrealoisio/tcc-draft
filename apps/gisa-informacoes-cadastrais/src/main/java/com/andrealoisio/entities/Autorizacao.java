@@ -22,7 +22,7 @@ public class Autorizacao {
     @Column(name = "data_validade")
     private java.sql.Date dataValidade;
     @Column(name = "tipo_autorizacao")
-    private java.sql.Date tipoAutorizacao;
+    private String tipoAutorizacao;
     @Column(name = "esta_pago")
     private boolean estaPago;
     @Column(name = "nome_aprovador")
@@ -82,11 +82,11 @@ public class Autorizacao {
         this.dataValidade = dataValidade;
     }
 
-    public Date getTipoAutorizacao() {
+    public String getTipoAutorizacao() {
         return tipoAutorizacao;
     }
 
-    public void setTipoAutorizacao(Date tipoAutorizacao) {
+    public void setTipoAutorizacao(String tipoAutorizacao) {
         this.tipoAutorizacao = tipoAutorizacao;
     }
 

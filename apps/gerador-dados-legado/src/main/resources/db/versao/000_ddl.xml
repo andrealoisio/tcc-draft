@@ -227,7 +227,7 @@
             <column name="data_aprovacao" type="date" />  
             <column name="data_vencimento" type="date" />  
             <column name="data_validade" type="date" />  
-            <column name="tipo_autorizacao" type="date" />  
+            <column name="tipo_autorizacao" type="text" />
             <column name="esta_pago" type="boolean" />  
             <column name="nome_aprovador" type="text" />  
             <column name="telefone_aprovador" type="text" />  
@@ -273,17 +273,34 @@
 
     <changeSet id="ddl-13" author="Daniel">
         <createTable tableName="remocao_conveniado">
-            <column name="seq_remocao_conveniado" type="serial"> 
+            <column name="seq_remocao_conveniado" type="serial">
                 <constraints primaryKey="true" primaryKeyName="pk_remocao_conveniado"/>
-            </column>   
+            </column>
             <column name="seq_remocao" type="int">
-                 <constraints references="remocao(seq_remocao)" foreignKeyName="fk_seq_remocao"/>
-            </column>                
+                <constraints references="remocao(seq_remocao)" foreignKeyName="fk_seq_remocao"/>
+            </column>
             <column name="seq_conveniado" type="int">
-                 <constraints references="conveniado(seq_conveniado)" foreignKeyName="fk_conveniado"/>
-            </column> 
-            <column name="ind_origem_destino" type="text"/>  
+                <constraints references="conveniado(seq_conveniado)" foreignKeyName="fk_conveniado"/>
+            </column>
+            <column name="seq_atendimento" type="int">
+                <constraints references="atendimento(seq_atendimento)" foreignKeyName="fk_atendimento"/>
+            </column>
+            <column name="ind_origem_destino" type="text"/>
         </createTable>
     </changeSet>
- 
+
+
+    <changeSet id="ddl-14" author="Daniel">
+        <createTable tableName="autorizacao_atendimento">
+            <column name="seq_autorizacao_atendimento" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_autorizacao_atendimento"/>
+            </column>
+            <column name="seq_atendimento" type="int">
+                <constraints references="atendimento(seq_atendimento)" foreignKeyName="fk_atendimento"/>
+            </column>
+            <column name="codigo_autorizacao" type="int">
+                <constraints references="autorizacao(codigo)" foreignKeyName="fk_autorizacao"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>

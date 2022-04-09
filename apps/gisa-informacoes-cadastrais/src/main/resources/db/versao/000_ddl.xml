@@ -227,7 +227,7 @@
             <column name="data_aprovacao" type="date" />  
             <column name="data_vencimento" type="date" />  
             <column name="data_validade" type="date" />  
-            <column name="tipo_autorizacao" type="date" />  
+            <column name="tipo_autorizacao" type="text" />
             <column name="esta_pago" type="boolean" />  
             <column name="nome_aprovador" type="text" />  
             <column name="telefone_aprovador" type="text" />  

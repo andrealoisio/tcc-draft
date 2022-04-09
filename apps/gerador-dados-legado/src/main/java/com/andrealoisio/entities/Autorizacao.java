@@ -1,10 +1,12 @@
 package com.andrealoisio.entities;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-public class Autorizacao {
+public class Autorizacao extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +24,7 @@ public class Autorizacao {
     @Column(name = "data_validade")
     private java.sql.Date dataValidade;
     @Column(name = "tipo_autorizacao")
-    private java.sql.Date tipoAutorizacao;
+    private String tipoAutorizacao;
     @Column(name = "esta_pago")
     private boolean estaPago;
     @Column(name = "nome_aprovador")
@@ -49,6 +51,9 @@ public class Autorizacao {
     public void setDataRegistro(Date dataRegistro) {
         this.dataRegistro = dataRegistro;
     }
+    public void setDataRegistro(java.util.Date dataRegistro) {
+        this.dataRegistro = new java.sql.Date(dataRegistro.getTime());
+    }
 
     public Date getDataEntrada() {
         return dataEntrada;
@@ -56,6 +61,9 @@ public class Autorizacao {
 
     public void setDataEntrada(Date dataEntrada) {
         this.dataEntrada = dataEntrada;
+    }
+    public void setDataEntrada(java.util.Date dataEntrada) {
+        this.dataEntrada = new java.sql.Date(dataEntrada.getTime());
     }
 
     public Date getDataAprovacao() {
@@ -65,6 +73,9 @@ public class Autorizacao {
     public void setDataAprovacao(Date dataAprovacao) {
         this.dataAprovacao = dataAprovacao;
     }
+    public void setDataAprovacao(java.util.Date dataAprovacao) {
+        this.dataAprovacao = new java.sql.Date(dataAprovacao.getTime());
+    }
 
     public Date getDataVencimento() {
         return dataVencimento;
@@ -73,7 +84,9 @@ public class Autorizacao {
     public void setDataVencimento(Date dataVencimento) {
         this.dataVencimento = dataVencimento;
     }
-
+    public void setDataVencimento(java.util.Date dataVencimento) {
+        this.dataVencimento = new java.sql.Date(dataVencimento.getTime());
+    }
     public Date getDataValidade() {
         return dataValidade;
     }
@@ -81,12 +94,15 @@ public class Autorizacao {
     public void setDataValidade(Date dataValidade) {
         this.dataValidade = dataValidade;
     }
+    public void setDataValidade(java.util.Date dataValidade) {
+        this.dataValidade = new java.sql.Date(dataValidade.getTime());
+    }
 
-    public Date getTipoAutorizacao() {
+    public String getTipoAutorizacao() {
         return tipoAutorizacao;
     }
 
-    public void setTipoAutorizacao(Date tipoAutorizacao) {
+    public void setTipoAutorizacao(String tipoAutorizacao) {
         this.tipoAutorizacao = tipoAutorizacao;
     }
 

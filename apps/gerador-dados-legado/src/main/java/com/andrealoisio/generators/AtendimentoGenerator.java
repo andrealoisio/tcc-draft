@@ -2,6 +2,7 @@ package com.andrealoisio.generators;
 
 import com.andrealoisio.entities.Associado;
 import com.andrealoisio.entities.Atendimento;
+import com.andrealoisio.entities.Autorizacao;
 import com.andrealoisio.utils.GeradorTexto;
 import com.andrealoisio.utils.LiteraisAleatorias;
 import com.github.javafaker.Faker;
@@ -28,6 +29,8 @@ public class AtendimentoGenerator {
     void insertAtendimento() {
         Log.info("Generating atendimento...");
 
+        PanacheQuery<Autorizacao> autorizacoes = Autorizacao.findAll();
+        var autorizacao = autorizacoes.list().stream().findAny();
         PanacheQuery<Associado> ultimosAssociados = Associado.findAll(Sort.descending("matricula"));
         ultimosAssociados.range(0,1);
         var associado = ultimosAssociados.list().stream().findFirst();
@@ -42,6 +45,7 @@ public class AtendimentoGenerator {
             atendimento.setCusto(BigDecimal.valueOf(faker.random().nextDouble()));
             atendimento.setObservacao(faker.gameOfThrones().quote());
             atendimento.setTipo(GeradorTexto.retornaTextoAleatorio(LiteraisAleatorias.TIPO_ATENDIMENTO.getRetornoStrings()));
+            atendimento.setCodigoAutorizacao(autorizacao.get().getCodigo());
             Log.info("Persisting atendimento ");
             atendimento.persist();
             Log.info("Persisted atendimento " + atendimento.getSeqAtendimento());
