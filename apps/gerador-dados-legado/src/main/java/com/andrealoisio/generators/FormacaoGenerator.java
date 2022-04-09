@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 @ApplicationScoped
 public class FormacaoGenerator {
-    @Scheduled(every = "8s")
+    @Scheduled(every = "4s")
     @Transactional
     void inserirFormacao() {
         Log.info("Generating formacao...");
