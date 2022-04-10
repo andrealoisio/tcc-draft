@@ -10,7 +10,7 @@ import java.sql.Date;
 public class AtendimentoView extends PanacheEntityBase {
     @Id
     @Column(name = "seq_atendimento", nullable = false)
-    private Long seqAtendimento;
+    private Integer seqAtendimento;
     @Column(name = "data_atendimento")
     private java.sql.Date dataAtendimento;
     @Column(name = "matricula_associado")
@@ -30,11 +30,11 @@ public class AtendimentoView extends PanacheEntityBase {
     @Column(name = "clinica_parceira")
     private String clinicaParceira;
 
-    public Long getSeqAtendimento() {
+    public Integer getSeqAtendimento() {
         return seqAtendimento;
     }
 
-    public void setSeqAtendimento(Long seqAtendimento) {
+    public void setSeqAtendimento(Integer seqAtendimento) {
         this.seqAtendimento = seqAtendimento;
     }
 
