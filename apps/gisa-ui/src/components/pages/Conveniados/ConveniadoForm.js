@@ -16,7 +16,7 @@ const value = [{
 }];
 const columns = [
   { field: 'seq_conveniado', headerName: 'Id', width: 100, hide: true, disableColumnMenu: true },
-  { field: 'nome', headerName: 'Nome', width: 250  },
+  { field: 'nome', headerName: 'Nome', width: 250 },
   { field: 'cnpj', headerName: 'CNPJ', width: 180, align: "center" },
   { field: 'atividade', headerName: 'Atividade', width: 150, align: "center" },
   { field: 'data_registro', headerName: 'Data de Registro', width: 150, align: "center" },
@@ -32,57 +32,76 @@ const columns = [
       return (
         <Link to={"/detalheConveniados/" + params.row.seq_conveniado}>
           <Button variant="contained" color="primary"><LoupeIcon /></Button>
-        </Link>        
+        </Link>
       );
     }
   },
 ];
-
-
 const useStyles = makeStyles((theme) => ({
   card: {
-    display: 'flex', 
+    display: 'flex',
     flexDirection: "row",
     flexWrap: 'wrap',
   },
 }));
-
-
 export default function ConveniadoForm() {
   const classes = useStyles();
   const [rows, setRows] = useState([])
-
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
   useEffect(() => {
+    setRows(null)
     fetch("http://localhost/conveniados")
-      .then(resp => resp.json())
+      .then(resp => {
+        if (resp.ok) {
+          return resp.json()
+        } else if (resp.status === 404) {
+          return Promise.reject('error 404')
+        } else {
+          return Promise.reject('some other error: ' + resp.status)
+        }
+      })
       .then(resp => {
         setRows(resp)
+        setLoading(false)
       })
-      .catch(err => {console.log(err)})
+      .catch(err => {
+        setError(true)
+        setLoading(false)
+        console.log(err)
+      })
   }, [])
 
   return (
     <div className="App">
       <div className={classes.card}>
         {value.map((values) => (
-            <ConveniadoCard valores={values}/>
-          ))}; 
+          <ConveniadoCard valores={values} />
+        ))};
       </div>
-      <div>     
-        <Typography variant="h6">
-          <ListAltIcon /> Visão Geral de Conveniados
-        </Typography>
+      <div>
+        <Typography variant="h6"> <ListAltIcon /> Visão Geral de Conveniados </Typography>
       </div>
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid 
-          getRowId={row => row.seq_conveniado}
-          rowOptions={{ selectable: true }} 
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-        />
-      </div>
-    </div>  
-        );
+      {rows &&
+        <>
+          <div style={{ height: 400, width: '100%' }}>
+            <DataGrid
+              getRowId={row => row.seq_conveniado}
+              rowOptions={{ selectable: true }}
+              rows={rows}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+            />
+          </div>
+        </>
       }
+      {loading &&
+        <Typography variant="h6">Carregando...</Typography>
+      }
+      {error &&
+        <Typography variant="h6" style={{ color: 'red' }}>Erro inesperado ao carregar Associados.</Typography>
+      }
+    </div>
+  );
+}

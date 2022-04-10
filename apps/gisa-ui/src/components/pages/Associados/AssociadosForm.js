@@ -1,7 +1,7 @@
 import React from 'react';
 import AssociadoCard from './AssociadoCard';
 import { DataGrid } from '@mui/x-data-grid';
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from '@mui/material/Typography';
 import ListAltIcon from '@mui/icons-material/ListAlt';
@@ -17,7 +17,7 @@ const value = [{
 
 const columns = [
   { field: 'matricula', headerName: 'Matrícula', width: 100 },
-  { field: 'nome', headerName: 'Nome', width: 250  },
+  { field: 'nome', headerName: 'Nome', width: 250 },
   { field: 'cpf', headerName: 'CPF', width: 150, align: "center" },
   { field: 'email', headerName: 'e-mail', width: 250, align: "center" },
   { field: 'plano', headerName: 'Plano Contratado', width: 150, align: "center" },
@@ -33,72 +33,78 @@ const columns = [
       return (
         <Link to={"/detalheAssociados/" + params.row.matricula}>
           <Button variant="contained" color="primary"><LoupeIcon /></Button>
-        </Link>        
+        </Link>
       );
     }
   },
 ];
-const rows = [
-  { matricula: 101049, nome: 'Cléber Santos da Cruz', cpf: '093.812.400-51', email: 'cleber.s.cruz@yahoo.com.br', plano: 'VIP' },
-  { matricula: 102000, nome: 'Maria dos Milagres Silva', cpf: '093.812.400-51', email: 'maria.milagres@yahoo.com.br', plano: 'Apartamento' },
-  { matricula: 143563, nome: 'Julio Souza Empaminhondas', cpf: '093.812.400-51', email: 'j.s.empaminhondas@yahoo.com.br', plano: 'VIP' },
-  { matricula: 135672, nome: 'Mônica Ferreira', cpf: '093.812.400-51', email: 'monica.ferreira@yahoo.com.br', plano: 'Básico' },
-  { matricula: 135456, nome: 'Alberto Ferraz de Vasconcellos', cpf: '093.812.400-51', email: 'alberto.ferraz.v@yahoo.com.br', plano: 'VIP' },
-  { matricula: 135278, nome: 'Bruno Pereira de Lima e Silva ', cpf: '093.812.400-51', email: 'bruno.p.limaa@yahoo.com.br', plano: 'VIP' },
-  { matricula: 139876, nome: 'Carlos Alberto de Nobrega', cpf: '093.812.400-51', email: 'cazabe@yahoo.com.br', plano: 'VIP' },
-];
-
-// const columns = [
-//   { field: 'id', headerName: 'ID', width: 70 },
-//   { field: 'username', headerName: 'User Name', width: 130 },
-//   { field: 'name', headerName: 'Name', width: 130 },
-//   { field: 'email', headerName: 'e-Mail', width: 130 },
-//   { field: 'phone', headerName: 'Phone', width: 130 },
-//   { field: 'website', headerName: 'WebSite', width: 130 },
-// ]
 const useStyles = makeStyles((theme) => ({
   card: {
-    display: 'flex', 
+    display: 'flex',
     flexDirection: "row",
     flexWrap: 'wrap',
   },
 }));
-
-
 export default function AssociadoForm() {
   const classes = useStyles();
-  // const [rows, setRows] = useState([])
-
-  // useEffect(() => {
-  //   fetch("https://jsonplaceholder.typicode.com/users")
-  //     .then(resp => resp.json())
-  //     .then(resp => {
-  //       setRows(resp)
-  //     })
-  // }, [])
+  const [rows, setRows] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  useEffect(() => {
+    setRows(null)
+    fetch("http://localhost/associados")
+      .then(resp => {
+        if (resp.ok) {
+          return resp.json()
+        } else if (resp.status === 404) {
+          return Promise.reject('error 404')
+        } else {
+          return Promise.reject('some other error: ' + resp.status)
+        }
+      })
+      .then(resp => {
+        setRows(resp)
+        setLoading(false)
+      })
+      .catch(err => {
+        setError(true)
+        setLoading(false)
+        console.log(err)
+      })
+  }, [])
 
   return (
     <div className="App">
       <div className={classes.card}>
         {value.map((values) => (
-          <AssociadoCard valores={values}/>
-        ))};  
+          <AssociadoCard valores={values} />
+        ))};
       </div>
-      <div>     
+      <div>
         <Typography variant="h6">
           <ListAltIcon /> Visão Geral de Associados
         </Typography>
       </div>
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid 
-          getRowId={row => row.matricula}
-          rowOptions={{ selectable: true }} 
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-        />
-      </div>
-    </div>  
-        );
+      {rows &&
+        <>
+          <div style={{ height: 400, width: '100%' }}>
+            <DataGrid
+              getRowId={row => row.matricula}
+              rowOptions={{ selectable: true }}
+              rows={rows}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+            />
+          </div>
+        </>
       }
+      {loading &&
+        <Typography variant="h6">Carregando...</Typography>
+      }
+      {error &&
+        <Typography variant="h6" style={{color: 'red'}}>Erro inesperado ao carregar Associados.</Typography>
+      }
+    </div>
+  );
+}
