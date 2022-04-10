@@ -15,6 +15,8 @@ public class Remocao extends PanacheEntityBase {
     @Column(name = "seq_remocao", nullable = false)
     @JsonProperty("seq_remocao")
     private Integer seqRemocao;
+    @Column(name = "seq_atendimento")
+    private Integer seqAtendimento;
     @Column(name = "data_registro")
     @JsonProperty("data_registro")
     private java.sql.Date dataRegistro;
@@ -74,6 +76,14 @@ public class Remocao extends PanacheEntityBase {
 
     public void setSeqRemocao(Integer seqRemocao) {
         this.seqRemocao = seqRemocao;
+    }
+
+    public Integer getSeqAtendimento() {
+        return seqAtendimento;
+    }
+
+    public void setSeqAtendimento(Integer seqAtendimento) {
+        this.seqAtendimento = seqAtendimento;
     }
 
     public Date getDataRegistro() {

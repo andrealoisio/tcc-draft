@@ -1,18 +1,20 @@
 package com.andrealoisio.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-public class Autorizacao {
+public class Autorizacao extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo", nullable = false)
     private Integer codigo;
-
+    @Column(name = "seq_atendimento")
+    private Integer seqAtendimento;
     @Column(name = "data_registro")
     @JsonProperty("data_registro")
     private java.sql.Date dataRegistro;
@@ -52,6 +54,14 @@ public class Autorizacao {
 
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public Integer getSeqAtendimento() {
+        return seqAtendimento;
+    }
+
+    public void setSeqAtendimento(Integer seqAtendimento) {
+        this.seqAtendimento = seqAtendimento;
     }
 
     public Date getDataRegistro() {
