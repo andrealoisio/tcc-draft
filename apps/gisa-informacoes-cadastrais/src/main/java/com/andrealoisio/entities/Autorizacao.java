@@ -1,5 +1,7 @@
 package com.andrealoisio.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -9,36 +11,46 @@ public class Autorizacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo", nullable = false)
-    private int codigo;
+    private Integer codigo;
 
     @Column(name = "data_registro")
+    @JsonProperty("data_registro")
     private java.sql.Date dataRegistro;
     @Column(name = "data_entrada")
+    @JsonProperty("data_entrada")
     private java.sql.Date dataEntrada;
     @Column(name = "data_aprovacao")
+    @JsonProperty("data_aprovacao")
     private java.sql.Date dataAprovacao;
     @Column(name = "data_vencimento")
+    @JsonProperty("data_vencimento")
     private java.sql.Date dataVencimento;
     @Column(name = "data_validade")
+    @JsonProperty("data_validade")
     private java.sql.Date dataValidade;
     @Column(name = "tipo_autorizacao")
+    @JsonProperty("tipo_autorizacao")
     private String tipoAutorizacao;
     @Column(name = "esta_pago")
+    @JsonProperty("esta_pago")
     private boolean estaPago;
     @Column(name = "nome_aprovador")
+    @JsonProperty("nome_aprovador")
     private String nomeAprovador;
     @Column(name = "telefone_aprovador")
+    @JsonProperty("telefone_aprovador")
     private String telefoneAprovador;
     @Column(name = "codigo_aprovador")
-    private int codigoAprovador;
+    @JsonProperty("codigo_aprovador")
+    private Integer codigoAprovador;
     private String situacao;
     private String observacao;
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 
@@ -114,11 +126,11 @@ public class Autorizacao {
         this.telefoneAprovador = telefoneAprovador;
     }
 
-    public int getCodigoAprovador() {
+    public Integer getCodigoAprovador() {
         return codigoAprovador;
     }
 
-    public void setCodigoAprovador(int codigoAprovador) {
+    public void setCodigoAprovador(Integer codigoAprovador) {
         this.codigoAprovador = codigoAprovador;
     }
 

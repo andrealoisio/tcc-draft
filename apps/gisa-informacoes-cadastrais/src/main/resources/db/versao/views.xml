@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.7.xsd">
+
+    <changeSet id="1" author="mendes" runOnChange="true">
+        <createView viewName="v_atendimento">
+            select
+            ate.seq_atendimento,
+            ate.data_atendimento,
+            ass.matricula matricula_associado,
+            ass.nome nome_associado,
+            ate.situacao,
+            ate.tipo,
+            ate.custo,
+            ate.cid,
+            p.codigo codigo_prestador,
+            p.nome nome_prestador,
+            p.codigo funcional_prestador,
+            c.nome clinica_parceira
+            from
+            atendimento ate
+            join associado ass on
+            ate.seq_associado = ass.matricula
+            join prestador p on
+            ate.codigo_prestador = p.codigo
+            left join conveniado c on
+            ate.seq_conveniado = c.seq_conveniado
+        </createView>
+    </changeSet>
+
+<!--    <changeSet id="2" author="mendes">-->
+<!--        <createView viewName="v_lista_atendimentos">-->
+<!--            select-->
+<!--            ate.seq_atendimento,-->
+<!--            ate.data_atendimento,-->
+<!--            ass.matricula matricula_associado,-->
+<!--            ass.nome nome_associado,-->
+<!--            p.codigo codigo_prestador,-->
+<!--            p.nome nome_prestador,-->
+<!--            p.codigo funcional_prestador,-->
+<!--            null clinica_parceira-->
+<!--            from-->
+<!--            atendimento ate-->
+<!--            join associado ass on-->
+<!--            ate.seq_associado = ass.matricula-->
+<!--            left join prestador p on-->
+<!--            ate.codigo_prestador = p.codigo-->
+<!--            order by ate.seq_atendimento desc-->
+<!--        </createView>-->
+<!--    </changeSet>-->
+
+</databaseChangeLog>

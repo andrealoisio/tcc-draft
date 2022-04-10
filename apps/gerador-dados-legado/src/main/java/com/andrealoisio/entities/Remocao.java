@@ -12,80 +12,81 @@ public class Remocao extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_remocao", nullable = false)
-    private Integer seq_remocao;
-    private Integer paciente;
+    private Integer seqRemocao;
+    @Column(name = "seq_atendimento")
+    private Integer seqAtendimento;
     @Column(name = "data_registro")
-    private java.sql.Date data_registro;
+    private java.sql.Date dataRegistro;
     @Column(name = "data_remocao")
-    private java.sql.Date data_remocao;
+    private java.sql.Date dataRemocao;
     private java.math.BigDecimal custo;
     @Column(name = "ind_dificuldade_mobilidade")
-    private boolean ind_dificuldade_mobilidade;
+    private boolean indDificuldadeMobilidade;
     @Column(name = "coordenada_origem")
-    private PGpoint coordenada_origem;
+    private PGpoint coordenadaOrigem;
     @Column(name = "coordenada_destino")
-    private PGpoint coordenada_destino;
+    private PGpoint coordenadaDestino;
     @Column(name = "nome_endereco_origem")
-    private String nome_endereco_origem;
+    private String nomeEnderecoOrigem;
     @Column(name = "bairro_origem")
-    private String bairro_origem;
+    private String bairroOrigem;
     @Column(name = "cidade_origem")
-    private String cidade_origem;
+    private String cidadeOrigem;
     @Column(name = "uf_origem")
-    private String uf_origem;
+    private String ufOrigem;
     @Column(name = "cep_origem")
-    private String cep_origem;
+    private String cepOrigem;
     @Column(name = "nome_endereco_destino")
-    private String nome_endereco_destino;
+    private String nomeEnderecoDestino;
     @Column(name = "bairro_destino")
-    private String bairro_destino;
+    private String bairroDestino;
     @Column(name = "cidade_destino")
-    private String cidade_destino;
+    private String cidadeDestino;
     @Column(name = "uf_destino")
-    private String uf_destino;
+    private String ufDestino;
     @Column(name = "cep_destino")
-    private String cep_destino;
+    private String cepDestino;
     @Column(name = "observacao_destino")
-    private String observacao_destino;
+    private String observacaoDestino;
     @Column(name = "responsavel_destino")
-    private String responsavel_destino;
+    private String responsavelDestino;
 
-    public Integer getSeq_remocao() {
-        return seq_remocao;
-    }
-
-    public void setSeq_remocao(Integer seq_remocao) {
-        this.seq_remocao = seq_remocao;
+    public Integer getSeqRemocao() {
+        return seqRemocao;
     }
 
-    public Integer getPaciente() {
-        return paciente;
+    public void setSeqRemocao(Integer seqRemocao) {
+        this.seqRemocao = seqRemocao;
     }
 
-    public void setPaciente(Integer paciente) {
-        this.paciente = paciente;
+    public Integer getSeqAtendimento() {
+        return seqAtendimento;
     }
 
-    public Date getData_registro() {
-        return data_registro;
+    public void setSeqAtendimento(Integer seqAtendimento) {
+        this.seqAtendimento = seqAtendimento;
     }
 
-    public void setData_registro(Date data_registro) {
-        this.data_registro = data_registro;
-    }
-    public void setData_registro(java.util.Date data_registro) {
-        this.data_registro = new java.sql.Date(data_registro.getTime());
+    public Date getDataRegistro() {
+        return dataRegistro;
     }
 
-    public Date getData_remocao() {
-        return data_remocao;
+    public void setDataRegistro(Date dataRegistro) {
+        this.dataRegistro = dataRegistro;
+    }
+    public void setDataRegistro(java.util.Date data_registro) {
+        this.dataRegistro = new java.sql.Date(data_registro.getTime());
     }
 
-    public void setData_remocao(Date data_remocao) {
-        this.data_remocao = data_remocao;
+    public Date getDataRemocao() {
+        return dataRemocao;
     }
-    public void setData_remocao(java.util.Date data_remocao) {
-        this.data_remocao = new java.sql.Date(data_remocao.getTime());
+
+    public void setDataRemocao(Date dataRemocao) {
+        this.dataRemocao = dataRemocao;
+    }
+    public void setDataRemocao(java.util.Date data_remocao) {
+        this.dataRemocao = new java.sql.Date(data_remocao.getTime());
     }
     public BigDecimal getCusto() {
         return custo;
@@ -95,123 +96,123 @@ public class Remocao extends PanacheEntityBase {
         this.custo = custo;
     }
 
-    public boolean isInd_dificuldade_mobilidade() {
-        return ind_dificuldade_mobilidade;
+    public boolean isIndDificuldadeMobilidade() {
+        return indDificuldadeMobilidade;
     }
 
-    public void setInd_dificuldade_mobilidade(boolean ind_dificuldade_mobilidade) {
-        this.ind_dificuldade_mobilidade = ind_dificuldade_mobilidade;
+    public void setIndDificuldadeMobilidade(boolean indDificuldadeMobilidade) {
+        this.indDificuldadeMobilidade = indDificuldadeMobilidade;
     }
 
-    public PGpoint getCoordenada_origem() {
-        return coordenada_origem;
+    public PGpoint getCoordenadaOrigem() {
+        return coordenadaOrigem;
     }
 
-    public void setCoordenada_origem(PGpoint coordenada_origem) {
-        this.coordenada_origem = coordenada_origem;
+    public void setCoordenadaOrigem(PGpoint coordenadaOrigem) {
+        this.coordenadaOrigem = coordenadaOrigem;
     }
 
-    public PGpoint getCoordenada_destino() {
-        return coordenada_destino;
+    public PGpoint getCoordenadaDestino() {
+        return coordenadaDestino;
     }
 
-    public void setCoordenada_destino(PGpoint coordenada_destino) {
-        this.coordenada_destino = coordenada_destino;
+    public void setCoordenadaDestino(PGpoint coordenadaDestino) {
+        this.coordenadaDestino = coordenadaDestino;
     }
 
-    public String getNome_endereco_origem() {
-        return nome_endereco_origem;
+    public String getNomeEnderecoOrigem() {
+        return nomeEnderecoOrigem;
     }
 
-    public void setNome_endereco_origem(String nome_endereco_origem) {
-        this.nome_endereco_origem = nome_endereco_origem;
+    public void setNomeEnderecoOrigem(String nomeEnderecoOrigem) {
+        this.nomeEnderecoOrigem = nomeEnderecoOrigem;
     }
 
-    public String getBairro_origem() {
-        return bairro_origem;
+    public String getBairroOrigem() {
+        return bairroOrigem;
     }
 
-    public void setBairro_origem(String bairro_origem) {
-        this.bairro_origem = bairro_origem;
+    public void setBairroOrigem(String bairroOrigem) {
+        this.bairroOrigem = bairroOrigem;
     }
 
-    public String getCidade_origem() {
-        return cidade_origem;
+    public String getCidadeOrigem() {
+        return cidadeOrigem;
     }
 
-    public void setCidade_origem(String cidade_origem) {
-        this.cidade_origem = cidade_origem;
+    public void setCidadeOrigem(String cidadeOrigem) {
+        this.cidadeOrigem = cidadeOrigem;
     }
 
-    public String getUf_origem() {
-        return uf_origem;
+    public String getUfOrigem() {
+        return ufOrigem;
     }
 
-    public void setUf_origem(String uf_origem) {
-        this.uf_origem = uf_origem;
+    public void setUfOrigem(String ufOrigem) {
+        this.ufOrigem = ufOrigem;
     }
 
-    public String getCep_origem() {
-        return cep_origem;
+    public String getCepOrigem() {
+        return cepOrigem;
     }
 
-    public void setCep_origem(String cep_origem) {
-        this.cep_origem = cep_origem;
+    public void setCepOrigem(String cepOrigem) {
+        this.cepOrigem = cepOrigem;
     }
 
-    public String getNome_endereco_destino() {
-        return nome_endereco_destino;
+    public String getNomeEnderecoDestino() {
+        return nomeEnderecoDestino;
     }
 
-    public void setNome_endereco_destino(String nome_endereco_destino) {
-        this.nome_endereco_destino = nome_endereco_destino;
+    public void setNomeEnderecoDestino(String nomeEnderecoDestino) {
+        this.nomeEnderecoDestino = nomeEnderecoDestino;
     }
 
-    public String getBairro_destino() {
-        return bairro_destino;
+    public String getBairroDestino() {
+        return bairroDestino;
     }
 
-    public void setBairro_destino(String bairro_destino) {
-        this.bairro_destino = bairro_destino;
+    public void setBairroDestino(String bairroDestino) {
+        this.bairroDestino = bairroDestino;
     }
 
-    public String getCidade_destino() {
-        return cidade_destino;
+    public String getCidadeDestino() {
+        return cidadeDestino;
     }
 
-    public void setCidade_destino(String cidade_destino) {
-        this.cidade_destino = cidade_destino;
+    public void setCidadeDestino(String cidadeDestino) {
+        this.cidadeDestino = cidadeDestino;
     }
 
-    public String getUf_destino() {
-        return uf_destino;
+    public String getUfDestino() {
+        return ufDestino;
     }
 
-    public void setUf_destino(String uf_destino) {
-        this.uf_destino = uf_destino;
+    public void setUfDestino(String ufDestino) {
+        this.ufDestino = ufDestino;
     }
 
-    public String getCep_destino() {
-        return cep_destino;
+    public String getCepDestino() {
+        return cepDestino;
     }
 
-    public void setCep_destino(String cep_destino) {
-        this.cep_destino = cep_destino;
+    public void setCepDestino(String cepDestino) {
+        this.cepDestino = cepDestino;
     }
 
-    public String getObservacao_destino() {
-        return observacao_destino;
+    public String getObservacaoDestino() {
+        return observacaoDestino;
     }
 
-    public void setObservacao_destino(String observacao_destino) {
-        this.observacao_destino = observacao_destino;
+    public void setObservacaoDestino(String observacaoDestino) {
+        this.observacaoDestino = observacaoDestino;
     }
 
-    public String getResponsavel_destino() {
-        return responsavel_destino;
+    public String getResponsavelDestino() {
+        return responsavelDestino;
     }
 
-    public void setResponsavel_destino(String responsavel_destino) {
-        this.responsavel_destino = responsavel_destino;
+    public void setResponsavelDestino(String responsavelDestino) {
+        this.responsavelDestino = responsavelDestino;
     }
 }

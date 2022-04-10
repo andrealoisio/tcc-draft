@@ -1,45 +1,52 @@
 package com.andrealoisio.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import org.postgresql.geometric.PGpoint;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-public class Prestador {
+public class Prestador extends PanacheEntityBase {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo", nullable = false)
-    private int codigo;
+    private Integer codigo;
     private String nome;
     private String email;
     private String cpf;
     private String cnpj;
     private String especializacao;
     @Column(name = "data_registro")
-    private java.sql.Date data_registro;
+    @JsonProperty("data_registro")
+    private java.sql.Date dataRegistro;
     private String telefone;
     private String celular;
     @Column(name = "seq_formacao")
-    private int seq_formacao;
+    @JsonProperty("seq_formacao")
+    private Integer seqFormacao;
     @Column(name = "nome_endereco")
-    private String nome_endereco;
+    @JsonProperty("nome_endereco")
+    private String nomeEndereco;
     private String bairro;
     private String cidade;
     private String uf;
     private String cep;
-    private int banco;
-    private int agencia;
-    private int conta;
+    private Integer banco;
+    private Integer agencia;
+    private Integer conta;
     // todo: Verificar formato
     @Column(columnDefinition = "bytea")
+    @JsonIgnore
     private PGpoint coordenadas;
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 
@@ -83,12 +90,12 @@ public class Prestador {
         this.especializacao = especializacao;
     }
 
-    public Date getData_registro() {
-        return data_registro;
+    public Date getDataRegistro() {
+        return dataRegistro;
     }
 
-    public void setData_registro(Date data_registro) {
-        this.data_registro = data_registro;
+    public void setDataRegistro(Date dataRegistro) {
+        this.dataRegistro = dataRegistro;
     }
 
     public String getTelefone() {
@@ -107,20 +114,20 @@ public class Prestador {
         this.celular = celular;
     }
 
-    public int getSeq_formacao() {
-        return seq_formacao;
+    public Integer getSeqFormacao() {
+        return seqFormacao;
     }
 
-    public void setSeq_formacao(int seq_formacao) {
-        this.seq_formacao = seq_formacao;
+    public void setSeqFormacao(Integer seqFormacao) {
+        this.seqFormacao = seqFormacao;
     }
 
-    public String getNome_endereco() {
-        return nome_endereco;
+    public String getNomeEndereco() {
+        return nomeEndereco;
     }
 
-    public void setNome_endereco(String nome_endereco) {
-        this.nome_endereco = nome_endereco;
+    public void setNomeEndereco(String nomeEndereco) {
+        this.nomeEndereco = nomeEndereco;
     }
 
     public String getBairro() {
@@ -155,27 +162,27 @@ public class Prestador {
         this.cep = cep;
     }
 
-    public int getBanco() {
+    public Integer getBanco() {
         return banco;
     }
 
-    public void setBanco(int banco) {
+    public void setBanco(Integer banco) {
         this.banco = banco;
     }
 
-    public int getAgencia() {
+    public Integer getAgencia() {
         return agencia;
     }
 
-    public void setAgencia(int agencia) {
+    public void setAgencia(Integer agencia) {
         this.agencia = agencia;
     }
 
-    public int getConta() {
+    public Integer getConta() {
         return conta;
     }
 
-    public void setConta(int conta) {
+    public void setConta(Integer conta) {
         this.conta = conta;
     }
 

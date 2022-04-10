@@ -1,5 +1,7 @@
 package com.andrealoisio.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -9,23 +11,28 @@ public class Procedimento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_procedimento", nullable = false)
-    private int seqProcedimento;
+    @JsonProperty("seq_procedimento")
+    private Integer seqProcedimento;
     @Column(name = "tabela_referencia")
+    @JsonProperty("tabela_referencia")
     private String tabelaReferencia;
     private java.math.BigDecimal custo;
     @Column(name = "ind_somente_particular")
+    @JsonProperty("ind_somente_particular")
     private boolean indSomenteParticular;
     @Column(name = "ind_cortesia")
+    @JsonProperty("ind_cortesia")
     private boolean indCortesia;
     @Column(name = "data_registro")
+    @JsonProperty("data_registro")
     private java.sql.Date dataRegistro;
     private String descricao;
 
-    public int getSeqProcedimento() {
+    public Integer getSeqProcedimento() {
         return seqProcedimento;
     }
 
-    public void setSeqProcedimento(int seqProcedimento) {
+    public void setSeqProcedimento(Integer seqProcedimento) {
         this.seqProcedimento = seqProcedimento;
     }
 

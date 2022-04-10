@@ -1,5 +1,7 @@
 package com.andrealoisio.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -9,78 +11,84 @@ public class PagamentosEmitidos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_pagamento", nullable = false)
-    private int seqPagamento;
+    private Integer seqPagamento;
     @Column(name = "matricula_associado")
-    private int matriculaAssociado;
+    @JsonProperty("matricula_associado")
+    private Integer matriculaAssociado;
     @Column(name = "seq_conveniado")
-    private int seqConveniado;
-    private int codigo;
-    private int banco;
-    private int agencia;
-    private int conta;
+    @JsonProperty("seq_conveniado")
+    private Integer seqConveniado;
+    private Integer codigo;
+    private Integer banco;
+    private Integer agencia;
+    private Integer conta;
     private java.math.BigDecimal valor;
     @Column(name = "valor_multa")
+    @JsonProperty("valor_multa")
     private java.math.BigDecimal valorMulta;
     @Column(name = "valor_juros")
+    @JsonProperty("valor_juros")
     private java.math.BigDecimal valorJuros;
     @Column(name = "data_pagamento")
+    @JsonProperty("data_pagamento")
     private java.sql.Date dataPagamento;
     @Column(name = "data_registro")
+    @JsonProperty("data_registro")
     private java.sql.Date dataRegistro;
 
-    public int getSeqPagamento() {
+    public Integer getSeqPagamento() {
         return seqPagamento;
     }
 
-    public void setSeqPagamento(int seqPagamento) {
+    public void setSeqPagamento(Integer seqPagamento) {
         this.seqPagamento = seqPagamento;
     }
 
-    public int getMatriculaAssociado() {
+    public Integer getMatriculaAssociado() {
         return matriculaAssociado;
     }
 
-    public void setMatriculaAssociado(int matriculaAssociado) {
+    public void setMatriculaAssociado(Integer matriculaAssociado) {
         this.matriculaAssociado = matriculaAssociado;
     }
 
-    public int getSeqConveniado() {
+    public Integer getSeqConveniado() {
         return seqConveniado;
     }
 
-    public void setSeqConveniado(int seqConveniado) {
+    public void setSeqConveniado(Integer seqConveniado) {
         this.seqConveniado = seqConveniado;
     }
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 
-    public int getBanco() {
+    public Integer getBanco() {
         return banco;
     }
 
-    public void setBanco(int banco) {
+    public void setBanco(Integer banco) {
         this.banco = banco;
     }
 
-    public int getAgencia() {
+    public Integer getAgencia() {
         return agencia;
     }
 
-    public void setAgencia(int agencia) {
+    public void setAgencia(Integer agencia) {
         this.agencia = agencia;
     }
 
-    public int getConta() {
+    public Integer getConta() {
         return conta;
     }
 
-    public void setConta(int conta) {
+    public void setConta(Integer conta) {
         this.conta = conta;
     }
 

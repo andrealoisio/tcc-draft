@@ -18,13 +18,13 @@ public class Prestador extends PanacheEntityBase {
     private String cnpj;
     private String especializacao;
     @Column(name = "data_registro")
-    private java.sql.Date data_registro;
+    private java.sql.Date dataRegistro;
     private String telefone;
     private String celular;
     @Column(name = "seq_formacao")
-    private Integer seq_formacao;
+    private Integer seqFormacao;
     @Column(name = "nome_endereco")
-    private String nome_endereco;
+    private String nomeEndereco;
     private String bairro;
     private String cidade;
     private String uf;
@@ -84,16 +84,16 @@ public class Prestador extends PanacheEntityBase {
         this.especializacao = especializacao;
     }
 
-    public Date getData_registro() {
-        return data_registro;
+    public Date getDataRegistro() {
+        return dataRegistro;
     }
 
-    public void setData_registro(Date data_registro) {
-        this.data_registro = data_registro;
+    public void setDataRegistro(Date dataRegistro) {
+        this.dataRegistro = dataRegistro;
     }
 
-    public void setData_registro(java.util.Date data_registro) {
-        this.data_registro = new java.sql.Date(data_registro.getTime());
+    public void setDataRegistro(java.util.Date data_registro) {
+        this.dataRegistro = new java.sql.Date(data_registro.getTime());
     }
 
     public String getTelefone() {
@@ -112,20 +112,20 @@ public class Prestador extends PanacheEntityBase {
         this.celular = celular;
     }
 
-    public Integer getSeq_formacao() {
-        return seq_formacao;
+    public Integer getSeqFormacao() {
+        return seqFormacao;
     }
 
-    public void setSeq_formacao(Integer seq_formacao) {
-        this.seq_formacao = seq_formacao;
+    public void setSeqFormacao(Integer seqFormacao) {
+        this.seqFormacao = seqFormacao;
     }
 
-    public String getNome_endereco() {
-        return nome_endereco;
+    public String getNomeEndereco() {
+        return nomeEndereco;
     }
 
-    public void setNome_endereco(String nome_endereco) {
-        this.nome_endereco = nome_endereco;
+    public void setNomeEndereco(String nomeEndereco) {
+        this.nomeEndereco = nomeEndereco;
     }
 
     public String getBairro() {

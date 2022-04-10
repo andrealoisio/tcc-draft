@@ -14,7 +14,7 @@ public class Conveniado extends PanacheEntityBase {
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_conveniado", nullable = false)
     @JsonProperty("seq_conveniado")
-    private int seqConveniado;
+    private Integer seqConveniado;
     private String nome;
     @Column(name = "nome_fantasia")
     @JsonProperty("nome_fantasia")
@@ -37,18 +37,18 @@ public class Conveniado extends PanacheEntityBase {
     private String cidade;
     private String uf;
     private String cep;
-    private int banco;
-    private int agencia;
-    private int conta;
+    private Integer banco;
+    private Integer agencia;
+    private Integer conta;
     // todo: Verificar formato
     @Column(columnDefinition = "bytea")
     private PGpoint coordenadas;
 
-    public int getSeqConveniado() {
+    public Integer getSeqConveniado() {
         return seqConveniado;
     }
 
-    public void setSeqConveniado(int seqConveniado) {
+    public void setSeqConveniado(Integer seqConveniado) {
         this.seqConveniado = seqConveniado;
     }
 
@@ -164,27 +164,27 @@ public class Conveniado extends PanacheEntityBase {
         this.cep = cep;
     }
 
-    public int getBanco() {
+    public Integer getBanco() {
         return banco;
     }
 
-    public void setBanco(int banco) {
+    public void setBanco(Integer banco) {
         this.banco = banco;
     }
 
-    public int getAgencia() {
+    public Integer getAgencia() {
         return agencia;
     }
 
-    public void setAgencia(int agencia) {
+    public void setAgencia(Integer agencia) {
         this.agencia = agencia;
     }
 
-    public int getConta() {
+    public Integer getConta() {
         return conta;
     }
 
-    public void setConta(int conta) {
+    public void setConta(Integer conta) {
         this.conta = conta;
     }
 

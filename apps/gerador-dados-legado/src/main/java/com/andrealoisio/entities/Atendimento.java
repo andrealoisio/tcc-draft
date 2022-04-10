@@ -26,10 +26,6 @@ public class Atendimento extends PanacheEntityBase {
     private Integer codigoPrestador;
     @Column(name = "seq_conveniado")
     private Integer seqConveniado;
-    @Column(name = "codigo_autorizacao")
-    private Integer codigoAutorizacao;
-    @Column(name = "seq_remocao")
-    private Integer seqRemocao;
     @Column(name = "seq_procedimento")
     private Integer seqProcedimento;
     private String observacao;
@@ -114,22 +110,6 @@ public class Atendimento extends PanacheEntityBase {
 
     public void setSeqConveniado(Integer seqConveniado) {
         this.seqConveniado = seqConveniado;
-    }
-
-    public Integer getCodigoAutorizacao() {
-        return codigoAutorizacao;
-    }
-
-    public void setCodigoAutorizacao(Integer codigoAutorizacao) {
-        this.codigoAutorizacao = codigoAutorizacao;
-    }
-
-    public Integer getSeqRemocao() {
-        return seqRemocao;
-    }
-
-    public void setSeqRemocao(Integer seqRemocao) {
-        this.seqRemocao = seqRemocao;
     }
 
     public Integer getSeqProcedimento() {

@@ -12,7 +12,8 @@ public class Autorizacao extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo", nullable = false)
     private Integer codigo;
-
+    @Column(name = "seq_atendimento")
+    private Integer seqAtendimento;
     @Column(name = "data_registro")
     private java.sql.Date dataRegistro;
     @Column(name = "data_entrada")
@@ -42,6 +43,14 @@ public class Autorizacao extends PanacheEntityBase {
 
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public Integer getSeqAtendimento() {
+        return seqAtendimento;
+    }
+
+    public void setSeqAtendimento(Integer seqAtendimento) {
+        this.seqAtendimento = seqAtendimento;
     }
 
     public Date getDataRegistro() {

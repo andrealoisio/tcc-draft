@@ -1,6 +1,5 @@
 package com.andrealoisio.generators;
 
-import com.andrealoisio.entities.Autorizacao;
 import com.andrealoisio.entities.Formacao;
 import com.andrealoisio.entities.Prestador;
 import com.github.javafaker.Faker;
@@ -22,6 +21,9 @@ public class PrestadorGenerator {
         PanacheQuery<Formacao> ultimaFormacao = Formacao.findAll();
         ultimaFormacao.range(0,1);
         var formacao = ultimaFormacao.list().stream().findFirst();
+        if (!formacao.isPresent()) {
+            return;
+        }
         Log.info("Genarating prestador...");
         Faker faker = new Faker(new Locale("pt-BR"));
         var prestador = new Prestador();
@@ -30,11 +32,11 @@ public class PrestadorGenerator {
         prestador.setCpf(String.valueOf(faker.random().nextLong(99999999999l)));
         prestador.setCnpj(String.valueOf(faker.random().nextLong(99999999999999l)));
         prestador.setEspecializacao(faker.company().profession());
-        prestador.setData_registro(faker.date().past(365, TimeUnit.DAYS));
+        prestador.setDataRegistro(faker.date().past(365, TimeUnit.DAYS));
         prestador.setTelefone(faker.phoneNumber().phoneNumber());
         prestador.setCelular(faker.phoneNumber().cellPhone());
-        prestador.setSeq_formacao(formacao.get().getSeqFormacao());
-        prestador.setNome_endereco(faker.address().fullAddress());
+        prestador.setSeqFormacao(formacao.get().getSeqFormacao());
+        prestador.setNomeEndereco(faker.address().fullAddress());
         prestador.setBairro(faker.address().cityName());
         prestador.setCidade(faker.address().cityName());
         prestador.setUf(faker.address().stateAbbr());

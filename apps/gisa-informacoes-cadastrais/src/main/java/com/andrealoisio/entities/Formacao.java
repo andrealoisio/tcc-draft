@@ -1,32 +1,41 @@
 package com.andrealoisio.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-public class Formacao {
+public class Formacao extends PanacheEntityBase {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_formacao", nullable = false)
-    private int seqFormacao;
+    @JsonProperty("seq_formacao")
+    private Integer seqFormacao;
     @Column(name = "nome_curso")
+    @JsonProperty("nome_curso")
     private String nomeCurso;
     private String nivel;
     @Column(name = "titulo_tese")
+    @JsonProperty("titulo_tese")
     private String tituloTese;
     private String instituicao;
     @Column(name = "area_conhecimento")
+    @JsonProperty("area_conhecimento")
     private String areaConhecimento;
     @Column(name = "data_inicio")
+    @JsonProperty("data_inicio")
     private java.sql.Date dataInicio;
     @Column(name = "data_termino")
+    @JsonProperty("data_termino")
     private java.sql.Date dataTermino;
 
-    public int getSeqFormacao() {
+    public Integer getSeqFormacao() {
         return seqFormacao;
     }
 
-    public void setSeqFormacao(int seqFormacao) {
+    public void setSeqFormacao(Integer seqFormacao) {
         this.seqFormacao = seqFormacao;
     }
 

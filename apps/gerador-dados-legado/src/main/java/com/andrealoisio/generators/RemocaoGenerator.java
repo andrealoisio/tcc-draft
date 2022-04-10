@@ -1,5 +1,6 @@
 package com.andrealoisio.generators;
 
+import com.andrealoisio.entities.Atendimento;
 import com.andrealoisio.entities.Remocao;
 import com.github.javafaker.Faker;
 import io.quarkus.logging.Log;
@@ -10,6 +11,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 @ApplicationScoped
@@ -19,35 +21,43 @@ public class RemocaoGenerator {
     void inserirRemocao() {
         Log.info("Genarating remocao...");
         Faker faker = new Faker(new Locale("pt-BR"));
+
+        Optional<Atendimento> atendimento = Atendimento
+                .find("order by seq_atendimento desc")
+                .firstResultOptional();
+
+        if (!atendimento.isPresent()) {
+            return;
+        }
+
         var remocao = new Remocao();
-        //TODO: Paciente
-        //remocao.setPaciente();
-        remocao.setData_registro(faker.date().past(30, TimeUnit.DAYS));
-        remocao.setData_remocao(faker.date().past(30, TimeUnit.DAYS));
+        remocao.setSeqAtendimento(atendimento.get().getSeqAtendimento());
+        remocao.setDataRegistro(faker.date().past(30, TimeUnit.DAYS));
+        remocao.setDataRemocao(faker.date().past(30, TimeUnit.DAYS));
         remocao.setCusto(BigDecimal.valueOf(faker.random().nextDouble()));
-        remocao.setInd_dificuldade_mobilidade(false);
-        remocao.setCoordenada_origem(new PGpoint(
+        remocao.setIndDificuldadeMobilidade(false);
+        remocao.setCoordenadaOrigem(new PGpoint(
                 Double.valueOf(faker.address().latitude().replaceAll(",", ".")),
                 Double.valueOf(faker.address().longitude().replaceAll(",", "."))
         ));
-        remocao.setCoordenada_destino(new PGpoint(
+        remocao.setCoordenadaDestino(new PGpoint(
                 Double.valueOf(faker.address().latitude().replaceAll(",", ".")),
                 Double.valueOf(faker.address().longitude().replaceAll(",", "."))
         ));
-        remocao.setNome_endereco_origem(faker.address().fullAddress());
-        remocao.setBairro_origem(faker.address().cityName());
-        remocao.setCidade_origem(faker.address().cityName());
-        remocao.setUf_origem(faker.address().stateAbbr());
-        remocao.setCep_origem(faker.address().zipCode());
-        remocao.setNome_endereco_destino(faker.address().fullAddress());
-        remocao.setBairro_destino(faker.address().cityName());
-        remocao.setCidade_destino(faker.address().cityName());
-        remocao.setUf_destino(faker.address().stateAbbr());
-        remocao.setCep_destino(faker.address().zipCode());
-        remocao.setObservacao_destino(faker.hobbit().quote());
-        remocao.setResponsavel_destino(faker.name().fullName());
+        remocao.setNomeEnderecoOrigem(faker.address().fullAddress());
+        remocao.setBairroOrigem(faker.address().cityName());
+        remocao.setCidadeOrigem(faker.address().cityName());
+        remocao.setUfOrigem(faker.address().stateAbbr());
+        remocao.setCepOrigem(faker.address().zipCode());
+        remocao.setNomeEnderecoDestino(faker.address().fullAddress());
+        remocao.setBairroDestino(faker.address().cityName());
+        remocao.setCidadeDestino(faker.address().cityName());
+        remocao.setUfDestino(faker.address().stateAbbr());
+        remocao.setCepDestino(faker.address().zipCode());
+        remocao.setObservacaoDestino(faker.hobbit().quote());
+        remocao.setResponsavelDestino(faker.name().fullName());
         remocao.persist();
-        Log.info("Remocao persistido " + remocao.getSeq_remocao());
+        Log.info("Remocao persistido " + remocao.getSeqRemocao());
     }
 }
 

@@ -1,5 +1,6 @@
 package com.andrealoisio.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.quarkus.hibernate.orm.panache.Panache;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
@@ -12,18 +13,20 @@ public class CarteirinhasEmitidas extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "numero", nullable = false)
-    private int numero;
+    private Integer numero;
     @Column(name = "data_registro")
+    @JsonProperty("data_registro")
     private java.sql.Date dataRegistro;
     @Column(name = "data_vencimento")
+    @JsonProperty("data_vencimento")
     private java.sql.Date dataVencimento;
-    private int matricula;
+    private Integer matricula;
 
-    public int getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 
@@ -47,11 +50,11 @@ public class CarteirinhasEmitidas extends PanacheEntityBase {
         this.dataVencimento = new java.sql.Date(dataVencimento.getTime());
     }
 
-    public int getMatricula() {
+    public Integer getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(Integer matricula) {
         this.matricula = matricula;
     }
 }

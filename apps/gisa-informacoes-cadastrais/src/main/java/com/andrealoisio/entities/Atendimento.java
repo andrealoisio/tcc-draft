@@ -1,42 +1,50 @@
 package com.andrealoisio.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
 
 @Entity
-public class Atendimento {
+public class Atendimento extends PanacheEntityBase {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_atendimento", nullable = false)
-    private int seqAtendimento;
+    @JsonProperty("seq_atendimento")
+    private Integer seqAtendimento;
     @Column(name = "data_atendimento")
+    @JsonProperty("data_atendimento")
     private java.sql.Date dataAtendimento;
     @Column(name = "data_registro")
+    @JsonProperty("data_registro")
     private java.sql.Date dataRegistro;
     private String situacao;
     private String tipo;
+    @JsonIgnore
     private java.math.BigDecimal custo;
     private String cid;
     @Column(name = "seq_associado")
-    private int seqAssociado;
+    @JsonProperty("seq_associado")
+    private Integer seqAssociado;
     @Column(name = "codigo_prestador")
-    private int codigoPrestador;
+    @JsonProperty("codigo_prestador")
+    private Integer codigoPrestador;
     @Column(name = "seq_conveniado")
-    private int seqConveniado;
-    @Column(name = "codigo_autorizacao")
-    private int codigoAutorizacao;
-    @Column(name = "seq_remocao")
-    private int seqRemocao;
+    @JsonProperty("seq_conveniado")
+    private Integer seqConveniado;
     @Column(name = "seq_procedimento")
-    private int seqProcedimento;
+    @JsonProperty("seq_procedimento")
+    private Integer seqProcedimento;
     private String observacao;
 
-    public int getSeqAtendimento() {
+    public Integer getSeqAtendimento() {
         return seqAtendimento;
     }
 
-    public void setSeqAtendimento(int seqAtendimento) {
+    public void setSeqAtendimento(Integer seqAtendimento) {
         this.seqAtendimento = seqAtendimento;
     }
 
@@ -88,51 +96,35 @@ public class Atendimento {
         this.cid = cid;
     }
 
-    public int getSeqAssociado() {
+    public Integer getSeqAssociado() {
         return seqAssociado;
     }
 
-    public void setSeqAssociado(int seqAssociado) {
+    public void setSeqAssociado(Integer seqAssociado) {
         this.seqAssociado = seqAssociado;
     }
 
-    public int getCodigoPrestador() {
+    public Integer getCodigoPrestador() {
         return codigoPrestador;
     }
 
-    public void setCodigoPrestador(int codigoPrestador) {
+    public void setCodigoPrestador(Integer codigoPrestador) {
         this.codigoPrestador = codigoPrestador;
     }
 
-    public int getSeqConveniado() {
+    public Integer getSeqConveniado() {
         return seqConveniado;
     }
 
-    public void setSeqConveniado(int seqConveniado) {
+    public void setSeqConveniado(Integer seqConveniado) {
         this.seqConveniado = seqConveniado;
     }
 
-    public int getCodigoAutorizacao() {
-        return codigoAutorizacao;
-    }
-
-    public void setCodigoAutorizacao(int codigoAutorizacao) {
-        this.codigoAutorizacao = codigoAutorizacao;
-    }
-
-    public int getSeqRemocao() {
-        return seqRemocao;
-    }
-
-    public void setSeqRemocao(int seqRemocao) {
-        this.seqRemocao = seqRemocao;
-    }
-
-    public int getSeqProcedimento() {
+    public Integer getSeqProcedimento() {
         return seqProcedimento;
     }
 
-    public void setSeqProcedimento(int seqProcedimento) {
+    public void setSeqProcedimento(Integer seqProcedimento) {
         this.seqProcedimento = seqProcedimento;
     }
 
