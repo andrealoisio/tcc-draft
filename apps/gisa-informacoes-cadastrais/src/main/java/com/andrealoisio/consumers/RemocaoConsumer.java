@@ -1,6 +1,7 @@
 package com.andrealoisio.consumers;
 
-import com.andrealoisio.entities.Autorizacao;
+import com.andrealoisio.entities.Atendimento;
+import com.andrealoisio.entities.Remocao;
 import com.andrealoisio.entities.Formacao;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -12,19 +13,25 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 
 @ApplicationScoped
-public class AutorizacaoConsumer {
+public class RemocaoConsumer {
 
-    @Incoming("autorizacao")
+    @Incoming("remocao")
     @Transactional
     public void process(String payload) throws InterruptedException, JsonProcessingException {
+        Log.info("RemocaoConsumer: Waiting");
         Thread.sleep(3000);
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonNode = mapper.readTree(payload);
-        Autorizacao autorizacao = mapper.treeToValue(jsonNode.get("after"), Autorizacao.class);
-        var existente = Formacao.findByIdOptional(autorizacao.getCodigo());
+        Remocao remocao = mapper.treeToValue(jsonNode.get("after"), Remocao.class);
+        var existente = Remocao.findByIdOptional(remocao.getSeqRemocao());
         if (!existente.isPresent()) {
-            autorizacao.persist();
-            Log.info("Persisting formacao: " + autorizacao.getCodigo());
+            var atendimento = Atendimento.findByIdOptional(remocao.getSeqAtendimento());
+            if (!atendimento.isPresent()) {
+                Log.info("RemocaoConsumer: Atendimento  " + remocao.getSeqAtendimento() + " not found");
+                return;
+            }
+            remocao.persist();
+            Log.info("Persisting remocao: " + remocao.getSeqRemocao());
         }
     }
 

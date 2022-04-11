@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
 @ApplicationScoped
 public class FormacaoConsumer {
 
-    // @Incoming("formacao")
+    @Incoming("formacao")
     @Transactional
     public void process(String payload) throws InterruptedException, JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
@@ -24,8 +24,6 @@ public class FormacaoConsumer {
             formacao.persist();
             Log.info("Persisting formacao: " + formacao.getNomeCurso());
         }
-        // Log.info(payload);
-        Thread.sleep(2000);
     }
 
 }

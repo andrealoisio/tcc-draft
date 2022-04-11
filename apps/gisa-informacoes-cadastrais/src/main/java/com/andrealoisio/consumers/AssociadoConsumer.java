@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
 @ApplicationScoped
 public class AssociadoConsumer {
 
-    // @Incoming("associados")
+    @Incoming("associados")
     @Transactional
     public void process(String payload) throws InterruptedException, JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();

@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
 @ApplicationScoped
 public class AtendimentoConsumer {
 
-    // @Incoming("atendimento")
+    @Incoming("atendimento")
     @Transactional
     public void process(String payload) throws InterruptedException, JsonProcessingException {
         Thread.sleep(2000);

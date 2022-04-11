@@ -10,10 +10,11 @@ import java.sql.Date;
 public class Autorizacao extends PanacheEntityBase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo", nullable = false)
     private Integer codigo;
     @Column(name = "seq_atendimento")
+    @JsonProperty("seq_atendimento")
     private Integer seqAtendimento;
     @Column(name = "data_registro")
     @JsonProperty("data_registro")

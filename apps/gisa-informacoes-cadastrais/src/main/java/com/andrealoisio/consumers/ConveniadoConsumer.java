@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 @ApplicationScoped
 public class ConveniadoConsumer {
 
-    // @Incoming("conveniados")
+    @Incoming("conveniados")
     @Transactional
     public void process(String payload) throws InterruptedException, JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();

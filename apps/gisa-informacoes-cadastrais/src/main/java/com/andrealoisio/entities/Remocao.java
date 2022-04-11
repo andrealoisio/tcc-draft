@@ -1,5 +1,7 @@
 package com.andrealoisio.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import org.postgresql.geometric.PGpoint;
@@ -9,6 +11,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Remocao extends PanacheEntityBase {
     @Id
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +19,7 @@ public class Remocao extends PanacheEntityBase {
     @JsonProperty("seq_remocao")
     private Integer seqRemocao;
     @Column(name = "seq_atendimento")
+    @JsonProperty("seq_atendimento")
     private Integer seqAtendimento;
     @Column(name = "data_registro")
     @JsonProperty("data_registro")
@@ -23,16 +27,19 @@ public class Remocao extends PanacheEntityBase {
     @Column(name = "data_remocao")
     @JsonProperty("data_remocao")
     private java.sql.Date dataRemocao;
-    private java.math.BigDecimal custo;
+//    @JsonIgnore
+//    private java.math.BigDecimal custo;
     @Column(name = "ind_dificuldade_mobilidade")
     @JsonProperty("ind_dificuldade_mobilidade")
     private boolean indDificuldadeMobilidade;
-    @Column(name = "coordenada_origem")
-    @JsonProperty("coordenada_origem")
-    private PGpoint coordenadaOrigem;
-    @Column(name = "coordenada_destino")
-    @JsonProperty("coordenada_destino")
-    private PGpoint coordenadaDestino;
+    // @Column(name = "coordenada_origem")
+    // @JsonProperty("coordenada_origem")
+    // @JsonIgnore
+    // private PGpoint coordenadaOrigem;
+    // @Column(name = "coordenada_destino")
+    // @JsonProperty("coordenada_destino")
+    // @JsonIgnore
+    // private PGpoint coordenadaDestino;
     @Column(name = "nome_endereco_origem")
     @JsonProperty("nome_endereco_origem")
     private String nomeEnderecoOrigem;
@@ -93,9 +100,6 @@ public class Remocao extends PanacheEntityBase {
     public void setDataRegistro(Date dataRegistro) {
         this.dataRegistro = dataRegistro;
     }
-    public void setData_registro(java.util.Date data_registro) {
-        this.dataRegistro = new java.sql.Date(data_registro.getTime());
-    }
 
     public Date getDataRemocao() {
         return dataRemocao;
@@ -104,16 +108,14 @@ public class Remocao extends PanacheEntityBase {
     public void setDataRemocao(Date dataRemocao) {
         this.dataRemocao = dataRemocao;
     }
-    public void setData_remocao(java.util.Date data_remocao) {
-        this.dataRemocao = new java.sql.Date(data_remocao.getTime());
-    }
-    public BigDecimal getCusto() {
-        return custo;
-    }
 
-    public void setCusto(BigDecimal custo) {
-        this.custo = custo;
-    }
+//    public BigDecimal getCusto() {
+//        return custo;
+//    }
+//
+//    public void setCusto(BigDecimal custo) {
+//        this.custo = custo;
+//    }
 
     public boolean isIndDificuldadeMobilidade() {
         return indDificuldadeMobilidade;
@@ -123,21 +125,21 @@ public class Remocao extends PanacheEntityBase {
         this.indDificuldadeMobilidade = indDificuldadeMobilidade;
     }
 
-    public PGpoint getCoordenadaOrigem() {
-        return coordenadaOrigem;
-    }
+//    public PGpoint getCoordenadaOrigem() {
+//        return coordenadaOrigem;
+//    }
+//
+//    public void setCoordenadaOrigem(PGpoint coordenadaOrigem) {
+//        this.coordenadaOrigem = coordenadaOrigem;
+//    }
 
-    public void setCoordenadaOrigem(PGpoint coordenadaOrigem) {
-        this.coordenadaOrigem = coordenadaOrigem;
-    }
-
-    public PGpoint getCoordenadaDestino() {
-        return coordenadaDestino;
-    }
-
-    public void setCoordenadaDestino(PGpoint coordenadaDestino) {
-        this.coordenadaDestino = coordenadaDestino;
-    }
+//    public PGpoint getCoordenadaDestino() {
+//        return coordenadaDestino;
+//    }
+//
+//    public void setCoordenadaDestino(PGpoint coordenadaDestino) {
+//        this.coordenadaDestino = coordenadaDestino;
+//    }
 
     public String getNomeEnderecoOrigem() {
         return nomeEnderecoOrigem;
