@@ -20,7 +20,7 @@ const Rotas = () => {
         <Route path="detalheConveniados/:seq_conveniado" element={<DetalheConveniados />} />
         <Route path="detalheAssociados/:matricula" element={<DetalheAssociados />} />
         <Route path="detalhePrestadores/:codigo" element={<DetalhePrestadores />} />
-        <Route path="detalheAtendimentos/:seq_atendimento" element={<DetalheAtendimento />} />
+        <Route path="detalheAtendimentos/:seqAtendimento" element={<DetalheAtendimento />} />
     </Routes>
   );
 };
