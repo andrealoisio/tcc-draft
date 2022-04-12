@@ -10,11 +10,6 @@ import LoupeIcon from '@mui/icons-material/Loupe';
 import Button from "@material-ui/core/Button";
 import dayjs from 'dayjs';
 
-// const resumo = {
-//   totalAtendimentos: '124155',
-//   totalAtendimentosAutorizacaoPendente: '224543',
-// };
-
 const columns = [
   { field: 'seqAtendimento', headerName: 'id', width: 100, hide: true },
   { field: 'dataAtendimento', headerName: 'Data Atendimento', width: 120, align: "center"  },
@@ -40,22 +35,7 @@ const columns = [
     }
   },
 ];
-// const mockRows = [
-//   { seq_atendimento: 101049, dataAtendimento: '10/10/2020', nomeAssociado: 'Cléber Santos da Cruz', matriculaAssociado: '287004', nomePrestador: 'Carlos Maia Santos' , codigoPrestador: '88494', nomeConveniado: 'Rede Própria' },
-//   { seq_atendimento: 342523, dataAtendimento: '10/10/2020', nomeAssociado: 'Maria dos Milagres Silva', matriculaAssociado: '287005', nomePrestador: 'Rogerinho Silva' , codigoPrestador: '88495', nomeConveniado: 'Hospital Geral BH' },
-//   { seq_atendimento: 234523, dataAtendimento: '10/10/2020', nomeAssociado: 'Julio Souza Empaminhondas', matriculaAssociado: '287006', nomePrestador: 'Marcondes Moreira' , codigoPrestador: '88496', nomeConveniado: 'Clinica MédicaBH' },
-//   { seq_atendimento: 6436436, dataAtendimento: '10/10/2020', nomeAssociado: 'Mônica Ferreira', matriculaAssociado: '287007', nomePrestador: 'Lúcia Helena Silveira' , codigoPrestador: '88497', nomeConveniado: 'Fisio BH' },
-//   { seq_atendimento: 236624, dataAtendimento: '10/10/2020', nomeAssociado: 'Alberto Ferraz de Vasconcellos', matriculaAssociado: '287008', nomePrestador: 'José Carlos Batista' , codigoPrestador: '88498', nomeConveniado: 'Rede Própria' },
-// ];
 
-// const columns = [
-//   { field: 'id', headerName: 'ID', width: 70 },
-//   { field: 'username', headerName: 'User Name', width: 130 },
-//   { field: 'name', headerName: 'Name', width: 130 },
-//   { field: 'email', headerName: 'e-Mail', width: 130 },
-//   { field: 'phone', headerName: 'Phone', width: 130 },
-//   { field: 'website', headerName: 'WebSite', width: 130 },
-// ]
 const useStyles = makeStyles((theme) => ({
   card: {
     display: 'flex', 
@@ -68,8 +48,6 @@ const useStyles = makeStyles((theme) => ({
 export default function AtendimentoForm() {
   const classes = useStyles();
   const [rows, setRows] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
   const [resumo, setResumo] = useState(null)
 
 
@@ -89,11 +67,8 @@ export default function AtendimentoForm() {
         resp = resp.map(item => ({...item, dataAtendimento: dayjs(item.dataAtendimento).format('DD/MM/YYYY')}))
         console.log('resp', resp)
         setRows(resp)
-        setLoading(false)
       })
       .catch(err => {
-        setError(true)
-        setLoading(false)
         console.log(err)
       })
   }, [])

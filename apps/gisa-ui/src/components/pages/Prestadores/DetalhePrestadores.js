@@ -18,9 +18,7 @@ const columns = [
   { field: 'data_inicio', headerName: 'Data Inicio', width: 120 },
   { field: 'data_termino', headerName: 'Data Término', width: 120 },
 ];
-// const rows = [
-//   { seqFormacao: 101049, nomeCurso: 'Mestrado em Radiologia',  titulo: 'MsC', instituicao: 'UFMG', areaConhecimento: 'Radiologia', dataInicio: '01/01/2021', dataTermino: '01/01/2023' },
-//   ];
+
 const useStyles = makeStyles((theme) => ({
   disabled: {
     "& input.Mui-disabled": {
@@ -31,9 +29,6 @@ const useStyles = makeStyles((theme) => ({
 export default function DetalheConveniados() {
   const { codigo } = useParams();
   const [prestador, setPrestador] = useState(null);
-  // const [value, setValues] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
   const [seqFormacao, setSeqFormacao] = useState(null)
   const [formacoes, setFormacoes] = useState([])
 
@@ -53,10 +48,8 @@ export default function DetalheConveniados() {
       .then(resp => {
         setPrestador(resp)
         setSeqFormacao(resp.seq_formacao);
-        setLoading(false)      
       })
       .catch(err => {
-        setError(true)
         console.log(err)})
   }, [codigo])
 
@@ -77,35 +70,13 @@ export default function DetalheConveniados() {
         resp = resp.map(item => ({...item, data_inicio: dayjs(item.data_inicio).format('DD/MM/YYYY'), data_termino: dayjs(item.data_termino).format('DD/MM/YYYY')}))
         setFormacoes(resp) 
         console.log([resp])
-        setLoading(false)      
       })
       .catch(err => {
-        setError(true)
         console.log(err)})
   }, [seqFormacao])
 
   console.log('codigo', codigo)
   const classes = useStyles();
-  const value = {
-    nome: 'Juvenal dos Santos Neves',
-    email: 'Jotalhao01@gmail.com',
-    cpf: '000.000.001-91',
-    cnpj: '19.106.757/0001-92',
-    especializacao: 'Fisioterapia',
-    dataRegistro: '10/10/2010',
-    telefone: '(31) 2607-8090',
-    celular: '(11) 94770-8090',
-    endereco: 'Av Humberto de Alencar Castelo Branco, 889',
-    bairro: 'Vila das Flores',
-    cidade: 'Belo Horizonte',
-    uf: 'MG',
-    cep: '07890020',
-    banco: '001',
-    agencia: '0001',
-    conta: '01001',
-  };
-
-
 
   return (
     <>

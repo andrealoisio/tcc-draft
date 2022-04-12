@@ -31,25 +31,7 @@ const columns = [
     }
   },
 ];
-const rows = [
-  { codigo: 323523, nome: 'Ângelo Marcondes', email: 'angelo.marcondes@yahoo.com.br', especializacao: 'Clínica Médica' },
-  { codigo: 323524, nome: 'Dolores Almeida', email: 'dolores.almeida@yahoo.com.br', especializacao: 'Enfermagem' },
-  { codigo: 323525, nome: 'Bruce dos Santes', email: 'bruce.santos@yahoo.com.br', especializacao: 'Fisioterpia' },
-  { codigo: 323526, nome: 'Olga Martins', email: 'olga_martins@yahoo.com.br', especializacao: 'Técnico Radiologia' },
-  { codigo: 323527, nome: 'Livia Andrade', email: 'l_andrade@yahoo.com.br', especializacao: 'Radiologia' },
-  { codigo: 323528, nome: 'Lucelia Santos', email: 'lu_santos@yahoo.com.br', especializacao: 'Enfermagem' },
-  { codigo: 323529, nome: 'Marcos Dantas Silva', email: 'm_dantas_silva@yahoo.com.br', especializacao: 'Cardiologia' },
-  { codigo: 323520, nome: 'Maristela Ferreira', email: 'm.ferreira@yahoo.com.br', especializacao: 'Saúde da Mulher' },
-];
 
-// const columns = [
-//   { field: 'id', headerName: 'ID', width: 70 },
-//   { field: 'username', headerName: 'User Name', width: 130 },
-//   { field: 'name', headerName: 'Name', width: 130 },
-//   { field: 'email', headerName: 'e-Mail', width: 130 },
-//   { field: 'phone', headerName: 'Phone', width: 130 },
-//   { field: 'website', headerName: 'WebSite', width: 130 },
-// ]
 const useStyles = makeStyles((theme) => ({
   card: {
     display: 'flex', 
@@ -58,12 +40,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function PrestadorForm() {
   const classes = useStyles();
   const [prestadores, setPrestadores] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
   const [resumo, setResumo] = useState(null)
 
   useEffect(() => {
@@ -79,11 +58,8 @@ export default function PrestadorForm() {
       })
       .then(resp => {
         setPrestadores(resp)
-        setLoading(false)
       })
       .catch(err => {
-        setError(true)
-        setLoading(false)
         console.log(err)
       })
   }, [])

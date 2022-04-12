@@ -17,10 +17,7 @@ const columnsAutorizacao = [
   { field: 'tipo_autorizacao', headerName: 'Tipo', width: 250 },
   { field: 'situacao', headerName: 'Situacao', width: 120, align: "center" },
 ];
-// const rowsAutorizacao = [
-//   { codigo: 101049, dataEntrada: '10/10/2020',  dataAprovacao: '10/10/2020',  dataVencimento: '10/10/2020', tipo: 'Autorizacao Consulta' , situacao: 'Aprovada' },
-//   { codigo: 101080, dataEntrada: '10/10/2022',  dataAprovacao: '',  dataVencimento: '10/10/2023', tipo: 'Cirurgia Tornozelo' , situacao: 'Em analise' },
-//   ];
+
 const columnsRemocao = [
   { field: 'seq_remocao', headerName: 'id', width: 100 },
   // { field: 'nomeAssociado', headerName: 'Nome Associado', width: 250 },
@@ -30,9 +27,7 @@ const columnsRemocao = [
   { field: 'coordenadasDestino', headerName: 'Coordenadas Destino', width: 120  },
   { field: 'nomeConveniado', headerName: 'Nome Conveniado', width: 250 },
 ];
-// const rowsRemocao = [
-//   { seqRemocaoAssociado: 101049,  nomeAssociado: 'Cléber Santos da Cruz', enderecoOrigem: 'Rua das Flores, 2900', enderecoDestino: 'Av Prestes Maia, 2090' , coordenadasOrigem: '40.7600000,-73.9840000', coordenadasDestino: '40.7600000,-73.9840000', nomeConveniado: 'Hospital Josefina' },
-//   ];
+
 const value = {
   dataAtendimento: '10/10/2020',
   matriculaAssociado: '883784',
@@ -60,9 +55,6 @@ export default function DetalheConveniados() {
   const [atendimento, setAtendimento] = useState(null)
   const [autorizacoes, setAutorizacoes] = useState([])
   const [remocoes, setRemocoes] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
-
 
   useEffect(() => {
     fetch(`http://localhost/atendimentos/${seqAtendimento}`)
@@ -77,12 +69,8 @@ export default function DetalheConveniados() {
       })
       .then(resp => {
         setAtendimento(resp)
-        console.log('atendimento', resp)
-        setLoading(false)
       })
       .catch(err => {
-        setError(true)
-        setLoading(false)
         console.log(err)
       })
   }, [seqAtendimento])
