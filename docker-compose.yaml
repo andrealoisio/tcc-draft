@@ -1,26 +1,5 @@
 version: '3.8'
 services:
-  # react-dev:
-  #   container_name: ui-desenv
-  #   build:
-  #       context: ./apps/gisa-ui
-  #       dockerfile: Dockerfile.react-dev
-  #   volumes:
-  #       - './apps/gisa-ui:/app'
-  #       - '/app/node_modules'
-  #   ports:
-  #       - '3000:3000'
-  #   environment:
-  #       - NODE_ENV=development
-
-  # react-prod:
-  #     container_name: ui-prod
-  #     build:
-  #       context: ./apps/gisa-ui
-  #       dockerfile: Dockerfile.react-prod
-  #     ports:
-  #       - '8080:80'
-
   react-prod:
       container_name: ui-prod
       image: nginx:1.16.0-alpine
@@ -45,29 +24,10 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=gisa
-    # volumes:
-    #   - ./db:/docker-entrypoint-initdb.d/
     networks:
       - postgres
       - "kong-net"
     restart: always
-
-
-#  pgadmin:
-#    container_name: pgadmin_container
-#    image: dpage/pgadmin4
-#    environment:
-#      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-#      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
-#      PGADMIN_CONFIG_SERVER_MODE: 'False'
-#    volumes:
-#      - pgadmin:/var/lib/pgadmin
-#
-#    ports:
-#      - "${PGADMIN_PORT:-5050}:80"
-#    networks:
-#      - postgres
-#    restart: unless-stopped
 
   api_gateway:
     container_name: api_gateway
@@ -89,16 +49,6 @@ services:
       - "KONG_PROXY_ERROR_LOG=/dev/stderr"
       - "KONG_ADMIN_ERROR_LOG=/dev/stderr"
       - "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl"
-  # kong_database:
-  #   image: postgres:9.6
-  #   environment:
-  #     - POSTGRES_USER=kong
-  #     - POSTGRES_DB=kong
-  #     - POSTGRES_PASSWORD=kongpass
-  #   ports:
-  #     - 5432:5432
-  #   networks:
-  #     - kong-net
   rest:
     container_name: rest
     image: quarkus/gisa-informacoes-cadastrais-jvm
@@ -111,9 +61,6 @@ services:
       - "kong-net"
     ports:
       - "80:8080"
-    # environment:
-    #   JAVA_OPTS: "-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
-    #   JAVA_APP_JAR: "/deployments/gisa-informacoes-cadastrais-1.0.0-SNAPSHOT.jar"
     volumes:
       - ./apps/gisa-informacoes-cadastrais/target/quarkus-app:/deployments
   gerador_dados_legados:
@@ -143,8 +90,6 @@ services:
       timeout: 20s
       retries: 10
     volumes:
-      # - ./scripts/legacy_db:/docker-entrypoint-initdb.d/
-      # - ./db:/docker-entrypoint-initdb.d/
       - "legacy_db:/var/lib/postgresql/data"
     networks:
       - "kong-net"
@@ -166,11 +111,8 @@ services:
     image: debezium/kafka:1.8
     ports:
       - "9092:9092"
-    # links:
-    #   - "zookeeper:zookeeper"
     environment:
       - ZOOKEEPER_CONNECT=zookeeper:2181
-      # - ADVERTISED_HOST_NAME=172.29.0.1
       - ALLOW_PLAINTEXT_LISTENER=yes
     networks:
       - "kong-net"
