@@ -8,7 +8,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import MediaQuery from 'react-responsive'
 
 
-export default function BasicCard(props) {
+export default function BasicCard({resumo}) {
   return (
     <MediaQuery minWidth="500px">
       {(matches) =>
@@ -19,7 +19,7 @@ export default function BasicCard(props) {
               <CardContent>
                 <FactCheckIcon fontSize="large" />
                 <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-                  {props.valores.totalAtendimentos}
+                  {resumo.totalAtendimentos}
                 </Typography>
                 <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
                   Atendimentos em Conveniados
@@ -30,7 +30,7 @@ export default function BasicCard(props) {
               <CardContent>
                 <GroupsIcon fontSize="large" />
                 <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-                  {props.valores.totalConveniado}
+                  {resumo.totalConveniados}
                 </Typography>
                 <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
                   Total de Conveniados
@@ -41,7 +41,7 @@ export default function BasicCard(props) {
               <CardContent>
                 <MoveDownIcon fontSize="large" />
                 <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-                  {props.valores.totalRemocao}
+                  {resumo.totalRemocoes}
                 </Typography>
                 <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
                   Total de Remoções
@@ -55,7 +55,7 @@ export default function BasicCard(props) {
               <CardContent>
                 <FactCheckIcon fontSize="medium" />
                 <Typography sx={{ mb: 1.5, float: "right", fontSize: 20 }} color="green">
-                  {props.valores.totalAtendimentos}
+                {resumo.totalAtendimentos}
                 </Typography>
                 <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
                   Atendimentos em Conveniados
@@ -66,7 +66,7 @@ export default function BasicCard(props) {
               <CardContent>
                 <GroupsIcon fontSize="medium" />
                 <Typography sx={{ mb: 1.5, float: "right", fontSize: 20 }} color="green">
-                  {props.valores.totalConveniado}
+                  {resumo.totalConveniados}
                 </Typography>
                 <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
                   Total de Conveniados
@@ -77,7 +77,7 @@ export default function BasicCard(props) {
               <CardContent>
                 <MoveDownIcon fontSize="medium" />
                 <Typography sx={{ mb: 1.5, float: "right", fontSize: 20 }} color="green">
-                  {props.valores.totalRemocao}
+                  {resumo.totalRemocoes}
                 </Typography>
                 <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
                   Total de Remoções

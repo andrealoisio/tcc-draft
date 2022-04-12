@@ -9,11 +9,6 @@ import { Link } from 'react-router-dom';
 import LoupeIcon from '@mui/icons-material/Loupe';
 import Button from "@material-ui/core/Button";
 
-const value = [{
-  totalPrestadores: '124155',
-  totalPrestadoresEspecializacao: '224543',
-}];
-
 const columns = [
   { field: 'codigo', headerName: 'Código Funcional', width: 100 },
   { field: 'nome', headerName: 'Nome', width: 250  },
@@ -69,6 +64,7 @@ export default function PrestadorForm() {
   const [prestadores, setPrestadores] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [resumo, setResumo] = useState(null)
 
   useEffect(() => {
     fetch("http://localhost/prestadores")
@@ -92,12 +88,31 @@ export default function PrestadorForm() {
       })
   }, [])
 
+  useEffect(() => {
+    fetch("http://localhost/prestadores/resumo")
+      .then(resp => {
+        if (resp.ok) {
+          return resp.json()
+        } else if (resp.status === 404) {
+          return Promise.reject('error 404')
+        } else {
+          return Promise.reject('some other error: ' + resp.status)
+        }
+      })
+      .then(resp => {
+        setResumo(resp)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
+
   return (
       <div className="App">
         <div className={classes.card}>
-          {value.map((values) => (
-            <PrestadorCard valores={values}/>
-          ))};  
+          {resumo && 
+            <PrestadorCard resumo={resumo}/>
+          };  
         </div>
         <div>     
           <Typography variant="h6">

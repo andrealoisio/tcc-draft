@@ -9,12 +9,6 @@ import { Link } from 'react-router-dom';
 import LoupeIcon from '@mui/icons-material/Loupe';
 import Button from "@material-ui/core/Button";
 
-const value = [{
-  totalInadimplentes: '124155',
-  totalCarteirinhas: '224543',
-  totalAssociadosAtivos: '35553',
-}];
-
 const columns = [
   { field: 'matricula', headerName: 'Matrícula', width: 100 },
   { field: 'nome', headerName: 'Nome', width: 250 },
@@ -50,6 +44,9 @@ export default function AssociadoForm() {
   const [rows, setRows] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [resumo, setResumo] = useState(false)
+
+
   useEffect(() => {
     setRows(null)
     fetch("http://localhost/associados")
@@ -73,13 +70,32 @@ export default function AssociadoForm() {
       })
   }, [])
 
+  useEffect(() => {
+    setRows(null)
+    fetch("http://localhost/associados/resumo")
+      .then(resp => {
+        if (resp.ok) {
+          return resp.json()
+        } else if (resp.status === 404) {
+          return Promise.reject('error 404')
+        } else {
+          return Promise.reject('some other error: ' + resp.status)
+        }
+      })
+      .then(resp => {
+        setResumo(resp)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
+
   return (
     <div className="App">
+      {resumo &&
       <div className={classes.card}>
-        {value.map((values) => (
-          <AssociadoCard valores={values} />
-        ))};
-      </div>
+        <AssociadoCard resumo={resumo} />
+      </div>}
       <div>
         <Typography variant="h6">
           <ListAltIcon /> Visão Geral de Associados

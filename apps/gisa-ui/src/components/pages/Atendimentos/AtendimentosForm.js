@@ -10,10 +10,10 @@ import LoupeIcon from '@mui/icons-material/Loupe';
 import Button from "@material-ui/core/Button";
 import dayjs from 'dayjs';
 
-const value = [{
-  totalAtendimentos: '124155',
-  totalAtendimentosAutorizacaoPendente: '224543',
-}];
+// const resumo = {
+//   totalAtendimentos: '124155',
+//   totalAtendimentosAutorizacaoPendente: '224543',
+// };
 
 const columns = [
   { field: 'seqAtendimento', headerName: 'id', width: 100, hide: true },
@@ -70,6 +70,7 @@ export default function AtendimentoForm() {
   const [rows, setRows] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [resumo, setResumo] = useState(null)
 
 
   useEffect(() => {
@@ -97,13 +98,32 @@ export default function AtendimentoForm() {
       })
   }, [])
 
+  useEffect(() => {
+    setRows(null)
+    fetch("http://localhost/atendimentos/resumo")
+      .then(resp => {
+        if (resp.ok) {
+          return resp.json()
+        } else if (resp.status === 404) {
+          return Promise.reject('error 404')
+        } else {
+          return Promise.reject('some other error: ' + resp.status)
+        }
+      })
+      .then(resp => {
+        setResumo(resp)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
+
   return (rows &&
           <div className="App">
+            {resumo && 
             <div className={classes.card}>
-              {value.map((values) => (
-                <AtendimentoCard valores={values}/>
-              ))};  
-            </div>
+              <AtendimentoCard resumo={resumo}/>
+            </div>}
             <div>     
               <Typography variant="h6">
                 <ListAltIcon /> Visão Geral de Atendimentos

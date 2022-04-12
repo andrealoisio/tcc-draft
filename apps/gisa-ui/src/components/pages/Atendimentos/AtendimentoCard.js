@@ -4,14 +4,14 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 
-export default function BasicCard(props) {
+export default function AtendimentoCard({resumo}) {
   return (
     <>
       <Card sx={{ minWidth: 275, margin: 1, height: 150, maxWidth: '100%' }}>
         <CardContent>
           <FactCheckIcon fontSize="large" />
           <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-            {props.valores.totalAtendimentos}
+            {resumo.totalAtendimentos || 0}
           </Typography>
           <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
             Total de Atendimentos
@@ -22,7 +22,7 @@ export default function BasicCard(props) {
         <CardContent>
           <FactCheckIcon fontSize="large" />
           <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-            {props.valores.totalAtendimentosAutorizacaoPendente}
+            {resumo.totalAutorizacoesPendentes || 0}
           </Typography>
           <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
             Atendimentos c/ Autorizações Pendentes

@@ -6,25 +6,14 @@ import FactCheckIcon from '@mui/icons-material/FactCheck';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-export default function BasicCard(props) {
+export default function BasicCard({resumo}) {
   return (
     <>
       <Card sx={{ minWidth: 275, margin: 1, height: 150, maxWidth: 275 }}>
         <CardContent>
-          <FactCheckIcon fontSize="large" />
-          <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-            {props.valores.totalInadimplentes}
-          </Typography>
-          <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
-            Associados Inadimplentes
-          </Typography>
-        </CardContent>
-      </Card>
-      <Card sx={{ minWidth: 275, margin: 1, height: 150, maxWidth: 275 }}>
-        <CardContent>
           <CreditCardIcon fontSize="large" />
           <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-            {props.valores.totalCarteirinhas}
+            {resumo.totalCarterinhasEmitidas}
           </Typography>
           <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
             Carteirinhas Emitidas
@@ -35,7 +24,7 @@ export default function BasicCard(props) {
         <CardContent>
           <CheckCircleIcon fontSize="large" />
           <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-            {props.valores.totalAssociadosAtivos}
+            {resumo.totalAssociadosAtivos}
           </Typography>
           <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
             Associados Ativos

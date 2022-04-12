@@ -10,11 +10,6 @@ import LoupeIcon from '@mui/icons-material/Loupe';
 import Button from "@material-ui/core/Button";
 import dayjs from 'dayjs';
 
-const value = [{
-  totalAtendimentos: '124155',
-  totalConveniado: '224543',
-  totalRemocao: '4453252',
-}];
 const columns = [
   { field: 'seq_conveniado', headerName: 'Id', width: 100, hide: true, disableColumnMenu: true },
   { field: 'nome', headerName: 'Nome', width: 250 },
@@ -50,6 +45,9 @@ export default function ConveniadoForm() {
   const [rows, setRows] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [resumo, setResumo] = useState(null)
+
+
   useEffect(() => {
     setRows(null)
     fetch("http://localhost/conveniados")
@@ -74,12 +72,31 @@ export default function ConveniadoForm() {
       })
   }, [])
 
+  useEffect(() => {
+    fetch("http://localhost/conveniados/resumo")
+      .then(resp => {
+        if (resp.ok) {
+          return resp.json()
+        } else if (resp.status === 404) {
+          return Promise.reject('error 404')
+        } else {
+          return Promise.reject('some other error: ' + resp.status)
+        }
+      })
+      .then(resp => {
+        setResumo(resp)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
+
   return (
     <div className="App">
       <div className={classes.card}>
-        {value.map((values) => (
-          <ConveniadoCard valores={values} />
-        ))};
+        {resumo &&
+          <ConveniadoCard resumo={resumo} />
+        };
       </div>
       <div>
         <Typography variant="h6"> <ListAltIcon /> Visão Geral de Conveniados </Typography>
