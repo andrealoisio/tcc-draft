@@ -11,7 +11,7 @@ import java.sql.Date;
 public class CarteirinhasEmitidas extends PanacheEntityBase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "numero", nullable = false)
     private Integer numero;
     @Column(name = "data_registro")
@@ -44,10 +44,6 @@ public class CarteirinhasEmitidas extends PanacheEntityBase {
 
     public void setDataVencimento(Date dataVencimento) {
         this.dataVencimento = dataVencimento;
-    }
-
-    public void setDataVencimento(java.util.Date dataVencimento) {
-        this.dataVencimento = new java.sql.Date(dataVencimento.getTime());
     }
 
     public Integer getMatricula() {
