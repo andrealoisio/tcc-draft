@@ -99,6 +99,16 @@ export default function DetalheConveniados() {
         }
       })
       .then(resp => {
+        resp = resp.map(item => {
+          return {
+            ...item,
+            data_aprovacao: item.data_aprovacao ? dayjs(item.data_aprovacao).format('DD/MM/YYYY') : '',
+            data_entrada: item.data_entrada ? dayjs(item.data_entrada).format('DD/MM/YYYY') : '',
+            data_registro: item.data_registro ? dayjs(item.data_registro).format('DD/MM/YYYY') : '',
+            data_validade: item.data_validade ? dayjs(item.data_validade).format('DD/MM/YYYY') : '',
+            data_vencimento: item.data_vencimento ? dayjs(item.data_vencimento).format('DD/MM/YYYY') : ''
+          }
+        })
         setAutorizacoes(resp)
         console.log('Autorizações', resp)
       })
@@ -185,7 +195,7 @@ export default function DetalheConveniados() {
               }
               
               <Typography display="block" variant="h6"> <ListAltIcon /> Autorizações </Typography>              
-              {autorizacoes && autorizacoes.length > 0 &&
+              {
                 <div style={{ height: 400, width: '100%' }}>
                   <DataGrid 
                     getRowId={row => row.codigo}
@@ -194,13 +204,20 @@ export default function DetalheConveniados() {
                     columns={columnsAutorizacao}
                     pageSize={5}
                     rowsPerPageOptions={[5]}
+                    components={{
+                      NoRowsOverlay: () => (
+                        <div style={{padding: '20px'}}>
+                          Nenhuma autorização encontrada
+                        </div>
+                      )
+                    }}
                   />
                 </div>
               } 
 
               <Typography display="block" variant="h6"> <ListAltIcon /> Remoções </Typography>              
               
-              {remocoes &&
+              {
                 <div style={{ height: 400, width: '100%' }}>
                   <DataGrid 
                     getRowId={row => row.seq_remocao}
@@ -209,6 +226,13 @@ export default function DetalheConveniados() {
                     columns={columnsRemocao}
                     pageSize={5}
                     rowsPerPageOptions={[5]}
+                    components={{
+                      NoRowsOverlay: () => (
+                        <div style={{padding: '20px'}}>
+                          Nenhuma remoção encontrada
+                        </div>
+                      )
+                    }}
                   />
                 </div>
               }
