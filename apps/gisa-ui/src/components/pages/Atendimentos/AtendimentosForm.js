@@ -8,6 +8,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import { Link } from 'react-router-dom';
 import LoupeIcon from '@mui/icons-material/Loupe';
 import Button from "@material-ui/core/Button";
+import dayjs from 'dayjs';
 
 const value = [{
   totalAtendimentos: '124155',
@@ -84,6 +85,8 @@ export default function AtendimentoForm() {
         }
       })
       .then(resp => {
+        resp = resp.map(item => ({...item, dataAtendimento: dayjs(item.dataAtendimento).format('DD/MM/YYYY')}))
+        console.log('resp', resp)
         setRows(resp)
         setLoading(false)
       })

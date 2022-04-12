@@ -1,7 +1,7 @@
 import React from 'react';
 import PrestadorCard from './PrestadorCard';
 import { DataGrid } from '@mui/x-data-grid';
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from '@mui/material/Typography';
 import ListAltIcon from '@mui/icons-material/ListAlt';
@@ -66,38 +66,58 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PrestadorForm() {
   const classes = useStyles();
-  // const [rows, setRows] = useState([])
+  const [prestadores, setPrestadores] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
-  // useEffect(() => {
-  //   fetch("https://jsonplaceholder.typicode.com/users")
-  //     .then(resp => resp.json())
-  //     .then(resp => {
-  //       setRows(resp)
-  //     })
-  // }, [])
+  useEffect(() => {
+    fetch("http://localhost/prestadores")
+      .then(resp => {
+        if (resp.ok) {
+          return resp.json()
+        } else if (resp.status === 404) {
+          return Promise.reject('error 404')
+        } else {
+          return Promise.reject('some other error: ' + resp.status)
+        }
+      })
+      .then(resp => {
+        setPrestadores(resp)
+        setLoading(false)
+      })
+      .catch(err => {
+        setError(true)
+        setLoading(false)
+        console.log(err)
+      })
+  }, [])
 
   return (
-    <div className="App">
-      <div className={classes.card}>
-        {value.map((values) => (
-          <PrestadorCard valores={values}/>
-        ))};  
-      </div>
-      <div>     
-        <Typography variant="h6">
-          <ListAltIcon /> Visão Geral de Prestadores
-        </Typography>
-      </div>
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid 
-          getRowId={row => row.codigo}
-          rowOptions={{ selectable: true }} 
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-        />
-      </div>
-    </div>  
+      <div className="App">
+        <div className={classes.card}>
+          {value.map((values) => (
+            <PrestadorCard valores={values}/>
+          ))};  
+        </div>
+        <div>     
+          <Typography variant="h6">
+            <ListAltIcon /> Visão Geral de Prestadores
+          </Typography>
+        </div>
+
+        {prestadores && prestadores.length > 0 && 
+          <div style={{ height: 400, width: '100%' }}>
+            <DataGrid 
+              getRowId={row => row.codigo}
+              rowOptions={{ selectable: true }} 
+              rows={prestadores}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+            />
+          </div>
+        }
+
+      </div>  
         );
       }

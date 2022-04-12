@@ -7,6 +7,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import MediaQuery from 'react-responsive'
 import { useParams } from "react-router-dom";
 import { DataGrid } from '@mui/x-data-grid';
+import dayjs from 'dayjs';
 
 const columnsAutorizacao = [
   { field: 'codigo', headerName: 'codigo', width: 120 },
@@ -151,7 +152,7 @@ export default function DetalheConveniados() {
               
               {atendimento &&
                 <>
-                  <TextField label="Data de Atendimento" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.dataAtendimento} />               
+                  <TextField label="Data de Atendimento" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={dayjs(atendimento.dataAtendimento).format('DD/MM/YYYY')} />               
                   <TextField label="Matrícula Associado" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.matriculaAssociado} />               
                   <MediaQuery minWidth="500px">
                     {(matches) =>
@@ -212,7 +213,6 @@ export default function DetalheConveniados() {
                 </div>
               }
             </>
-          )
         </div>
       </Box>
     </>

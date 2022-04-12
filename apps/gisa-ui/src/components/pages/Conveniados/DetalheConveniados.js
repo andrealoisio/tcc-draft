@@ -7,6 +7,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import MediaQuery from 'react-responsive'
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import dayjs from 'dayjs';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -74,7 +75,7 @@ export default function DetalheConveniados() {
               </MediaQuery>
               <TextField label="CNPJ" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.cnpj || ''} />
               <TextField label="Atividade" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.atividade|| ''} />
-              <TextField label="Data de registro" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.data_registro|| ''} />
+              <TextField label="Data de registro" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={dayjs(value.data_registro).format('DD/MM/YYYY')|| ''} />
               <TextField label="Telefone" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.telefone|| ''} />
               <TextField label="Celular" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.celular|| ''} />
               <MediaQuery minWidth="500px">

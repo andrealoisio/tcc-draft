@@ -8,6 +8,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import { Link } from 'react-router-dom';
 import LoupeIcon from '@mui/icons-material/Loupe';
 import Button from "@material-ui/core/Button";
+import dayjs from 'dayjs';
 
 const value = [{
   totalAtendimentos: '124155',
@@ -62,6 +63,7 @@ export default function ConveniadoForm() {
         }
       })
       .then(resp => {
+        resp = resp.map(item => ({...item, data_registro: dayjs(item.data_registro).format('DD/MM/YYYY')}))
         setRows(resp)
         setLoading(false)
       })
