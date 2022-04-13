@@ -12,7 +12,7 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
 export default function AsideMenu() {
   return (
-    <Paper sx={{ width: 320, maxWidth: '100%' }}>
+    <Paper sx={{ width: 250, maxWidth: '100%' }}>
       <MenuList>
         <MenuItem component={Link} to="/atendimentos">
           <RemoveRedEyeIcon sx={{minWidth: (theme) => theme.spacing(4)}}>

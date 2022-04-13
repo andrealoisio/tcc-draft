@@ -11,7 +11,7 @@ export default function AtendimentoCard({resumo}) {
         <CardContent>
           <FactCheckIcon fontSize="large" />
           <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-            {resumo.totalAtendimentos || 0}
+            {resumo?.totalAtendimentos || 0}
           </Typography>
           <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
             Total de Atendimentos
@@ -22,7 +22,7 @@ export default function AtendimentoCard({resumo}) {
         <CardContent>
           <FactCheckIcon fontSize="large" />
           <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-            {resumo.totalAutorizacoesPendentes || 0}
+            {resumo?.totalAutorizacoesPendentes || 0}
           </Typography>
           <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
             Atendimentos c/ Autorizações Pendentes

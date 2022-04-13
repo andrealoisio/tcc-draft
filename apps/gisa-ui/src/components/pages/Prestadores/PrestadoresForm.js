@@ -86,9 +86,7 @@ export default function PrestadorForm() {
   return (
       <div className="App">
         <div className={classes.card}>
-          {resumo && 
-            <PrestadorCard resumo={resumo}/>
-          };  
+          <PrestadorCard resumo={resumo}/>
         </div>
         <div>     
           <Typography variant="h6">
@@ -96,18 +94,17 @@ export default function PrestadorForm() {
           </Typography>
         </div>
 
-        {prestadores && prestadores.length > 0 && 
-          <div style={{ height: 400, width: '100%' }}>
-            <DataGrid 
-              getRowId={row => row.codigo}
-              rowOptions={{ selectable: true }} 
-              rows={prestadores}
-              columns={columns}
-              pageSize={5}
-              rowsPerPageOptions={[5]}
-            />
-          </div>
-        }
+        <div style={{ height: 400, width: '100%' }}>
+          <DataGrid 
+            getRowId={row => row.codigo}
+            rowOptions={{ selectable: true }} 
+            rows={prestadores}
+            loading={prestadores.length === 0}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+          />
+        </div>
 
       </div>  
         );

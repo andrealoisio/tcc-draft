@@ -12,7 +12,7 @@ export default function BasicCard({resumo}) {
         <CardContent>
           <CreditCardIcon fontSize="large" />
           <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-            {resumo.totalCarterinhasEmitidas}
+            {resumo?.totalCarterinhasEmitidas || 0}
           </Typography>
           <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
             Carteirinhas Emitidas
@@ -23,7 +23,7 @@ export default function BasicCard({resumo}) {
         <CardContent>
           <CheckCircleIcon fontSize="large" />
           <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-            {resumo.totalAssociadosAtivos}
+            {resumo?.totalAssociadosAtivos || 0}
           </Typography>
           <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
             Associados Ativos

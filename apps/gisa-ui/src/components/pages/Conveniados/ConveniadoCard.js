@@ -19,7 +19,7 @@ export default function BasicCard({resumo}) {
               <CardContent>
                 <FactCheckIcon fontSize="large" />
                 <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-                  {resumo.totalAtendimentos}
+                  {resumo?.totalAtendimentos || 0}
                 </Typography>
                 <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
                   Atendimentos em Conveniados
@@ -30,7 +30,7 @@ export default function BasicCard({resumo}) {
               <CardContent>
                 <GroupsIcon fontSize="large" />
                 <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-                  {resumo.totalConveniados}
+                  {resumo?.totalConveniados || 0}
                 </Typography>
                 <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
                   Total de Conveniados
@@ -41,7 +41,7 @@ export default function BasicCard({resumo}) {
               <CardContent>
                 <MoveDownIcon fontSize="large" />
                 <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-                  {resumo.totalRemocoes}
+                  {resumo?.totalRemocoes || 0}
                 </Typography>
                 <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
                   Total de Remoções
@@ -55,7 +55,7 @@ export default function BasicCard({resumo}) {
               <CardContent>
                 <FactCheckIcon fontSize="medium" />
                 <Typography sx={{ mb: 1.5, float: "right", fontSize: 20 }} color="green">
-                {resumo.totalAtendimentos}
+                {resumo?.totalAtendimentos || 0}
                 </Typography>
                 <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
                   Atendimentos em Conveniados
@@ -66,7 +66,7 @@ export default function BasicCard({resumo}) {
               <CardContent>
                 <GroupsIcon fontSize="medium" />
                 <Typography sx={{ mb: 1.5, float: "right", fontSize: 20 }} color="green">
-                  {resumo.totalConveniados}
+                  {resumo?.totalConveniados || 0}
                 </Typography>
                 <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
                   Total de Conveniados
@@ -77,7 +77,7 @@ export default function BasicCard({resumo}) {
               <CardContent>
                 <MoveDownIcon fontSize="medium" />
                 <Typography sx={{ mb: 1.5, float: "right", fontSize: 20 }} color="green">
-                  {resumo.totalRemocoes}
+                  {resumo?.totalRemocoes || 0}
                 </Typography>
                 <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
                   Total de Remoções

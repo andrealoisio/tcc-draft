@@ -41,14 +41,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function AssociadoForm() {
   const classes = useStyles();
-  const [rows, setRows] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [associados, setAssociados] = useState([])
   const [error, setError] = useState(false)
   const [resumo, setResumo] = useState(false)
 
 
   useEffect(() => {
-    setRows(null)
     fetch("http://localhost/associados")
       .then(resp => {
         if (resp.ok) {
@@ -60,18 +58,15 @@ export default function AssociadoForm() {
         }
       })
       .then(resp => {
-        setRows(resp)
-        setLoading(false)
+        setAssociados(resp)
       })
       .catch(err => {
         setError(true)
-        setLoading(false)
         console.log(err)
       })
   }, [])
 
   useEffect(() => {
-    setRows(null)
     fetch("http://localhost/associados/resumo")
       .then(resp => {
         if (resp.ok) {
@@ -92,32 +87,26 @@ export default function AssociadoForm() {
 
   return (
     <div className="App">
-      {resumo &&
       <div className={classes.card}>
         <AssociadoCard resumo={resumo} />
-      </div>}
+      </div>
       <div>
         <Typography variant="h6">
           <ListAltIcon /> Visão Geral de Associados
         </Typography>
       </div>
-      {rows &&
-        <>
-          <div style={{ height: 400, width: '100%' }}>
-            <DataGrid
-              getRowId={row => row.matricula}
-              rowOptions={{ selectable: true }}
-              rows={rows}
-              columns={columns}
-              pageSize={5}
-              rowsPerPageOptions={[5]}
-            />
-          </div>
-        </>
-      }
-      {loading &&
-        <Typography variant="h6">Carregando...</Typography>
-      }
+
+      <div style={{ height: 400, width: '100%' }}>
+        <DataGrid
+          getRowId={row => row.matricula}
+          rowOptions={{ selectable: true }}
+          rows={associados}
+          loading={associados.length === 0}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+        />
+      </div>
       {error &&
         <Typography variant="h6" style={{color: 'red'}}>Erro inesperado ao carregar Associados.</Typography>
       }

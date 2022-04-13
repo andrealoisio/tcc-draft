@@ -42,14 +42,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function ConveniadoForm() {
   const classes = useStyles();
-  const [rows, setRows] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [conveniados, setConveniados] = useState([])
   const [error, setError] = useState(false)
   const [resumo, setResumo] = useState(null)
 
 
   useEffect(() => {
-    setRows(null)
     fetch("http://localhost/conveniados")
       .then(resp => {
         if (resp.ok) {
@@ -62,12 +60,10 @@ export default function ConveniadoForm() {
       })
       .then(resp => {
         resp = resp.map(item => ({...item, data_registro: dayjs(item.data_registro).format('DD/MM/YYYY')}))
-        setRows(resp)
-        setLoading(false)
+        setConveniados(resp)
       })
       .catch(err => {
         setError(true)
-        setLoading(false)
         console.log(err)
       })
   }, [])
@@ -94,30 +90,24 @@ export default function ConveniadoForm() {
   return (
     <div className="App">
       <div className={classes.card}>
-        {resumo &&
-          <ConveniadoCard resumo={resumo} />
-        };
+        <ConveniadoCard resumo={resumo} />
       </div>
       <div>
         <Typography variant="h6"> <ListAltIcon /> Visão Geral de Conveniados </Typography>
       </div>
-      {rows &&
-        <>
-          <div style={{ height: 400, width: '100%' }}>
+
+      <div style={{ height: 400, width: '100%' }}>
             <DataGrid
               getRowId={row => row.seq_conveniado}
               rowOptions={{ selectable: true }}
-              rows={rows}
+              rows={conveniados}
+              loading={conveniados.length === 0}
               columns={columns}
               pageSize={5}
               rowsPerPageOptions={[5]}
             />
           </div>
-        </>
-      }
-      {loading &&
-        <Typography variant="h6">Carregando...</Typography>
-      }
+
       {error &&
         <Typography variant="h6" style={{ color: 'red' }}>Erro inesperado ao carregar Associados.</Typography>
       }

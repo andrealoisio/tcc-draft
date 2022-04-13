@@ -47,12 +47,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AtendimentoForm() {
   const classes = useStyles();
-  const [rows, setRows] = useState([])
+  const [atendimentos, setAtendimentos] = useState([])
   const [resumo, setResumo] = useState(null)
 
-
   useEffect(() => {
-    setRows(null)
     fetch("http://localhost/atendimentos")
       .then(resp => {
         if (resp.ok) {
@@ -65,8 +63,7 @@ export default function AtendimentoForm() {
       })
       .then(resp => {
         resp = resp.map(item => ({...item, dataAtendimento: dayjs(item.dataAtendimento).format('DD/MM/YYYY')}))
-        console.log('resp', resp)
-        setRows(resp)
+        setAtendimentos(resp)
       })
       .catch(err => {
         console.log(err)
@@ -74,7 +71,6 @@ export default function AtendimentoForm() {
   }, [])
 
   useEffect(() => {
-    setRows(null)
     fetch("http://localhost/atendimentos/resumo")
       .then(resp => {
         if (resp.ok) {
@@ -93,9 +89,9 @@ export default function AtendimentoForm() {
       })
   }, [])
 
-  return (rows &&
+  return (
           <div className="App">
-            {resumo && 
+            {true && 
             <div className={classes.card}>
               <AtendimentoCard resumo={resumo}/>
             </div>}
@@ -108,10 +104,11 @@ export default function AtendimentoForm() {
               <DataGrid 
                 getRowId={row => row.seqAtendimento}
                 rowOptions={{ selectable: true }} 
-                rows={rows}
+                rows={atendimentos}
                 columns={columns}
                 pageSize={5}
                 rowsPerPageOptions={[5]}
+                loading={atendimentos.length === 0}
               />
             </div>
           </div>  

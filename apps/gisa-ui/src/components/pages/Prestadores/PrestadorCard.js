@@ -11,7 +11,7 @@ export default function BasicCard({resumo}) {
         <CardContent>
           <GroupsIcon fontSize="large" />
           <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-            {resumo.totalPrestadores}
+            {resumo?.totalPrestadores || 0}
           </Typography>
           <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
             Total de Prestadores
@@ -22,7 +22,7 @@ export default function BasicCard({resumo}) {
         <CardContent>
           <GroupsIcon fontSize="large" />
           <Typography sx={{ mb: 1.5, float: "right", fontSize: 30 }} color="green">
-            {resumo.totalPrestadoresEspecializacao}
+            {resumo?.totalPrestadoresEspecializacao || 0}
           </Typography>
           <Typography sx={{ mb: 1.5, fontSize: 18 }} color="green">
             Prestadores com Especialização
