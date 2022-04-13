@@ -94,8 +94,10 @@ export default function DetalheConveniados() {
         noValidate
         autoComplete="off"
       >
-        <Typography variant="h6">{codigo}</Typography>
         <div>
+            {!prestador && 
+              <Typography variant="h6">Carregando...</Typography> 
+            }
             {prestador && <>
               <MediaQuery minWidth="500px">
                 {(matches) =>
@@ -130,18 +132,17 @@ export default function DetalheConveniados() {
               <TextField label="Conta Corrente" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={prestador.conta} />
               <Typography variant="h6"> <ListAltIcon /> Formação </Typography>
               
-              {formacoes && formacoes.length > 0 &&
-                <div style={{ height: 400, width: '100%' }}>
-                  <DataGrid 
-                    getRowId={row => row.seq_formacao}
-                    rowOptions={{ selectable: true }} 
-                    rows={formacoes}
-                    columns={columns}
-                    pageSize={5}
-                    rowsPerPageOptions={[5]}
-                  />
-                </div>
-              }
+              <div style={{ height: 400, width: '100%' }}>
+                <DataGrid 
+                  getRowId={row => row.seq_formacao}
+                  rowOptions={{ selectable: true }} 
+                  rows={formacoes}
+                  loading={formacoes.length === 0}
+                  columns={columns}
+                  pageSize={5}
+                  rowsPerPageOptions={[5]}
+                />
+              </div>
             </>}
         </div>
       </Box>

@@ -37,7 +37,7 @@ export default function DetalheConveniados() {
         }      
       })
       .then(resp => {
-        setValues(resp) 
+        setValues(resp)
         setLoading(false)      
       })
       .catch(err => {
