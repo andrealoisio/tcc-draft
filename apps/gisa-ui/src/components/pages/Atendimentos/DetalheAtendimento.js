@@ -142,90 +142,84 @@ export default function DetalheConveniados() {
         noValidate
         autoComplete="off"
       >
-        {/* <Typography variant="h6">{seqAtendimento}</Typography> */}
-        <div>
-          
-          
-            <>
-              
-              {atendimento &&
-                <>
-                  <TextField label="Data de Atendimento" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={dayjs(atendimento.dataAtendimento).format('DD/MM/YYYY')} />               
-                  <TextField label="Matrícula Associado" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.matriculaAssociado} />               
-                  <MediaQuery minWidth="500px">
-                    {(matches) =>
-                      matches
-                        ? <> <TextField multiline label="Nome Associado" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.nomeAssociado} sx={{ width: '280px !important', }} /> </>
-                        : <> <TextField multiline label="Nome" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.nomeAssociado} sx={{ width: '80% !important', }} /> </> 
-                    }
-                  </MediaQuery>
-                  <TextField label="Situação" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.situacao} />              
-                  <TextField label="Tipo" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.tipo} />              
-                  <TextField label="Custo" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.custo || '10,00'} />
-                  <TextField label="CID" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.cid} />    
-                  <TextField label="Código Prestador" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.codigoPrestador} />    
-                  <MediaQuery minWidth="500px">
-                    {(matches) =>
-                      matches
-                        ? <> <TextField multiline label="Nome Prestador" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.nomePrestador} sx={{ width: '280px !important', }} /> </> 
-                        : <> <TextField multiline label="Nome Prestador" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.nomePrestador} sx={{ width: '80% !important', }} /> </>
-                    }
-                  </MediaQuery>                          
-                  <TextField label="Código Conveniado" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.seqConveniado} />    
-                  <MediaQuery minWidth="500px">
-                    {(matches) =>
-                      matches
-                        ? <> <TextField multiline label="Nome Clínica/ Parceiro" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.clinicaParceira || ''} sx={{ width: '280px !important', }} /> </>
-                        : <> <TextField multiline label="Nome Clínica/ Parceiro" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.clinicaParceira || ''} sx={{ width: '80% !important', }} /> </>
-                    }
-                  </MediaQuery> 
-                </>
+        {atendimento &&
+          <>
+            <TextField label="Data de Atendimento" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={dayjs(atendimento.dataAtendimento).format('DD/MM/YYYY')} />               
+            <TextField label="Matrícula Associado" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.matriculaAssociado} />               
+            <MediaQuery minWidth="500px">
+              {(matches) =>
+                matches
+                  ? <> <TextField multiline label="Nome Associado" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.nomeAssociado} sx={{ width: '280px !important', }} /> </>
+                  : <> <TextField multiline label="Nome" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.nomeAssociado} sx={{ width: '80% !important', }} /> </> 
               }
-              
-              <Typography display="block" variant="h6"> <ListAltIcon /> Autorizações </Typography>              
-              {
-                <div style={{ height: 400, width: '100%' }}>
-                  <DataGrid 
-                    getRowId={row => row.codigo}
-                    rowOptions={{ selectable: true }} 
-                    rows={autorizacoes}
-                    columns={columnsAutorizacao}
-                    pageSize={5}
-                    rowsPerPageOptions={[5]}
-                    components={{
-                      NoRowsOverlay: () => (
-                        <div style={{padding: '20px'}}>
-                          Nenhuma autorização encontrada
-                        </div>
-                      )
-                    }}
-                  />
-                </div>
-              } 
+            </MediaQuery>
+            <TextField label="Situação" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.situacao} />              
+            <TextField label="Tipo" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.tipo} />              
+            <TextField label="Custo" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.custo || '10,00'} />
+            <TextField label="CID" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.cid} />    
+            <TextField label="Código Prestador" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.codigoPrestador} />    
+            <MediaQuery minWidth="500px">
+              {(matches) =>
+                matches
+                  ? <> <TextField multiline label="Nome Prestador" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.nomePrestador} sx={{ width: '280px !important', }} /> </> 
+                  : <> <TextField multiline label="Nome Prestador" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.nomePrestador} sx={{ width: '80% !important', }} /> </>
+              }
+            </MediaQuery>                          
+            <TextField label="Código Conveniado" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={value.seqConveniado} />    
+            <MediaQuery minWidth="500px">
+              {(matches) =>
+                matches
+                  ? <> <TextField multiline label="Nome Clínica/ Parceiro" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.clinicaParceira || ''} sx={{ width: '280px !important', }} /> </>
+                  : <> <TextField multiline label="Nome Clínica/ Parceiro" className={classes.textField} InputProps={{ classes: { disabled: classes.disabled }, }} value={atendimento.clinicaParceira || ''} sx={{ width: '80% !important', }} /> </>
+              }
+            </MediaQuery> 
+          </>
+        }
+        
+        <Typography display="block" variant="h6"> <ListAltIcon /> Autorizações </Typography>              
+        {
+          <div style={{ height: 400, width: '100%' }}>
+            <DataGrid 
+              getRowId={row => row.codigo}
+              rowOptions={{ selectable: true }} 
+              rows={autorizacoes}
+              loading={autorizacoes.length === 0}
+              columns={columnsAutorizacao}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+              components={{
+                NoRowsOverlay: () => (
+                  <div style={{padding: '20px'}}>
+                    Nenhuma autorização encontrada
+                  </div>
+                )
+              }}
+            />
+          </div>
+        } 
 
-              <Typography display="block" variant="h6"> <ListAltIcon /> Remoções </Typography>              
-              
-              {
-                <div style={{ height: 400, width: '100%' }}>
-                  <DataGrid 
-                    getRowId={row => row.seq_remocao}
-                    rowOptions={{ selectable: true }} 
-                    rows={remocoes}
-                    columns={columnsRemocao}
-                    pageSize={5}
-                    rowsPerPageOptions={[5]}
-                    components={{
-                      NoRowsOverlay: () => (
-                        <div style={{padding: '20px'}}>
-                          Nenhuma remoção encontrada
-                        </div>
-                      )
-                    }}
-                  />
-                </div>
-              }
-            </>
-        </div>
+        <Typography display="block" variant="h6"> <ListAltIcon /> Remoções </Typography>              
+        
+        {
+          <div style={{ height: 400, width: '100%' }}>
+            <DataGrid 
+              getRowId={row => row.seq_remocao}
+              rowOptions={{ selectable: true }} 
+              rows={remocoes}
+              loading={remocoes.length === 0}
+              columns={columnsRemocao}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+              components={{
+                NoRowsOverlay: () => (
+                  <div style={{padding: '20px'}}>
+                    Nenhuma remoção encontrada
+                  </div>
+                )
+              }}
+            />
+          </div>
+        }
       </Box>
     </>
   );
