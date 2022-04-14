@@ -114,6 +114,7 @@ services:
     environment:
       - ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
+      - ADVERTISED_HOST_NAME=kafka
     networks:
       - "kong-net"
   debezium_connect:
