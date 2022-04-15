@@ -24,7 +24,7 @@ spec:
         io.kompose.service: frontend
     spec:
       containers:
-        - image: andrealoisio/tcc-puc-frontend:202204131952
+        - image: andrealoisio/tcc-puc-frontend:latest
           name: gisa-frontend
           ports:
             - containerPort: 80

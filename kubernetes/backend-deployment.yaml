@@ -31,7 +31,7 @@ spec:
               value: postgres
             - name: POSTGRES_USER
               value: postgres
-          image: andrealoisio/tcc-puc-backend:202204131925
+          image: andrealoisio/tcc-puc-backend:latest
           name: gisa-backend
           ports:
             - containerPort: 8080
