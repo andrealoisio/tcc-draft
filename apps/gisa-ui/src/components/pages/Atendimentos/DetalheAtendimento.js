@@ -54,10 +54,12 @@ export default function DetalheConveniados() {
 
   const [atendimento, setAtendimento] = useState(null)
   const [autorizacoes, setAutorizacoes] = useState([])
+  const [checouAutorizacoes, setChecouAutorizacoes] = useState(false)
   const [remocoes, setRemocoes] = useState([])
+  const [checouRemocoes, setChecouRemocoes] = useState(false)
 
   useEffect(() => {
-    fetch(`http://localhost/atendimentos/${seqAtendimento}`)
+    fetch(`http://localhost:8080/atendimentos/${seqAtendimento}`)
       .then(resp => {
         if (resp.ok) {
           return resp.json()
@@ -76,9 +78,10 @@ export default function DetalheConveniados() {
   }, [seqAtendimento])
 
   useEffect(() => {
-    fetch(`http://localhost/autorizacoes/${seqAtendimento}`)
+    fetch(`http://localhost:8080/autorizacoes/${seqAtendimento}`)
       .then(resp => {
         if (resp.ok) {
+          setChecouAutorizacoes(true)
           return resp.json()
         } else if (resp.status === 404) {
           return Promise.reject('error 404')
@@ -106,9 +109,10 @@ export default function DetalheConveniados() {
   }, [seqAtendimento])
 
   useEffect(() => {
-    fetch(`http://localhost/remocoes/${seqAtendimento}`)
+    fetch(`http://localhost:8080/remocoes/${seqAtendimento}`)
       .then(resp => {
         if (resp.ok) {
+          setChecouRemocoes(true)
           return resp.json()
         } else if (resp.status === 404) {
           return Promise.reject('error 404')
@@ -124,7 +128,6 @@ export default function DetalheConveniados() {
         console.log(err)
       })
   }, [seqAtendimento])
-
 
   return (
     <>
@@ -176,14 +179,16 @@ export default function DetalheConveniados() {
           </>
         }
         
-        <Typography display="block" variant="h6"> <ListAltIcon /> Autorizações </Typography>              
+        <div style={{width: '100%', margin: '20px 0px 10px 0px'}}>
+          <Typography display="block" variant="h6"> <ListAltIcon />Autorizações</Typography>              
+        </div>
         {
           <div style={{ height: 400, width: '100%' }}>
             <DataGrid 
               getRowId={row => row.codigo}
               rowOptions={{ selectable: true }} 
               rows={autorizacoes}
-              loading={autorizacoes.length === 0}
+              loading={!checouAutorizacoes}
               columns={columnsAutorizacao}
               pageSize={5}
               rowsPerPageOptions={[5]}
@@ -198,7 +203,7 @@ export default function DetalheConveniados() {
           </div>
         } 
 
-        <Typography display="block" variant="h6"> <ListAltIcon /> Remoções </Typography>              
+        <Typography display="block" variant="h6" style={{margin: '20px 0px 10px 0px'}}> <ListAltIcon /> Remoções </Typography>              
         
         {
           <div style={{ height: 400, width: '100%' }}>
@@ -206,7 +211,7 @@ export default function DetalheConveniados() {
               getRowId={row => row.seq_remocao}
               rowOptions={{ selectable: true }} 
               rows={remocoes}
-              loading={remocoes.length === 0}
+              loading={!checouRemocoes}
               columns={columnsRemocao}
               pageSize={5}
               rowsPerPageOptions={[5]}

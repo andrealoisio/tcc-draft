@@ -43,12 +43,14 @@ const useStyles = makeStyles((theme) => ({
 export default function PrestadorForm() {
   const classes = useStyles();
   const [prestadores, setPrestadores] = useState([])
+  const [checouPrestadores, setChecouPrestadores] = useState(false)
   const [resumo, setResumo] = useState(null)
 
   useEffect(() => {
-    fetch("http://localhost/prestadores")
+    fetch("http://localhost:8080/prestadores")
       .then(resp => {
         if (resp.ok) {
+          setChecouPrestadores(true)
           return resp.json()
         } else if (resp.status === 404) {
           return Promise.reject('error 404')
@@ -65,7 +67,7 @@ export default function PrestadorForm() {
   }, [])
 
   useEffect(() => {
-    fetch("http://localhost/prestadores/resumo")
+    fetch("http://localhost:8080/prestadores/resumo")
       .then(resp => {
         if (resp.ok) {
           return resp.json()
@@ -99,7 +101,7 @@ export default function PrestadorForm() {
             getRowId={row => row.codigo}
             rowOptions={{ selectable: true }} 
             rows={prestadores}
-            loading={prestadores.length === 0}
+            loading={!checouPrestadores}
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}

@@ -31,11 +31,12 @@ export default function DetalheConveniados() {
   const [prestador, setPrestador] = useState(null);
   const [seqFormacao, setSeqFormacao] = useState(null)
   const [formacoes, setFormacoes] = useState([])
+  const [checouFormacao, setChecouFormacao] = useState(false)
 
   console.log(dayjs().format('DD/MM/YYYY'))
 
   useEffect(() => {
-    fetch(`http://localhost/prestadores/${codigo}`)
+    fetch(`http://localhost:8080/prestadores/${codigo}`)
       .then(resp => {
         if (resp.ok) {
           return resp.json()
@@ -55,9 +56,10 @@ export default function DetalheConveniados() {
 
   useEffect(() => {
     if (!seqFormacao) return;
-    fetch(`http://localhost/formacoes/${seqFormacao}`)
+    fetch(`http://localhost:8080/formacoes/${seqFormacao}`)
       .then(resp => {
         if (resp.ok) {
+          setChecouFormacao(true)
           return resp.json()
         } else if(resp.status === 404) {
           return Promise.reject('error 404')
@@ -137,7 +139,7 @@ export default function DetalheConveniados() {
                   getRowId={row => row.seq_formacao}
                   rowOptions={{ selectable: true }} 
                   rows={formacoes}
-                  loading={formacoes.length === 0}
+                  loading={!checouFormacao}
                   columns={columns}
                   pageSize={5}
                   rowsPerPageOptions={[5]}

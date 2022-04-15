@@ -60,7 +60,7 @@ services:
     networks:
       - "kong-net"
     ports:
-      - "80:8080"
+      - "8080:8080"
     volumes:
       - ./apps/gisa-informacoes-cadastrais/target/quarkus-app:/deployments
   gerador_dados_legados:

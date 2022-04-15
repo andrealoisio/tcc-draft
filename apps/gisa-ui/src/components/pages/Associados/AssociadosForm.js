@@ -42,14 +42,16 @@ const useStyles = makeStyles((theme) => ({
 export default function AssociadoForm() {
   const classes = useStyles();
   const [associados, setAssociados] = useState([])
+  const [checouAssociados, setChecouAssociados] = useState(false)
   const [error, setError] = useState(false)
   const [resumo, setResumo] = useState(false)
 
 
   useEffect(() => {
-    fetch("http://localhost/associados")
+    fetch("http://localhost:8080/associados")
       .then(resp => {
         if (resp.ok) {
+          setChecouAssociados(true)
           return resp.json()
         } else if (resp.status === 404) {
           return Promise.reject('error 404')
@@ -67,7 +69,7 @@ export default function AssociadoForm() {
   }, [])
 
   useEffect(() => {
-    fetch("http://localhost/associados/resumo")
+    fetch("http://localhost:8080/associados/resumo")
       .then(resp => {
         if (resp.ok) {
           return resp.json()
@@ -101,7 +103,7 @@ export default function AssociadoForm() {
           getRowId={row => row.matricula}
           rowOptions={{ selectable: true }}
           rows={associados}
-          loading={associados.length === 0}
+          loading={!checouAssociados}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}

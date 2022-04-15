@@ -48,12 +48,14 @@ const useStyles = makeStyles((theme) => ({
 export default function AtendimentoForm() {
   const classes = useStyles();
   const [atendimentos, setAtendimentos] = useState([])
+  const [checouAtendimentos, setChecouAtendimentos] = useState(false)
   const [resumo, setResumo] = useState(null)
 
   useEffect(() => {
-    fetch("http://localhost/atendimentos")
+    fetch("http://localhost:8080/atendimentos")
       .then(resp => {
         if (resp.ok) {
+          setChecouAtendimentos(true)
           return resp.json()
         } else if (resp.status === 404) {
           return Promise.reject('error 404')
@@ -71,7 +73,7 @@ export default function AtendimentoForm() {
   }, [])
 
   useEffect(() => {
-    fetch("http://localhost/atendimentos/resumo")
+    fetch("http://localhost:8080/atendimentos/resumo")
       .then(resp => {
         if (resp.ok) {
           return resp.json()
@@ -108,7 +110,7 @@ export default function AtendimentoForm() {
                 columns={columns}
                 pageSize={5}
                 rowsPerPageOptions={[5]}
-                loading={atendimentos.length === 0}
+                loading={!checouAtendimentos}
               />
             </div>
           </div>  

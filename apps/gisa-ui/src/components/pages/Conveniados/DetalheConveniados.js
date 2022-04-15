@@ -26,7 +26,7 @@ export default function DetalheConveniados() {
   console.log(value)
   useEffect(() => {
     setValues(null)
-    fetch(`http://localhost/conveniados/${seq_conveniado}`)
+    fetch(`http://localhost:8080/conveniados/${seq_conveniado}`)
       .then(resp => {
         if (resp.ok) {
           return resp.json()

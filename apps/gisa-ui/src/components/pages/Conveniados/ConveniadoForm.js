@@ -43,14 +43,16 @@ const useStyles = makeStyles((theme) => ({
 export default function ConveniadoForm() {
   const classes = useStyles();
   const [conveniados, setConveniados] = useState([])
+  const [checouConveniados, setChecouConveniados] = useState(false)
   const [error, setError] = useState(false)
   const [resumo, setResumo] = useState(null)
 
 
   useEffect(() => {
-    fetch("http://localhost/conveniados")
+    fetch("http://localhost:8080/conveniados")
       .then(resp => {
         if (resp.ok) {
+          setChecouConveniados(true)
           return resp.json()
         } else if (resp.status === 404) {
           return Promise.reject('error 404')
@@ -69,7 +71,7 @@ export default function ConveniadoForm() {
   }, [])
 
   useEffect(() => {
-    fetch("http://localhost/conveniados/resumo")
+    fetch("http://localhost:8080/conveniados/resumo")
       .then(resp => {
         if (resp.ok) {
           return resp.json()
@@ -101,7 +103,7 @@ export default function ConveniadoForm() {
               getRowId={row => row.seq_conveniado}
               rowOptions={{ selectable: true }}
               rows={conveniados}
-              loading={conveniados.length === 0}
+              loading={!checouConveniados}
               columns={columns}
               pageSize={5}
               rowsPerPageOptions={[5]}

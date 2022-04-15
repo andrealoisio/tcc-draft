@@ -39,7 +39,7 @@ export default function DetalheAssociados() {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    fetch(`http://localhost/associados/${matricula}`)
+    fetch(`http://localhost:8080/associados/${matricula}`)
       .then(resp => {
         if (resp.ok) {
           return resp.json()
@@ -60,7 +60,7 @@ export default function DetalheAssociados() {
   }, [matricula])
 
   useEffect(() => {
-    fetch(`http://localhost/carteirinhas/${matricula}`)
+    fetch(`http://localhost:8080/carteirinhas/${matricula}`)
       .then(resp => {
         if (resp.ok) {
           return resp.json()
@@ -71,8 +71,10 @@ export default function DetalheAssociados() {
         }
       })
       .then(resp => {
-        resp = resp.map(carteirinha => (
-          {...carteirinha, data_registro: dayjs(carteirinha.data_registro).format('DD/MM/YYY'), data_vencimento: dayjs(carteirinha.data_vencimento).format('DD/MM/YYY')}
+        resp = resp.map(carteirinha => ({
+          ...carteirinha,
+          data_registro: dayjs(carteirinha.data_registro).format('DD/MM/YYYY'),
+          data_vencimento: dayjs(carteirinha.data_vencimento).format('DD/MM/YYYY')}
         ))
         setCarteirinhas(resp)
         // setLoading(false)
