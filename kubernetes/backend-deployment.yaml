@@ -9,7 +9,7 @@ metadata:
     io.kompose.service: backend
   name: backend
 spec:
-  replicas: 6
+  replicas: 1
   selector:
     matchLabels:
       io.kompose.service: backend
@@ -35,6 +35,11 @@ spec:
           name: gisa-backend
           ports:
             - containerPort: 8080
-          resources: {}
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 200m
+              memory: 500M
       restartPolicy: Always
 status: {}
