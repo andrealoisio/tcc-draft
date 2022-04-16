@@ -1,5 +1,5 @@
 import http from 'k6/http';
 
 export default function () {
-  http.get('http://localhost:8080/atendimentos');
+  http.get('http://localhost:8080/associados');
 }

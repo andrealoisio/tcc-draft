@@ -25,5 +25,6 @@ kubectl get all
 # minikube delete && minikube start --extra-config=kubelet.housekeeping-interval=10s
 #
 # wrk -t12 -c400 -d30s http://localhost:8080/atendimentos
-# wrk -t12 -c400 -d1m -H "Connection: Close" http://localhost:8080/atendimentos
+# wrk -t12 -c400 -d1m -H "Connection: Close" http://localhost:8080/associados
 # This runs a benchmark for 30 seconds, using 12 threads, and keeping 400 HTTP connections open.
+# k6 run --vus=400 --duration=30s --target=http://localhost:8080/associados
